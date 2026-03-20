@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What We Found — Bob Regnerus · The Signal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#07080f;--navy:#0b0f1e;--card:#111624;--gold:#c9a84c;--gold-dim:rgba(201,168,76,0.08);--gold-border:rgba(201,168,76,0.22);--white:#f2f2f5;--grey:#7a84a0;--muted:#4a5270;--serif:'Playfair Display',Georgia,serif;--sans:'Inter',-apple-system,sans-serif;}
+body{font-family:var(--sans);background:var(--navy);color:var(--white);line-height:1.7;margin:0}
+.nav{position:fixed;top:0;left:0;right:0;z-index:999;background:rgba(7,8,15,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,.12);height:52px;display:flex;align-items:center;padding:0 32px;gap:16px}
+.nav-brand{font-family:var(--serif);font-size:.85rem;font-weight:700;color:var(--white);display:flex;align-items:center;gap:8px;text-decoration:none}
+.nav-dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.nav-brand span{color:var(--gold)}
+.nav-back{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .15s}
+.nav-back:hover{color:var(--gold)}
+.hero{padding:88px 40px 52px;text-align:center;position:relative;overflow:hidden;background:var(--black);border-bottom:1px solid rgba(201,168,76,.1)}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 40%,rgba(201,168,76,.07) 0%,transparent 65%);pointer-events:none}
+.eyebrow{font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:14px;display:inline-flex;align-items:center;gap:12px}
+.eyebrow::before,.eyebrow::after{content:'';width:22px;height:1px;background:rgba(201,168,76,.5)}
+h1{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:700;line-height:1.1;margin-bottom:16px}
+h1 .gold{color:var(--gold)} h1 .it{font-style:italic}
+.hero-sub{font-size:.82rem;color:var(--grey);max-width:520px;margin:0 auto;line-height:1.85}
+.hero-sub strong{color:var(--white)}
+.body{max-width:780px;margin:0 auto;padding:52px 32px 80px}
+.section{margin-bottom:52px}
+.section-label{font-size:.56rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.section-label::after{content:'';flex:1;height:1px;background:rgba(201,168,76,.15)}
+h2{font-family:var(--serif);font-size:1.6rem;font-weight:700;color:var(--white);margin-bottom:14px;line-height:1.2}
+h2 .gold{color:var(--gold);font-style:italic}
+p{font-size:.88rem;color:var(--grey);line-height:1.85;margin-bottom:14px}
+p strong{color:var(--white)}
+.card{background:var(--card);border:1px solid rgba(201,168,76,.12);border-radius:10px;padding:24px 28px;margin-bottom:14px}
+.card-title{font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--white);margin-bottom:10px}
+.card-title .gold{color:var(--gold)}
+.card p{margin-bottom:0}
+.signal-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+@media(max-width:600px){.signal-grid{grid-template-columns:1fr}}
+.signal-item{background:var(--card);border:1px solid rgba(201,168,76,.12);border-radius:8px;padding:20px 22px}
+.signal-item .num{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px}
+.signal-item .label{font-family:var(--serif);font-size:1rem;font-weight:700;color:var(--white);margin-bottom:6px}
+.signal-item .desc{font-size:.78rem;color:var(--grey);line-height:1.6}
+.signal-item .desc strong{color:var(--white)}
+.finding{display:flex;gap:14px;align-items:flex-start;margin-bottom:16px}
+.finding-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:6px}
+.finding-dot.green{background:#5ce07a}
+.finding-dot.red{background:#e05c5c}
+.finding-dot.gold{background:var(--gold)}
+.finding-content .title{font-size:.85rem;font-weight:600;color:var(--white);margin-bottom:4px}
+.finding-content .body{font-size:.8rem;color:var(--grey);line-height:1.65}
+.quote{border-left:3px solid var(--gold);padding:16px 20px;margin:20px 0;background:rgba(201,168,76,.05);border-radius:0 8px 8px 0}
+.quote p{font-family:var(--serif);font-size:.95rem;font-style:italic;color:var(--white);margin-bottom:0;line-height:1.65}
+.nav-chapters{display:flex;gap:10px;margin-top:40px;flex-wrap:wrap}
+.nav-ch{flex:1;min-width:160px;background:var(--card);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:14px 18px;text-decoration:none;transition:all .2s}
+.nav-ch:hover{border-color:rgba(201,168,76,.4);transform:translateY(-2px)}
+.nav-ch .ch-label{font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:4px}
+.nav-ch .ch-name{font-size:.82rem;font-weight:600;color:var(--white)}
+footer{text-align:center;padding:32px 20px;border-top:1px solid rgba(255,255,255,.05);font-size:.7rem;color:var(--muted)}
+footer span{color:var(--gold)}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="signal-origin.html"><div class="nav-dot"></div>The <span>Signal</span></a>
+  <a class="nav-back" href="signal-origin.html">← Back to Hub</a>
+</nav>
+
+<section class="hero">
+  <div class="eyebrow">Chapter 01 · Session Summary</div>
+  <h1>What We <span class="gold it">Found</span></h1>
+  <p class="hero-sub">The diagnostic. What's working, what's leaking, and the <strong>one shift that changes everything</strong> for your revenue and reach.</p>
+</section>
+
+<div class="body">
+
+  <div class="section">
+    <div class="section-label">The Signal Read</div>
+    <h2>Bob, your work <span class="gold">creates conviction.</span><br>Your broadcast doesn't.</h2>
+    <p>You've spent four decades helping athletes and founders see the pattern running underneath their performance. You can spot a white-knuckle grip — on a golf club or a business — within minutes. CEOs leave your SPARK Sessions with clarity they couldn't find in a year of thinking alone.</p>
+    <p><strong>And yet: the world doesn't know you exist.</strong></p>
+    <p>This isn't a quality problem. The product is exceptional. The testimonials are extraordinary. The methodology is battle-tested across 1,500 athletes and hundreds of boardroom conversations. What's missing is the broadcast — the systematic, consistent amplification of your signal that turns strangers into clients and clients into advocates.</p>
+    <p>The pattern you help others break? It's running in your own business. <em>How you do one thing is how you do everything.</em></p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">What's Working</div>
+    <h2>The <span class="gold">strengths</span> we're building on</h2>
+
+    <div class="finding">
+      <div class="finding-dot green"></div>
+      <div class="finding-content">
+        <div class="title">The SPARK methodology is genuinely differentiated</div>
+        <div class="body">S.P.A.R.K. is a precise, repeatable framework with a memorable name, clear outcomes, and strong social proof. Michael Hauge, Jhana Li, Frank Michel — these aren't fluff testimonials. They're from people with credibility. That's rare and valuable.</div>
+      </div>
+    </div>
+    <div class="finding">
+      <div class="finding-dot green"></div>
+      <div class="finding-content">
+        <div class="title">SPARK Tee Time is a category-of-one offer</div>
+        <div class="body">There is no one else offering a full-day immersive golf coaching experience that addresses business patterns through play. This is defensible, memorable, and premium. It needs to be the centerpiece, not a footnote.</div>
+      </div>
+    </div>
+    <div class="finding">
+      <div class="finding-dot green"></div>
+      <div class="finding-content">
+        <div class="title">40 years of pattern recognition is an authority moat</div>
+        <div class="body">1,500+ athletes. Locker rooms to boardrooms. Head golf coach. This backstory positions you as someone who has earned the right to see what others can't. Most coaches are self-appointed. You were forged over decades.</div>
+      </div>
+    </div>
+    <div class="finding">
+      <div class="finding-dot green"></div>
+      <div class="finding-content">
+        <div class="title">The SPARK Insights newsletter exists</div>
+        <div class="body">You have a content channel. That's infrastructure most coaches don't build. The question is whether it's converting subscribers into clients — and the answer is: not systematically, yet.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Where It's Leaking</div>
+    <h2>The <span class="gold">gaps</span> costing you revenue</h2>
+
+    <div class="finding">
+      <div class="finding-dot red"></div>
+      <div class="finding-content">
+        <div class="title">$777 is dramatically underpriced for the clients you serve</div>
+        <div class="body">Frank Michel is a Partner at Brandywine M&A. Jhana Li founded Spyglass Ops. These are people with $50K+ problems. A one-hour session that delivers that level of insight should not cost less than a decent dinner. This is a positioning problem disguised as a pricing problem.</div>
+      </div>
+    </div>
+    <div class="finding">
+      <div class="finding-dot red"></div>
+      <div class="finding-content">
+        <div class="title">No systematic reactivation of past clients</div>
+        <div class="body">Every person who's had a SPARK Session is a warm lead for Tee Time. Every Tee Time participant is a warm lead for an ongoing engagement. There's no current system to move people up this ladder or bring back those who've gone quiet.</div>
+      </div>
+    </div>
+    <div class="finding">
+      <div class="finding-dot red"></div>
+      <div class="finding-content">
+        <div class="title">LinkedIn is an untapped authority channel</div>
+        <div class="body">Your ideal client — the founder who's outgrown their definition of success — lives on LinkedIn. They're scrolling while half-present at meetings they've already mentally left. Your stories (the CEO with the white-knuckle grip, Paul's burnout breakthrough) are exactly the content that stops them.</div>
+      </div>
+    </div>
+    <div class="finding">
+      <div class="finding-dot red"></div>
+      <div class="finding-content">
+        <div class="title">SPARK Tee Time is buried and undermarketed</div>
+        <div class="body">Your highest-value, most differentiated offer is not front and center. Most people who could afford $4,900 for a life-changing day don't know it exists. This offer should be leading, not trailing.</div>
+      </div>
+    </div>
+    <div class="finding">
+      <div class="finding-dot red"></div>
+      <div class="finding-content">
+        <div class="title">The newsletter doesn't have a clear conversion path</div>
+        <div class="body">Great content without a call to action is charity. SPARK Insights needs a structure where each edition moves readers one step closer to booking a session — not just enjoying the insight and moving on.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">The Core Insight</div>
+    <div class="quote">
+      <p>"The tighter you grip the club, the worse you play." You tell your clients this. Your business has been gripping too tight — holding onto underpriced offers, comfortable invisibility, and a broadcast rhythm that doesn't match the quality of the work. It's time to loosen the grip."</p>
+    </div>
+    <p>The shift isn't in the product. It's in the broadcast. Your methodology is complete. Your authority is real. What this session delivers is the architecture to transmit it — consistently, systemically, and at the price point your work deserves.</p>
+    <p><strong>Nine deliverables. Each one designed to amplify a different frequency of your signal.</strong> Together, they form the complete revenue and reach architecture for Coach Reg at his next level.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Signal Metrics — Baseline</div>
+    <div class="signal-grid">
+      <div class="signal-item">
+        <div class="num">Current</div>
+        <div class="label">SPARK Session Price</div>
+        <div class="desc"><strong>$777</strong> — strong product, underpriced for the client profile you serve. Leaves significant revenue and positioning on the table.</div>
+      </div>
+      <div class="signal-item">
+        <div class="num">Opportunity</div>
+        <div class="label">Reactivation Pool</div>
+        <div class="desc"><strong>Unknown but significant.</strong> Every past client, newsletter subscriber, and referral source is a warm conversation waiting to happen.</div>
+      </div>
+      <div class="signal-item">
+        <div class="num">Highest Value</div>
+        <div class="label">SPARK Tee Time</div>
+        <div class="desc"><strong>$3,400–$4,900</strong> — your most differentiated offer. Currently underexposed. One booking per month = $40–60K ARR from a single offer.</div>
+      </div>
+      <div class="signal-item">
+        <div class="num">Untapped</div>
+        <div class="label">LinkedIn Authority</div>
+        <div class="desc"><strong>Zero active content machine.</strong> Your stories and methodology are perfectly suited for the platform where your ideal clients spend their mornings.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-chapters">
+    <a class="nav-ch" href="revenue-architecture.html"><div class="ch-label">Chapter 02</div><div class="ch-name">Revenue Architecture →</div></a>
+    <a class="nav-ch" href="positioning-blueprint.html"><div class="ch-label">Chapter 03</div><div class="ch-name">Positioning Blueprint →</div></a>
+    <a class="nav-ch" href="signal-origin.html"><div class="ch-label">All Chapters</div><div class="ch-name">← Back to Hub</div></a>
+  </div>
+
+</div>
+<footer><p>The <span>Signal</span> · Bob Regnerus · Chapter 01 of 09</p></footer>
+</body>
+</html>

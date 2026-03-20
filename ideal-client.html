@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ideal Client Profile — Bob Regnerus · The Signal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#07080f;--navy:#0b0f1e;--card:#111624;--gold:#c9a84c;--gold-border:rgba(201,168,76,0.22);--white:#f2f2f5;--grey:#7a84a0;--muted:#4a5270;--serif:'Playfair Display',Georgia,serif;--sans:'Inter',-apple-system,sans-serif;}
+body{font-family:var(--sans);background:var(--navy);color:var(--white);line-height:1.7;margin:0}
+.nav{position:fixed;top:0;left:0;right:0;z-index:999;background:rgba(7,8,15,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,.12);height:52px;display:flex;align-items:center;padding:0 32px;gap:16px}
+.nav-brand{font-family:var(--serif);font-size:.85rem;font-weight:700;color:var(--white);display:flex;align-items:center;gap:8px;text-decoration:none}
+.nav-dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.nav-brand span{color:var(--gold)}
+.nav-back{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .15s}
+.nav-back:hover{color:var(--gold)}
+.hero{padding:88px 40px 52px;text-align:center;position:relative;overflow:hidden;background:var(--black);border-bottom:1px solid rgba(201,168,76,.1)}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 40%,rgba(201,168,76,.07) 0%,transparent 65%);pointer-events:none}
+.eyebrow{font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:14px;display:inline-flex;align-items:center;gap:12px}
+.eyebrow::before,.eyebrow::after{content:'';width:22px;height:1px;background:rgba(201,168,76,.5)}
+h1{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:700;line-height:1.1;margin-bottom:16px}
+h1 .gold{color:var(--gold)} h1 .it{font-style:italic}
+.hero-sub{font-size:.82rem;color:var(--grey);max-width:520px;margin:0 auto;line-height:1.85}
+.hero-sub strong{color:var(--white)}
+.body{max-width:780px;margin:0 auto;padding:52px 32px 80px}
+.section{margin-bottom:52px}
+.section-label{font-size:.56rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.section-label::after{content:'';flex:1;height:1px;background:rgba(201,168,76,.15)}
+h2{font-family:var(--serif);font-size:1.6rem;font-weight:700;color:var(--white);margin-bottom:14px;line-height:1.2}
+h2 .gold{color:var(--gold);font-style:italic}
+p{font-size:.88rem;color:var(--grey);line-height:1.85;margin-bottom:14px}
+p strong{color:var(--white)}
+.profile-card{background:var(--card);border:1px solid rgba(201,168,76,.2);border-radius:14px;padding:30px 34px;margin:20px 0;position:relative;overflow:hidden}
+.profile-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),rgba(201,168,76,.3))}
+.profile-name{font-family:var(--serif);font-size:1.3rem;font-weight:700;color:var(--white);margin-bottom:4px}
+.profile-name .gold{color:var(--gold);font-style:italic}
+.profile-tagline{font-size:.78rem;color:var(--gold);letter-spacing:.08em;margin-bottom:18px;font-weight:600}
+.profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px}
+@media(max-width:580px){.profile-grid{grid-template-columns:1fr}}
+.pg-item .pg-label{font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:4px}
+.pg-item .pg-value{font-size:.82rem;color:var(--white);line-height:1.5}
+.profile-quote{font-family:var(--serif);font-size:.95rem;font-style:italic;color:var(--grey);border-left:3px solid rgba(201,168,76,.4);padding:12px 16px;margin:16px 0;border-radius:0 6px 6px 0;background:rgba(201,168,76,.04)}
+.profile-quote strong{color:var(--white);font-style:normal}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+@media(max-width:580px){.two-col{grid-template-columns:1fr}}
+.col-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:16px 18px}
+.col-card .col-title{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:8px}
+.col-card ul{padding-left:16px}
+.col-card ul li{font-size:.8rem;color:var(--grey);line-height:1.6;margin-bottom:4px}
+.anti-profile{background:rgba(224,92,92,.05);border:1px solid rgba(224,92,92,.2);border-radius:10px;padding:22px 26px;margin:16px 0}
+.anti-profile .ap-title{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:#e05c5c;font-weight:700;margin-bottom:10px}
+.anti-profile p{font-size:.82rem;margin-bottom:0;color:var(--grey)}
+.nav-chapters{display:flex;gap:10px;margin-top:40px;flex-wrap:wrap}
+.nav-ch{flex:1;min-width:160px;background:var(--card);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:14px 18px;text-decoration:none;transition:all .2s}
+.nav-ch:hover{border-color:rgba(201,168,76,.4);transform:translateY(-2px)}
+.nav-ch .ch-label{font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:4px}
+.nav-ch .ch-name{font-size:.82rem;font-weight:600;color:var(--white)}
+footer{text-align:center;padding:32px 20px;border-top:1px solid rgba(255,255,255,.05);font-size:.7rem;color:var(--muted)}
+footer span{color:var(--gold)}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="signal-origin.html"><div class="nav-dot"></div>The <span>Signal</span></a>
+  <a class="nav-back" href="signal-origin.html">← Back to Hub</a>
+</nav>
+<section class="hero">
+  <div class="eyebrow">Chapter 08 · Ideal Client Profile</div>
+  <h1>The Person You <span class="gold it">Do Your Best</span><br>Work With</h1>
+  <p class="hero-sub">Defined precisely — so every message, offer, and conversation <strong>attracts them and repels everyone else.</strong></p>
+</section>
+<div class="body">
+
+  <div class="section">
+    <div class="section-label">Why This Matters</div>
+    <p>The clearer you are about who you're for, the more powerfully the right people self-select. Vague positioning attracts vague clients — people who want general motivation, who aren't ready to act, who don't have a specific real decision in front of them. Precise positioning attracts the Frank Michels and Jhana Lis — credible, committed, and ready to move.</p>
+    <p><strong>Your best clients have already told you exactly who they are.</strong> Their testimonials are the brief.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Primary ICP — The Threshold Founder</div>
+    <div class="profile-card">
+      <div class="profile-name">The <span class="gold">Threshold Founder</span></div>
+      <div class="profile-tagline">Your core client · SPARK Sessions + Tee Time · Highest LTV</div>
+
+      <div class="profile-grid">
+        <div class="pg-item"><div class="pg-label">Who They Are</div><div class="pg-value">Founder or CEO, 10–30 years in. Built something real. Revenue between $2M–$50M. Respected externally. Internally questioning everything.</div></div>
+        <div class="pg-item"><div class="pg-label">Where They Are</div><div class="pg-value">At a threshold — a decision, a transition, a chapter that needs to end. They've outgrown their definition of success but haven't found the next one yet.</div></div>
+        <div class="pg-item"><div class="pg-label">What They've Tried</div><div class="pg-value">Therapy. Other coaches. Masterminds. Executive retreats. They're not looking for information — they've had plenty. They're looking for someone who can see what they can't.</div></div>
+        <div class="pg-item"><div class="pg-label">Their Investment Mindset</div><div class="pg-value">$1,500 for a SPARK Session is not a decision for this person. $5,500 for Tee Time requires a conversation but not a CFO review. They value results over price.</div></div>
+      </div>
+
+      <div class="profile-quote">"I've worked with other coaches before, but Bob is truly one of the best I've ever had the pleasure of working with." — <strong>Michael Liebowitz, Founder, Magnetic Mind Studio</strong></div>
+
+      <div class="two-col">
+        <div class="col-card">
+          <div class="col-title">They Use Words Like</div>
+          <ul>
+            <li>"I feel stuck but I don't know why"</li>
+            <li>"What got me here isn't working anymore"</li>
+            <li>"I've outgrown this version of myself"</li>
+            <li>"Something feels off and I can't articulate it"</li>
+            <li>"I know the answer — I just can't see it"</li>
+          </ul>
+        </div>
+        <div class="col-card">
+          <div class="col-title">Where To Find Them</div>
+          <ul>
+            <li>LinkedIn (founder/CEO titles, 10+ years experience)</li>
+            <li>EO, YPO, Vistage chapters</li>
+            <li>M&A and wealth management networks</li>
+            <li>Speaking at founder conferences</li>
+            <li>Referred by clients like Frank Michel, Jhana Li</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Secondary ICP — The High-Performance Leader</div>
+    <div class="profile-card">
+      <div class="profile-name">The <span class="gold">High-Performance Leader</span></div>
+      <div class="profile-tagline">Athletes, executives, coaches · SPARK Sessions · Pipeline to Tee Time</div>
+      <div class="profile-grid">
+        <div class="pg-item"><div class="pg-label">Who They Are</div><div class="pg-value">Athletes transitioning from sport to business or leadership. Coaches moving from the court to the boardroom. Executives who grew up as athletes and still think in performance terms.</div></div>
+        <div class="pg-item"><div class="pg-label">Their Situation</div><div class="pg-value">Accustomed to performance feedback. Comfortable with coaching relationships. Not threatened by the process — but needs someone with enough sport credibility to command respect.</div></div>
+        <div class="pg-item"><div class="pg-label">Why They Choose Bob</div><div class="pg-value">40 years. 1,500 athletes. Head golf coach today. You're not a business person cosplaying as a sports coach — you're the real thing, and they can feel it immediately.</div></div>
+        <div class="pg-item"><div class="pg-label">Conversion Path</div><div class="pg-value">SPARK Session → speaking referral → Tee Time. High potential for peer-to-peer referrals within sports/executive networks.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Anti-Profile — Who Is Not Your Client</div>
+    <div class="anti-profile">
+      <div class="ap-title">Not Your People — Be Clear About This</div>
+      <p><strong>The information seeker</strong> — wants frameworks and strategies, not a mirror. Will debate your insights instead of sitting with them. Takes notes but doesn't act. &nbsp;·&nbsp; <strong>The early-stage founder</strong> — needs tactics, not patterns. The threshold work you do requires some accrued experience to land. &nbsp;·&nbsp; <strong>The permission-seeker</strong> — wants you to tell them it's okay to keep circling. Your page already says "if you're looking for permission to keep circling, I'm not your guy" — that's right. &nbsp;·&nbsp; <strong>The price-objector</strong> — if $1,500 is a stretch, the work won't land at the depth required. Protect the container.</p>
+    </div>
+  </div>
+
+  <div class="nav-chapters">
+    <a class="nav-ch" href="content-signal.html"><div class="ch-label">Chapter 07</div><div class="ch-name">← Content Signal</div></a>
+    <a class="nav-ch" href="activation-plan.html"><div class="ch-label">Chapter 09</div><div class="ch-name">Activation Plan →</div></a>
+  </div>
+</div>
+<footer><p>The <span>Signal</span> · Bob Regnerus · Chapter 08 of 09</p></footer>
+</body>
+</html>

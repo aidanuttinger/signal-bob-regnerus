@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Coach Reg Signal — Positioning Blueprint · The Signal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#07080f;--navy:#0b0f1e;--card:#111624;--gold:#c9a84c;--gold-dim:rgba(201,168,76,0.08);--gold-border:rgba(201,168,76,0.22);--white:#f2f2f5;--grey:#7a84a0;--muted:#4a5270;--serif:'Playfair Display',Georgia,serif;--sans:'Inter',-apple-system,sans-serif;}
+body{font-family:var(--sans);background:var(--navy);color:var(--white);line-height:1.7;margin:0}
+.nav{position:fixed;top:0;left:0;right:0;z-index:999;background:rgba(7,8,15,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,.12);height:52px;display:flex;align-items:center;padding:0 32px;gap:16px}
+.nav-brand{font-family:var(--serif);font-size:.85rem;font-weight:700;color:var(--white);display:flex;align-items:center;gap:8px;text-decoration:none}
+.nav-dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.nav-brand span{color:var(--gold)}
+.nav-back{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .15s}
+.nav-back:hover{color:var(--gold)}
+.hero{padding:88px 40px 52px;text-align:center;position:relative;overflow:hidden;background:var(--black);border-bottom:1px solid rgba(201,168,76,.1)}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 40%,rgba(201,168,76,.07) 0%,transparent 65%);pointer-events:none}
+.eyebrow{font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:14px;display:inline-flex;align-items:center;gap:12px}
+.eyebrow::before,.eyebrow::after{content:'';width:22px;height:1px;background:rgba(201,168,76,.5)}
+h1{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:700;line-height:1.1;margin-bottom:16px}
+h1 .gold{color:var(--gold)} h1 .it{font-style:italic}
+.hero-sub{font-size:.82rem;color:var(--grey);max-width:520px;margin:0 auto;line-height:1.85}
+.hero-sub strong{color:var(--white)}
+.body{max-width:780px;margin:0 auto;padding:52px 32px 80px}
+.section{margin-bottom:52px}
+.section-label{font-size:.56rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.section-label::after{content:'';flex:1;height:1px;background:rgba(201,168,76,.15)}
+h2{font-family:var(--serif);font-size:1.6rem;font-weight:700;color:var(--white);margin-bottom:14px;line-height:1.2}
+h2 .gold{color:var(--gold);font-style:italic}
+p{font-size:.88rem;color:var(--grey);line-height:1.85;margin-bottom:14px}
+p strong{color:var(--white)}
+.big-statement{font-family:var(--serif);font-size:clamp(1.4rem,3vw,2rem);font-weight:700;color:var(--white);line-height:1.3;border-left:4px solid var(--gold);padding:20px 24px;background:rgba(201,168,76,.05);border-radius:0 10px 10px 0;margin:24px 0}
+.big-statement .gold{color:var(--gold);font-style:italic}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+@media(max-width:600px){.two-col{grid-template-columns:1fr}}
+.col-card{background:var(--card);border:1px solid rgba(201,168,76,.12);border-radius:10px;padding:22px 24px}
+.col-card .col-title{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:10px}
+.col-card p{font-size:.82rem;margin-bottom:0}
+.positioning-statement{background:var(--black);border:2px solid rgba(201,168,76,.3);border-radius:12px;padding:32px 36px;text-align:center;margin:24px 0}
+.positioning-statement .ps-label{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:16px}
+.positioning-statement .ps-main{font-family:var(--serif);font-size:clamp(1.2rem,2.5vw,1.6rem);font-weight:700;color:var(--white);line-height:1.4;margin-bottom:14px}
+.positioning-statement .ps-main .gold{color:var(--gold);font-style:italic}
+.positioning-statement .ps-sub{font-size:.82rem;color:var(--grey);line-height:1.75;max-width:480px;margin:0 auto}
+.messaging-block{background:var(--card);border:1px solid rgba(201,168,76,.15);border-radius:10px;padding:24px 28px;margin-bottom:14px}
+.messaging-block .msg-label{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:8px}
+.messaging-block .msg-copy{font-family:var(--serif);font-size:1rem;color:var(--white);line-height:1.5;margin-bottom:10px;font-style:italic}
+.messaging-block .msg-why{font-size:.78rem;color:var(--grey);line-height:1.65}
+.messaging-block .msg-why strong{color:var(--white)}
+.nav-chapters{display:flex;gap:10px;margin-top:40px;flex-wrap:wrap}
+.nav-ch{flex:1;min-width:160px;background:var(--card);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:14px 18px;text-decoration:none;transition:all .2s}
+.nav-ch:hover{border-color:rgba(201,168,76,.4);transform:translateY(-2px)}
+.nav-ch .ch-label{font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:4px}
+.nav-ch .ch-name{font-size:.82rem;font-weight:600;color:var(--white)}
+footer{text-align:center;padding:32px 20px;border-top:1px solid rgba(255,255,255,.05);font-size:.7rem;color:var(--muted)}
+footer span{color:var(--gold)}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="signal-origin.html"><div class="nav-dot"></div>The <span>Signal</span></a>
+  <a class="nav-back" href="signal-origin.html">← Back to Hub</a>
+</nav>
+
+<section class="hero">
+  <div class="eyebrow">Chapter 03 · Positioning Blueprint</div>
+  <h1>The <span class="gold it">Coach Reg</span> Signal</h1>
+  <p class="hero-sub">Who you are, who you're for, and how to say it so the <strong>right people immediately feel seen</strong> — and reach out.</p>
+</section>
+
+<div class="body">
+
+  <div class="section">
+    <div class="section-label">The Problem With "Coach"</div>
+    <h2>Everyone is a coach. <span class="gold">No one is you.</span></h2>
+    <p>The word "coach" has been so thoroughly diluted it now means almost nothing. A 25-year-old with a certification and a podcast is a coach. A former burnout survivor with a framework is a coach. You — 40 years in locker rooms and boardrooms, 1,500 athletes, a Purpose Factor® facilitator, EMCC-accredited, with a track record that speaks for itself — you are also called a coach.</p>
+    <p>The positioning problem isn't your title. It's that your current positioning doesn't <em>communicate the gap</em> between you and the noise. Your ideal client — the founder who has already hired coaches and outgrown them — needs to immediately sense that you're different. The current framing doesn't create that sensation fast enough.</p>
+
+    <div class="big-statement">You don't coach people. You <span class="gold">show them the pattern</span> running through everything they do — and then you help them change it.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">The Repositioning</div>
+    <div class="positioning-statement">
+      <div class="ps-label">Recommended Positioning Statement</div>
+      <div class="ps-main">For founders and leaders who've already done the work —<br>and still can't see <span class="gold">the pattern.</span></div>
+      <div class="ps-sub">Bob Regnerus (Coach Reg) is a pattern recognition coach for high performers at threshold moments. After 40 years and 1,500 athletes, he sees what most people spend years in therapy trying to find — and he finds it on a golf course, in a conversation, in the way you grip a club.</div>
+    </div>
+
+    <p>This positioning does several things the current framing doesn't. It immediately signals a sophisticated audience (founders who've "already done the work"). It creates intrigue around pattern recognition. It connects the golf methodology to the business methodology in one sentence. And it makes "Coach Reg" — the brand — feel earned rather than assumed.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Who You're For vs. Not For</div>
+    <h2>The right people. <span class="gold">Precisely defined.</span></h2>
+    <div class="two-col">
+      <div class="col-card">
+        <div class="col-title">✓ Your People</div>
+        <p>Founders and leaders at a threshold — outgrown their definition of success, circling a real decision, exhausted by achievement that no longer satisfies. Have done therapy, masterminds, other coaches. Intellectually sophisticated. Want a mirror, not a prescription. Deal sizes in their world: $50K+. Golf optional but advantageous.</p>
+      </div>
+      <div class="col-card">
+        <div class="col-title">✗ Not Your People</div>
+        <p>Early-stage entrepreneurs looking for business tactics. People who want to be told what to do. "General growth" seekers with no specific threshold. Anyone who needs motivation rather than conviction. People who aren't ready to act on what they discover. The SPARK Session page already says this — now the positioning needs to say it upfront.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Core Messaging Architecture</div>
+    <h2>The words that <span class="gold">convert</span></h2>
+
+    <div class="messaging-block">
+      <div class="msg-label">Hero Statement (Website / LinkedIn Headline)</div>
+      <div class="msg-copy">"I help founders and leaders who've outgrown the answers they already have."</div>
+      <div class="msg-why"><strong>Why it works:</strong> Immediately signals a sophisticated audience. Creates curiosity. Implies depth beyond tactics. The people it describes feel immediately seen — and that's the fastest path to "I need to talk to this person."</div>
+    </div>
+
+    <div class="messaging-block">
+      <div class="msg-label">The One-Liner (Elevator / Social Bio)</div>
+      <div class="msg-copy">"40 years. 1,500 athletes. One question: what's the pattern running through everything you do?"</div>
+      <div class="msg-why"><strong>Why it works:</strong> The numbers create immediate authority. The question creates immediate engagement. It's personal without being vague, specific without being limiting.</div>
+    </div>
+
+    <div class="messaging-block">
+      <div class="msg-label">The Philosophy Line (Content / Speaking Opening)</div>
+      <div class="msg-copy">"How you do one thing is how you do everything. On the course, I can see it in your swing before you can hide it."</div>
+      <div class="msg-why"><strong>Why it works:</strong> This is your intellectual property. Your proprietary insight. "As within, so without" is ancient wisdom made specific and modern through golf. Lead with this — it's distinctive, quotable, and positions you as a thinker, not just a practitioner.</div>
+    </div>
+
+    <div class="messaging-block">
+      <div class="msg-label">The Invitation (Call to Action)</div>
+      <div class="msg-copy">"Bring me your $50K problem. In one hour, we'll find the pattern underneath it."</div>
+      <div class="msg-why"><strong>Why it works:</strong> Specific dollar amount qualifies the prospect immediately. "Pattern underneath it" is intriguing and specific to your methodology. It's confident without being arrogant — it's a diagnostic invitation, not a sales pitch.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Brand Voice</div>
+    <h2>How <span class="gold">Coach Reg</span> sounds</h2>
+    <div class="two-col">
+      <div class="col-card">
+        <div class="col-title">The Voice Is</div>
+        <p>Direct. Warm. A little laconic. Earned authority that doesn't need to announce itself. Honest about imperfection (the 107 round is as important as the 83). Story-first — always a specific moment, not a generality. The kind of person who buys you a drink at the turn and says exactly the right thing.</p>
+      </div>
+      <div class="col-card">
+        <div class="col-title">The Voice Is Not</div>
+        <p>Hype. Hustle. "10x your revenue in 90 days." Jargon-heavy coaching speak. Overly philosophical without grounding. Performative vulnerability. The voice never shows off — it shows up. Quietly. Precisely. With the one question that cracks everything open.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-chapters">
+    <a class="nav-ch" href="revenue-architecture.html"><div class="ch-label">Chapter 02</div><div class="ch-name">← Revenue Architecture</div></a>
+    <a class="nav-ch" href="offer-architecture.html"><div class="ch-label">Chapter 04</div><div class="ch-name">Offer Architecture →</div></a>
+  </div>
+</div>
+<footer><p>The <span>Signal</span> · Bob Regnerus · Chapter 03 of 09</p></footer>
+</body>
+</html>

@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The SPARK Pattern Diagnostic™ — Coach Reg · Bob Regnerus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f7f4ee;
+  --surface:#f0ebe0;
+  --card:#ffffff;
+  --deep:#1a2318;
+  --body:#3d4e3a;
+  --border:rgba(26,35,24,.09);
+  --border-light:rgba(26,35,24,.05);
+  --amber:#c17f3a;
+  --amber-bright:#d4913f;
+  --amber-soft:rgba(193,127,58,.08);
+  --amber-border:rgba(193,127,58,.22);
+  --forest:#2e5438;
+  --forest-pale:rgba(46,84,56,.06);
+  --forest-light:#5a8c6e;
+  --forest-border:rgba(46,84,56,.18);
+  --grey:#6a7868;
+  --muted:#9aaa96;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Inter',-apple-system,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--deep);overflow-x:hidden;line-height:1.7;margin:0;min-height:100vh}
+
+/* ─── NAV ─── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  background:rgba(247,244,238,.97);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  height:56px;display:flex;align-items:center;
+  padding:0 40px;justify-content:space-between;
+}
+.nav-brand{font-family:var(--serif);font-size:.9rem;font-weight:700;color:var(--deep);text-decoration:none;display:flex;align-items:center;gap:10px}
+.nav-brand .dot{width:6px;height:6px;border-radius:50%;background:var(--amber)}
+.nav-back{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);text-decoration:none;transition:color .15s}
+.nav-back:hover{color:var(--amber)}
+
+/* ─── HERO ─── */
+.diag-hero{
+  padding:96px 40px 52px;text-align:center;
+  position:relative;overflow:hidden;
+  background:var(--card);
+  border-bottom:1px solid var(--border);
+}
+.diag-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 65% 55% at 50% 40%,rgba(193,127,58,.07) 0%,transparent 65%);pointer-events:none}
+.hero-inner{position:relative;max-width:620px;margin:0 auto}
+.eyebrow{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--amber);font-weight:700;margin-bottom:14px;display:inline-flex;align-items:center;gap:14px}
+.eyebrow::before,.eyebrow::after{content:'';width:24px;height:1px;background:rgba(193,127,58,.4)}
+.diag-title{font-family:var(--serif);font-size:clamp(2rem,4.5vw,3.2rem);font-weight:700;line-height:1.1;margin-bottom:16px;color:var(--deep)}
+.diag-title .amber{color:var(--amber);font-style:italic}
+.diag-sub{font-size:.9rem;color:var(--grey);line-height:1.85;max-width:480px;margin:0 auto 28px}
+.diag-sub strong{color:var(--body)}
+.diag-meta{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:0}
+.meta-item{display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--grey)}
+.meta-icon{font-size:.8rem}
+
+/* ─── PROGRESS ─── */
+.progress-bar-wrap{background:var(--surface);border-bottom:1px solid var(--border);padding:16px 40px;position:sticky;top:56px;z-index:99}
+.progress-inner{max-width:640px;margin:0 auto;display:flex;align-items:center;gap:14px}
+.progress-track{flex:1;height:4px;background:rgba(26,35,24,.08);border-radius:4px;overflow:hidden}
+.progress-fill{height:100%;background:var(--amber);border-radius:4px;transition:width .4s ease;width:0%}
+.progress-label{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);white-space:nowrap}
+
+/* ─── QUIZ CONTAINER ─── */
+.quiz-wrap{max-width:660px;margin:0 auto;padding:48px 24px 80px}
+.step{display:none;animation:stepIn .35s ease}
+.step.active{display:block}
+@keyframes stepIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.step-num{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);font-weight:700;margin-bottom:10px}
+.step-q{font-family:var(--serif);font-size:clamp(1.4rem,3vw,1.9rem);font-weight:700;color:var(--deep);line-height:1.2;margin-bottom:8px}
+.step-q .amber{color:var(--amber);font-style:italic}
+.step-hint{font-size:.82rem;color:var(--grey);margin-bottom:28px;line-height:1.7}
+.options{display:flex;flex-direction:column;gap:12px}
+.opt{
+  background:var(--card);border:1.5px solid var(--border);
+  border-radius:10px;padding:18px 22px;cursor:pointer;
+  display:flex;gap:16px;align-items:flex-start;
+  transition:all .2s;text-align:left;
+  box-shadow:0 1px 8px rgba(26,35,24,.04);
+}
+.opt:hover{border-color:rgba(193,127,58,.35);background:rgba(193,127,58,.04);box-shadow:0 4px 16px rgba(26,35,24,.08)}
+.opt.selected{border-color:var(--amber);background:var(--amber-soft);box-shadow:0 4px 16px rgba(193,127,58,.12)}
+.opt-letter{
+  width:30px;height:30px;border-radius:50%;
+  background:var(--bg);border:1.5px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.7rem;font-weight:700;color:var(--grey);
+  flex-shrink:0;transition:all .2s;
+}
+.opt.selected .opt-letter{background:var(--amber);border-color:var(--amber);color:#ffffff}
+.opt-content .opt-title{font-size:.88rem;font-weight:600;color:var(--body);margin-bottom:3px;line-height:1.3}
+.opt-content .opt-desc{font-size:.76rem;color:var(--grey);line-height:1.5}
+.opt.selected .opt-content .opt-title{color:var(--deep)}
+.step-nav{display:flex;gap:12px;align-items:center;margin-top:28px;flex-wrap:wrap}
+.btn-next{
+  background:var(--amber);border:none;color:#ffffff;
+  font-family:var(--sans);font-size:.72rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:13px 28px;border-radius:6px;cursor:pointer;
+  transition:opacity .15s;opacity:.35;pointer-events:none;
+}
+.btn-next.ready{opacity:1;pointer-events:all}
+.btn-next.ready:hover{opacity:.87}
+.btn-back{
+  background:transparent;border:1.5px solid var(--border);color:var(--grey);
+  font-family:var(--sans);font-size:.7rem;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;
+  padding:13px 22px;border-radius:6px;cursor:pointer;transition:all .15s;
+}
+.btn-back:hover{border-color:rgba(26,35,24,.2);color:var(--deep)}
+
+/* ─── EMAIL STEP ─── */
+.email-step{display:none;animation:stepIn .35s ease}
+.email-step.active{display:block}
+.email-card{background:var(--card);border:1.5px solid var(--amber-border);border-radius:14px;padding:36px 32px;position:relative;overflow:hidden;box-shadow:0 8px 40px rgba(26,35,24,.08)}
+.email-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--amber),rgba(193,127,58,.2))}
+.email-title{font-family:var(--serif);font-size:1.5rem;font-weight:700;color:var(--deep);margin-bottom:8px;line-height:1.2}
+.email-title .amber{color:var(--amber);font-style:italic}
+.email-sub{font-size:.84rem;color:var(--grey);line-height:1.8;margin-bottom:24px}
+.email-sub strong{color:var(--body)}
+.preview-teaser{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:18px 20px;margin-bottom:24px}
+.preview-label{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);font-weight:700;margin-bottom:10px}
+.preview-items{display:flex;flex-direction:column;gap:8px}
+.preview-item{display:flex;gap:10px;align-items:center;font-size:.78rem;color:var(--grey)}
+.preview-item .pi{color:var(--amber);font-weight:700;font-size:.75rem}
+.email-form{display:flex;flex-direction:column;gap:10px}
+.e-input{
+  background:var(--bg);border:1.5px solid var(--border);
+  color:var(--deep);font-family:var(--sans);font-size:.88rem;
+  padding:13px 16px;border-radius:7px;outline:none;transition:border-color .2s;
+}
+.e-input:focus{border-color:rgba(193,127,58,.4)}
+.e-input::placeholder{color:var(--muted)}
+.btn-submit{
+  background:var(--amber);border:none;color:#ffffff;
+  font-family:var(--sans);font-size:.75rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:15px 24px;border-radius:7px;cursor:pointer;transition:opacity .15s;
+}
+.btn-submit:hover{opacity:.87}
+.e-note{font-size:.64rem;color:var(--muted);text-align:center}
+
+/* ─── RESULT ─── */
+.result-step{display:none;animation:stepIn .4s ease}
+.result-step.active{display:block}
+.result-header{text-align:center;margin-bottom:36px}
+.result-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--forest-pale);border:1px solid var(--forest-border);
+  color:var(--forest-light);
+  font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  padding:7px 18px;border-radius:20px;margin-bottom:20px;
+}
+.result-badge .dot{width:5px;height:5px;border-radius:50%;background:var(--forest-light)}
+.result-name{font-family:var(--serif);font-size:clamp(.7rem,1.3vw,.85rem);letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;font-weight:400}
+.result-pattern{font-family:var(--serif);font-size:clamp(2rem,4.5vw,3.2rem);font-weight:700;color:var(--deep);line-height:1.1;margin-bottom:14px}
+.result-pattern .amber{color:var(--amber);font-style:italic}
+.result-tagline{font-size:.9rem;color:var(--grey);max-width:500px;margin:0 auto 28px;line-height:1.8}
+.result-tagline strong{color:var(--body)}
+
+/* ─── COST CALCULATOR REVEAL ─── */
+.cost-card{background:var(--card);border:1.5px solid var(--amber-border);border-radius:14px;padding:30px 28px;margin-bottom:22px;position:relative;overflow:hidden;box-shadow:0 4px 20px rgba(193,127,58,.08)}
+.cost-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--amber),rgba(193,127,58,.15))}
+.cost-label{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);font-weight:700;margin-bottom:14px}
+.cost-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)}
+.cost-row:last-child{border:none;padding-top:16px;margin-top:4px}
+.cost-row-label{font-size:.82rem;color:var(--grey)}
+.cost-row-val{font-family:var(--serif);font-size:1rem;font-weight:700;color:var(--body)}
+.cost-row.total .cost-row-label{font-size:.88rem;color:var(--body);font-weight:600}
+.cost-row.total .cost-row-val{font-size:1.6rem;color:var(--amber)}
+
+/* ─── INSIGHT CARD ─── */
+.insight-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:26px 26px;margin-bottom:20px;box-shadow:0 2px 12px rgba(26,35,24,.05)}
+.ic-label{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);font-weight:700;margin-bottom:12px}
+.ic-title{font-family:var(--serif);font-size:1.1rem;font-weight:700;color:var(--deep);margin-bottom:8px}
+.ic-body{font-size:.84rem;color:var(--grey);line-height:1.8}
+.ic-body strong{color:var(--body)}
+
+/* ─── THE SHIFT ─── */
+.shift-box{background:var(--amber-soft);border:1.5px solid var(--amber-border);border-radius:12px;padding:24px 26px;margin-bottom:28px}
+.shift-label{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);font-weight:700;margin-bottom:10px}
+.shift-text{font-family:var(--serif);font-size:1.05rem;color:var(--deep);line-height:1.65;font-style:italic}
+.shift-text strong{font-style:normal;color:var(--amber)}
+
+/* ─── CTA BLOCK ─── */
+.result-cta{background:var(--deep);border-radius:14px;padding:32px 28px;text-align:center;margin-top:32px}
+.rc-eyebrow{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);font-weight:700;margin-bottom:12px}
+.rc-title{font-family:var(--serif);font-size:1.4rem;font-weight:700;color:#f0ebe0;margin-bottom:8px}
+.rc-title .amber{color:var(--amber);font-style:italic}
+.rc-body{font-size:.82rem;color:rgba(240,235,224,.6);line-height:1.75;margin-bottom:22px;max-width:400px;margin-left:auto;margin-right:auto}
+.rc-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-cta-primary{
+  display:inline-flex;align-items:center;gap:7px;
+  background:var(--amber);color:#ffffff;
+  font-family:var(--sans);font-size:.7rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:13px 24px;border-radius:5px;text-decoration:none;transition:opacity .15s;
+}
+.btn-cta-primary:hover{opacity:.87}
+.btn-cta-outline{
+  display:inline-flex;align-items:center;gap:7px;
+  border:1px solid rgba(193,127,58,.35);color:var(--amber);
+  font-family:var(--sans);font-size:.7rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:13px 24px;border-radius:5px;text-decoration:none;
+  background:rgba(193,127,58,.08);transition:all .15s;
+}
+.btn-cta-outline:hover{background:rgba(193,127,58,.16)}
+
+/* ─── FOOTER ─── */
+.diag-footer{text-align:center;padding:32px 24px;border-top:1px solid var(--border);font-size:.7rem;color:var(--muted);background:var(--surface)}
+.diag-footer span{color:var(--amber)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-brand" href="website-redesign.html"><div class="dot"></div>Coach Reg</a>
+  <a class="nav-back" href="website-redesign.html">← Back to Site</a>
+</nav>
+
+<!-- HERO -->
+<section class="diag-hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Free · 3 Minutes</div>
+    <h1 class="diag-title">The SPARK<br><span class="amber">Pattern Diagnostic™</span></h1>
+    <p class="diag-sub">
+      <strong>Five questions.</strong> One pattern revealed.<br>
+      The revenue it's costing you — calculated.<br>
+      This is how every SPARK Session begins.
+    </p>
+    <div class="diag-meta">
+      <div class="meta-item"><span class="meta-icon">⏱</span> 3 minutes</div>
+      <div class="meta-item"><span class="meta-icon">🔍</span> 4 pattern types</div>
+      <div class="meta-item"><span class="meta-icon">📩</span> Report to your inbox</div>
+      <div class="meta-item"><span class="meta-icon">🔒</span> No obligation</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRESS BAR -->
+<div class="progress-bar-wrap">
+  <div class="progress-inner">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label" id="progressLabel">Question 1 of 5</div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div class="quiz-wrap">
+
+  <!-- STEP 1 -->
+  <div class="step active" id="step-1" data-step="1">
+    <div class="step-num">Question 01 of 05</div>
+    <h2 class="step-q">Where are you <span class="amber">most stuck</span> right now?</h2>
+    <p class="step-hint">Don't overthink it. Your first instinct is usually your truest answer.</p>
+    <div class="options" id="opts-1">
+      <div class="opt" data-val="A" data-pattern="grip">
+        <div class="opt-letter">A</div>
+        <div class="opt-content">
+          <div class="opt-title">I can't let go of control</div>
+          <div class="opt-desc">I know I need to delegate, step back, or trust the process — but I can't seem to do it. The tighter I hold, the worse things get.</div>
+        </div>
+      </div>
+      <div class="opt" data-val="B" data-pattern="invisible">
+        <div class="opt-letter">B</div>
+        <div class="opt-content">
+          <div class="opt-title">I'm invisible — and my work isn't</div>
+          <div class="opt-desc">My expertise is real but no one knows I exist. I'm not showing up in the market the way I should. The broadcast doesn't match the work.</div>
+        </div>
+      </div>
+      <div class="opt" data-val="C" data-pattern="threshold">
+        <div class="opt-letter">C</div>
+        <div class="opt-content">
+          <div class="opt-title">I keep circling the same decision</div>
+          <div class="opt-desc">I know what I need to do. I've known for a while. And yet I haven't done it. There's something stopping me that isn't logic.</div>
+        </div>
+      </div>
+      <div class="opt" data-val="D" data-pattern="repeater">
+        <div class="opt-letter">D</div>
+        <div class="opt-content">
+          <div class="opt-title">The same problem keeps arriving in new forms</div>
+          <div class="opt-desc">New team, same dynamic. New market, same result. I've solved this before — and somehow it's back. Different wrapper, same pattern.</div>
+        </div>
+      </div>
+    </div>
+    <div class="step-nav">
+      <button class="btn-next" id="next-1" onclick="nextStep(1)">Next →</button>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step" id="step-2" data-step="2">
+    <div class="step-num">Question 02 of 05</div>
+    <h2 class="step-q">How long has this<br><span class="amber">pattern been running?</span></h2>
+    <p class="step-hint">Be honest with yourself. The length of the pattern affects the size of the opportunity.</p>
+    <div class="options" id="opts-2">
+      <div class="opt" data-val="A" data-months="6">
+        <div class="opt-letter">A</div>
+        <div class="opt-content">
+          <div class="opt-title">Less than 6 months</div>
+          <div class="opt-desc">This is relatively new — I've recognized it recently and want to address it before it compounds.</div>
+        </div>
+      </div>
+      <div class="opt" data-val="B" data-months="18">
+        <div class="opt-letter">B</div>
+        <div class="opt-content">
+          <div class="opt-title">6 months to 2 years</div>
+          <div class="opt-desc">It's been there long enough that I've tried to work around it. Some of those attempts helped. Most didn't stick.</div>
+        </div>
+      </div>
+      <div class="opt" data-val="C" data-months="36">
+        <div class="opt-letter">C</div>
+        <div class="opt-content">
+          <div class="opt-title">2 to 5 years</div>
+          <div class="opt-desc">This has been a thread in my life and business for years. I've been aware of it, tried to address it, and it persists.</div>
+        </div>
+      </div>
+      <div class="opt" data-val="D" data-months="72">
+        <div class="opt-letter">D</div>
+        <div class="opt-content">
+          <div class="opt-title">More than 5 years</div>
+          <div class="opt-desc">This is foundational. It's in my story. It's been running long enough that it feels like part of who I am — not something I'm doing.</div>
+        </div>
+      </div>
+    </div>
+    <div class="step-nav">
+      <button class="btn-next" id="next-2" onclick="nextStep(2)">Next →</button>
+      <button class="btn-back" onclick="prevStep(2)">← Back</button>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step" id="step-3" data-step="3">
+    <div class="step-num">Question 03 of 05</div>
+    <h2 class="step-q">What's the <span class="amber">real cost</span><br>in your business right now?</h2>
+    <p class="step-hint">Think about what this pattern has cost you — in revenue, in time, in decisions you didn't make.</p>
+    <div class="options" id="opts-3">
+      <div class="opt" data-val="A" data-rev="5000">
+        <div class="opt-letter">A</div>
+        <div class="opt-content">
+          <div class="opt-title">Missed opportunities — but I'm not sure the dollar amount</div>
+          <div class="opt-desc">I know something is being left on the table. I just haven't quantified it. The cost feels more emotional than financial right now.</div>
+        </div>
+      </div>
+      <div class="opt" data-val="B" data-rev="15000">
+        <div class="opt-letter">B</div>
+        <div class="opt-content">
+          <div class="opt-title">$5K–$25K per month in stalled or lost revenue</div>
+          <div class="opt-desc">I can see specific deals, clients, or launches that didn't happen because of this pattern. The math is real.</div>
+        </div>
+      </div>
+      <div class="opt" data-val="C" data-rev="40000">
+        <div class="opt-letter">C</div>
+        <div class="opt-content">
+          <div class="opt-title">$25K–$75K per month in unrealized potential</div>
+          <div class="opt-desc">My business should be at a significantly different level. The gap between where I am and where I know I could be is substantial.</div>
+        </div>
+      </div>
+      <div class="opt" data-val="D" data-rev="100000">
+        <div class="opt-letter">D</div>
+        <div class="opt-content">
+          <div class="opt-title">$75K+ per month — this is a multi-million dollar pattern</div>
+          <div class="opt-desc">I'm operating well below my ceiling. The compounded cost of this pattern over years is the kind of number that keeps me up at night.</div>
+        </div>
+      </div>
+    </div>
+    <div class="step-nav">
+      <button class="btn-next" id="next-3" onclick="nextStep(3)">Next →</button>
+      <button class="btn-back" onclick="prevStep(3)">← Back</button>
+    </div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="step" id="step-4" data-step="4">
+    <div class="step-num">Question 04 of 05</div>
+    <h2 class="step-q">What have you already<br><span class="amber">tried?</span></h2>
+    <p class="step-hint">Understanding what hasn't worked is as important as understanding what the problem is.</p>
+    <div class="options" id="opts-4">
+      <div class="opt" data-val="A">
+        <div class="opt-letter">A</div>
+        <div class="opt-content">
+          <div class="opt-title">Strategy and planning — courses, consultants, frameworks</div>
+          <div class="opt-desc">I've optimized the tactics. The strategy is sound. The pattern is somewhere deeper than the plan.</div>
+        </div>
+      </div>
+      <div class="opt" data-val="B">
+        <div class="opt-letter">B</div>
+        <div class="opt-content">
+          <div class="opt-title">Coaching or therapy — personal development work</div>
+          <div class="opt-desc">I've done the inner work. I have self-awareness. And yet the pattern persists. The insight isn't the problem — the application is.</div>
+        </div>
+      </div>
+      <div class="opt" data-val="C">
+        <div class="opt-letter">C</div>
+        <div class="opt-content">
+          <div class="opt-title">Masterminds, peer groups, high-level networks</div>
+          <div class="opt-desc">I've been in the rooms with the right people. I've heard the advice. I've implemented some of it. The pattern is still running.</div>
+        </div>
+      </div>
+      <div class="opt" data-val="D">
+        <div class="opt-letter">D</div>
+        <div class="opt-content">
+          <div class="opt-title">All of the above — and more than once</div>
+          <div class="opt-desc">I've tried everything the market offers for high performers. Some of it helped. None of it addressed the root pattern. That's why I'm here.</div>
+        </div>
+      </div>
+    </div>
+    <div class="step-nav">
+      <button class="btn-next" id="next-4" onclick="nextStep(4)">Next →</button>
+      <button class="btn-back" onclick="prevStep(4)">← Back</button>
+    </div>
+  </div>
+
+  <!-- STEP 5 -->
+  <div class="step" id="step-5" data-step="5">
+    <div class="step-num">Question 05 of 05</div>
+    <h2 class="step-q">When you imagine the <span class="amber">pattern resolved</span> —<br>what changes?</h2>
+    <p class="step-hint">Not just in the business. In how you feel when you wake up in the morning.</p>
+    <div class="options" id="opts-5">
+      <div class="opt" data-val="A">
+        <div class="opt-letter">A</div>
+        <div class="opt-content">
+          <div class="opt-title">I make decisions faster and with more confidence</div>
+          <div class="opt-desc">The endless deliberation stops. The second-guessing stops. I move with the kind of conviction I watch others have from the outside.</div>
+        </div>
+      </div>
+      <div class="opt" data-val="B">
+        <div class="opt-letter">B</div>
+        <div class="opt-content">
+          <div class="opt-title">The right people find me — I stop chasing</div>
+          <div class="opt-desc">The energy I spend hunting for clients moves into doing the work. The clients who are meant to find me, find me.</div>
+        </div>
+      </div>
+      <div class="opt" data-val="C">
+        <div class="opt-letter">C</div>
+        <div class="opt-content">
+          <div class="opt-title">I stop carrying the weight of the thing I haven't done yet</div>
+          <div class="opt-desc">There's something in the background — always there. Once I act on what I already know, that weight lifts. That's what I'm after.</div>
+        </div>
+      </div>
+      <div class="opt" data-val="D">
+        <div class="opt-letter">D</div>
+        <div class="opt-content">
+          <div class="opt-title">The business reflects the person I've actually become</div>
+          <div class="opt-desc">I've grown. The business hasn't kept up. When the pattern breaks, there's finally alignment between who I am and what I'm building.</div>
+        </div>
+      </div>
+    </div>
+    <div class="step-nav">
+      <button class="btn-next" id="next-5" onclick="showEmail()">See My Pattern →</button>
+      <button class="btn-back" onclick="prevStep(5)">← Back</button>
+    </div>
+  </div>
+
+  <!-- EMAIL CAPTURE -->
+  <div class="email-step" id="email-step">
+    <div class="email-card">
+      <div class="email-title">Your pattern has been<br><span class="amber">identified.</span></div>
+      <p class="email-sub">
+        Based on your five answers, your dominant performance pattern is clear — and so is the cost.<br><br>
+        <strong>Enter your details below to receive your full Pattern Report</strong> — including your pattern type, the revenue impact, the specific shift that breaks it, and a personal note from Bob.
+      </p>
+      <div class="preview-teaser">
+        <div class="preview-label">Your Report Will Include</div>
+        <div class="preview-items">
+          <div class="preview-item"><span class="pi">→</span> Your named pattern type + the story behind it</div>
+          <div class="preview-item"><span class="pi">→</span> Estimated revenue being left on the table monthly</div>
+          <div class="preview-item"><span class="pi">→</span> The one shift that breaks the pattern</div>
+          <div class="preview-item"><span class="pi">→</span> A personal note from Coach Reg</div>
+          <div class="preview-item"><span class="pi">→</span> What a SPARK Session would surface specifically for you</div>
+        </div>
+      </div>
+      <div class="email-form">
+        <input class="e-input" type="text" id="userName" placeholder="Your first name" autocomplete="given-name">
+        <input class="e-input" type="email" id="userEmail" placeholder="Your best email address" autocomplete="email">
+        <button class="btn-submit" onclick="showResult()">Show My Pattern + Report →</button>
+        <div class="e-note">Your report is sent instantly. No spam. You can unsubscribe from SPARK Insights anytime.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div class="result-step" id="result-step">
+    <div class="result-header">
+      <div class="result-badge"><div class="dot"></div>Pattern Identified</div>
+      <div class="result-name" id="result-for">Your Pattern</div>
+      <h2 class="result-pattern" id="result-title">Loading...</h2>
+      <p class="result-tagline" id="result-tagline">Loading...</p>
+    </div>
+
+    <!-- COST CARD -->
+    <div class="cost-card">
+      <div class="cost-label">Pattern Cost Analysis</div>
+      <div class="cost-row">
+        <div class="cost-row-label">Estimated monthly revenue impact</div>
+        <div class="cost-row-val" id="cost-monthly">$0</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-row-label">Pattern duration (your estimate)</div>
+        <div class="cost-row-val" id="cost-duration">0 months</div>
+      </div>
+      <div class="cost-row">
+        <div class="cost-row-label">Compound opportunity cost to date</div>
+        <div class="cost-row-val" id="cost-compound">$0</div>
+      </div>
+      <div class="cost-row total">
+        <div class="cost-row-label">Conservative estimated total cost of this pattern</div>
+        <div class="cost-row-val" id="cost-total">$0</div>
+      </div>
+    </div>
+
+    <!-- INSIGHT CARD -->
+    <div class="insight-card">
+      <div class="ic-label">What This Pattern Is Doing</div>
+      <div class="ic-title" id="insight-title">Loading...</div>
+      <div class="ic-body" id="insight-body">Loading...</div>
+    </div>
+
+    <!-- THE SHIFT -->
+    <div class="shift-box">
+      <div class="shift-label">The Shift That Breaks It</div>
+      <div class="shift-text" id="shift-text">Loading...</div>
+    </div>
+
+    <!-- BOB'S NOTE -->
+    <div class="insight-card" style="background:var(--amber-soft);border-color:var(--amber-border)">
+      <div class="ic-label">A Note From Coach Reg</div>
+      <div class="ic-body" id="bob-note">Loading...</div>
+    </div>
+
+    <!-- CTA -->
+    <div class="result-cta">
+      <div class="rc-eyebrow">Ready to Break the Pattern?</div>
+      <h3 class="rc-title">Bring me your <span class="amber">$50K problem.</span></h3>
+      <p class="rc-body">In one SPARK Session, we'll go past what this diagnostic found. The pattern underneath the pattern. That's where the real work is.</p>
+      <div class="rc-ctas">
+        <a class="btn-cta-primary" href="mailto:bob@coachregnerus.com?subject=SPARK Session — Pattern Diagnostic">Book a SPARK Session — $1,500 →</a>
+        <a class="btn-cta-outline" href="website-redesign.html">Learn More ↗</a>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /quiz-wrap -->
+
+<footer class="diag-footer">
+  <p>The <span>SPARK Pattern Diagnostic™</span> · Coach Reg · Bob Regnerus · © 2026</p>
+  <p style="margin-top:4px;font-size:.65rem">Part of The Signal Session — a <span>$20,000</span> gift to founders who need their broadcast to match their work.</p>
+</footer>
+
+<script>
+// ── STATE ──
+var answers = { pattern: '', months: 18, rev: 15000 };
+var currentStep = 1;
+var totalSteps = 5;
+
+// ── PATTERN DATA ──
+var patterns = {
+  grip: {
+    name: 'The White-Knuckle Grip',
+    tagline: 'You\'ve built something real — and you\'re holding it so tight <strong>you can\'t feel it anymore.</strong> The more control you reach for, the more it slips.',
+    insight_title: 'Control is the pattern. Not the solution.',
+    insight_body: 'The White-Knuckle Grip is the most common pattern in high-performing founders who\'ve built something meaningful. You got here by doing more, controlling more, being the last line of defence. That worked — until it didn\'t. The business has outgrown what one person\'s grip can hold. But letting go feels like losing, and so the grip tightens. Every team problem, every delegation failure, every missed opportunity can be traced to the same root. <strong>The tighter you hold the club, the worse you play.</strong> You know this. Now it\'s time to live it.',
+    shift: '"<strong>The shift isn\'t trust.</strong> It\'s design. You don\'t need to trust your team more — you need to build a system you trust, and then step back into your actual role. One conversation about what you\'re still holding that was never yours to hold."',
+    bob: '"I see this on the course more than anywhere else. The golfer who white-knuckles the driver adds 10 strokes. Same with founders. You didn\'t grip this tightly because you\'re wrong — you gripped it because it once worked. A SPARK Session is one hour to find the specific thing you\'re still holding that\'s costing you the most. We find it fast. Then you decide what to do with it."'
+  },
+  invisible: {
+    name: 'The Invisible Expert',
+    tagline: 'Your expertise is <strong>decades in the making.</strong> Your broadcast is barely a whisper. The market can\'t find what it can\'t see.',
+    insight_title: 'The work is extraordinary. The world doesn\'t know it yet.',
+    insight_body: 'The Invisible Expert pattern is common among the most genuinely skilled operators — people who built their reputation through results and referrals and never needed to broadcast. That\'s an asset with a built-in ceiling. The clients who should be finding you, aren\'t. The fees you should be commanding, you\'re not. The positioning that would make the right people immediately feel seen — it either doesn\'t exist or doesn\'t land. <strong>This is a signal problem, not a talent problem.</strong> Your work is the proof. What\'s missing is the architecture to transmit it.',
+    shift: '"<strong>The shift is precision, not volume.</strong> You don\'t need to post more. You need one precisely aimed message that makes the right person feel seen in a single sentence. That\'s the diagnostic. That\'s what we build."',
+    bob: '"The highest-impact session I run is with people like you. The work is there — it\'s extraordinary. The broadcast just doesn\'t match it. In one SPARK Session I find the exact gap between what you do and how you\'re describing it. Usually it\'s one sentence. One reframe. And the whole thing opens up."'
+  },
+  threshold: {
+    name: 'The Threshold Founder',
+    tagline: 'You already know what you need to do. <strong>You\'ve known for a while.</strong> Something is keeping you from doing it — and it isn\'t logic.',
+    insight_title: 'The decision is made. The conviction isn\'t.',
+    insight_body: 'Threshold founders are the most fascinating pattern to work with — because the answer is never hidden. You know what you need to do. You\'ve known for months, maybe years. The pivot, the conversation, the offer, the exit, the next chapter. The mind has done the analysis. The conviction hasn\'t arrived yet. So you keep circling. More data, more planning, more consultation — and the decision doesn\'t move. <strong>This isn\'t an information problem. It\'s a conviction problem.</strong> And conviction isn\'t built through more thinking. It\'s built through seeing the pattern that\'s blocking the move.',
+    shift: '"<strong>The shift is from decision to conviction.</strong> You don\'t need permission. You don\'t need more data. You need the specific fear or belief that\'s sitting between you and the action you\'ve already chosen — named, seen clearly, and released. One session."',
+    bob: '"This is the session that tends to change things permanently. You come in knowing the answer. You leave with the conviction to act on it. The difference is always one thing — one belief or pattern we find together in the first twenty minutes. The rest of the hour is just you stepping into something you were already ready for."'
+  },
+  repeater: {
+    name: 'The Pattern Repeater',
+    tagline: 'New market. New team. New decade. <strong>Same dynamic.</strong> You\'ve noticed it. Now it\'s time to name it.',
+    insight_title: 'The situation changes. The pattern doesn\'t.',
+    insight_body: 'The Pattern Repeater is the most persistent — and the most liberating once found. You\'ve navigated it before. You solved it (or survived it). And then it came back, wearing different clothes. The same team dynamic with a different cast. The same market problem in a different industry. The same relationship structure in a new partnership. The pattern is more constant than the context. <strong>This means the pattern lives in you, not in the circumstances.</strong> That\'s actually good news. Because you can\'t change the market, but you can change the pattern. And once it\'s named, it loses its power.',
+    shift: '"<strong>The shift is from solving to recognising.</strong> You don\'t need a new strategy — you need to see the pattern so clearly that you recognise it the moment it arrives next time. Pattern recognition is the entire skill. One session is enough to name it for good."',
+    bob: '"The clients who say \'this keeps happening to me\' are always the most satisfying to work with. Because the repetition is the evidence. You couldn\'t see it while it was happening — but looking back, it\'s unmistakable. A SPARK Session is where we look back together, name the thread, and then decide how you want to respond when it arrives again. And it will arrive again. The difference is: this time you\'ll see it coming."'
+  }
+};
+
+// ── OPTION SELECTION ──
+document.querySelectorAll('.options').forEach(function(container){
+  container.addEventListener('click', function(e){
+    var opt = e.target.closest('.opt');
+    if(!opt) return;
+    container.querySelectorAll('.opt').forEach(function(o){o.classList.remove('selected')});
+    opt.classList.add('selected');
+    var stepNum = container.closest('.step').dataset.step;
+    var nextBtn = document.getElementById('next-'+stepNum);
+    if(nextBtn) nextBtn.classList.add('ready');
+    // capture answer data
+    if(stepNum === '1') answers.pattern = opt.dataset.pattern;
+    if(stepNum === '2') answers.months = parseInt(opt.dataset.months)||18;
+    if(stepNum === '3') answers.rev = parseInt(opt.dataset.rev)||15000;
+  });
+});
+
+// ── STEP NAVIGATION ──
+function updateProgress(step){
+  var pct = ((step-1)/totalSteps)*100;
+  document.getElementById('progressFill').style.width = pct+'%';
+  if(step <= totalSteps) document.getElementById('progressLabel').textContent = 'Question '+step+' of '+totalSteps;
+  else document.getElementById('progressLabel').textContent = 'Almost there...';
+}
+
+function nextStep(current){
+  var sel = document.querySelector('#step-'+current+' .opt.selected');
+  if(!sel) return;
+  document.getElementById('step-'+current).classList.remove('active');
+  var next = current+1;
+  if(next <= totalSteps){
+    document.getElementById('step-'+next).classList.add('active');
+    currentStep = next;
+  }
+  updateProgress(next);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function prevStep(current){
+  document.getElementById('step-'+current).classList.remove('active');
+  var prev = current-1;
+  if(prev >= 1){
+    document.getElementById('step-'+prev).classList.add('active');
+    currentStep = prev;
+  }
+  updateProgress(prev);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function showEmail(){
+  var sel = document.querySelector('#step-5 .opt.selected');
+  if(!sel) return;
+  document.getElementById('step-5').classList.remove('active');
+  document.getElementById('email-step').classList.add('active');
+  document.getElementById('progressLabel').textContent = 'Almost there...';
+  document.getElementById('progressFill').style.width = '90%';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function showResult(){
+  var name = document.getElementById('userName').value.trim() || 'You';
+  var email = document.getElementById('userEmail').value.trim();
+  if(!email || !email.includes('@')){ document.getElementById('userEmail').focus(); return; }
+
+  document.getElementById('email-step').classList.remove('active');
+  document.getElementById('result-step').classList.add('active');
+  document.getElementById('progressFill').style.width = '100%';
+  document.getElementById('progressLabel').textContent = 'Complete';
+
+  // resolve pattern — default to threshold if not set
+  var p = answers.pattern || 'threshold';
+  var data = patterns[p];
+  var months = answers.months;
+  var monthly = answers.rev;
+  var compound = monthly * months;
+  var total = compound;
+
+  // populate
+  document.getElementById('result-for').textContent = name + "'s Pattern";
+  document.getElementById('result-title').innerHTML = data.name;
+  document.getElementById('result-tagline').innerHTML = data.tagline;
+  document.getElementById('cost-monthly').textContent = '$'+monthly.toLocaleString()+'/mo';
+  document.getElementById('cost-duration').textContent = months < 12 ? months+' months' : Math.round(months/12)+' years';
+  document.getElementById('cost-compound').textContent = '$'+Math.round(compound*0.6).toLocaleString();
+  document.getElementById('cost-total').textContent = '$'+total.toLocaleString()+'+';
+  document.getElementById('insight-title').textContent = data.insight_title;
+  document.getElementById('insight-body').innerHTML = data.insight_body;
+  document.getElementById('shift-text').innerHTML = data.shift;
+  document.getElementById('bob-note').innerHTML = data.bob;
+
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>

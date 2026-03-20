@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPARK Offer Architecture — Bob Regnerus · The Signal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#07080f;--navy:#0b0f1e;--card:#111624;--gold:#c9a84c;--gold-border:rgba(201,168,76,0.22);--white:#f2f2f5;--grey:#7a84a0;--muted:#4a5270;--serif:'Playfair Display',Georgia,serif;--sans:'Inter',-apple-system,sans-serif;}
+body{font-family:var(--sans);background:var(--navy);color:var(--white);line-height:1.7;margin:0}
+.nav{position:fixed;top:0;left:0;right:0;z-index:999;background:rgba(7,8,15,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,.12);height:52px;display:flex;align-items:center;padding:0 32px;gap:16px}
+.nav-brand{font-family:var(--serif);font-size:.85rem;font-weight:700;color:var(--white);display:flex;align-items:center;gap:8px;text-decoration:none}
+.nav-dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.nav-brand span{color:var(--gold)}
+.nav-back{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .15s}
+.nav-back:hover{color:var(--gold)}
+.hero{padding:88px 40px 52px;text-align:center;position:relative;overflow:hidden;background:var(--black);border-bottom:1px solid rgba(201,168,76,.1)}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 40%,rgba(201,168,76,.07) 0%,transparent 65%);pointer-events:none}
+.eyebrow{font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:14px;display:inline-flex;align-items:center;gap:12px}
+.eyebrow::before,.eyebrow::after{content:'';width:22px;height:1px;background:rgba(201,168,76,.5)}
+h1{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:700;line-height:1.1;margin-bottom:16px}
+h1 .gold{color:var(--gold)} h1 .it{font-style:italic}
+.hero-sub{font-size:.82rem;color:var(--grey);max-width:520px;margin:0 auto;line-height:1.85}
+.hero-sub strong{color:var(--white)}
+.body{max-width:780px;margin:0 auto;padding:52px 32px 80px}
+.section{margin-bottom:52px}
+.section-label{font-size:.56rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.section-label::after{content:'';flex:1;height:1px;background:rgba(201,168,76,.15)}
+h2{font-family:var(--serif);font-size:1.6rem;font-weight:700;color:var(--white);margin-bottom:14px;line-height:1.2}
+h2 .gold{color:var(--gold);font-style:italic}
+p{font-size:.88rem;color:var(--grey);line-height:1.85;margin-bottom:14px}
+p strong{color:var(--white)}
+.ladder{position:relative;margin:24px 0}
+.ladder-step{background:var(--card);border:1px solid rgba(201,168,76,.15);border-radius:12px;padding:26px 30px;margin-bottom:14px;position:relative;padding-left:70px}
+.ladder-step::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--gold);border-radius:4px 0 0 4px}
+.step-num{position:absolute;left:18px;top:26px;font-family:var(--serif);font-size:1.8rem;font-weight:700;color:rgba(201,168,76,.25);line-height:1}
+.step-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;gap:16px;flex-wrap:wrap}
+.step-name{font-family:var(--serif);font-size:1.1rem;font-weight:700;color:var(--white)}
+.step-name .gold{color:var(--gold)}
+.step-price{background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);color:var(--gold);font-size:.72rem;font-weight:700;padding:5px 14px;border-radius:20px;white-space:nowrap}
+.step-desc{font-size:.82rem;color:var(--grey);line-height:1.7;margin-bottom:10px}
+.step-tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{font-size:.64rem;letter-spacing:.08em;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:#a0a8c0;padding:4px 10px;border-radius:4px}
+.journey-box{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-radius:12px;padding:28px 32px;margin:24px 0}
+.journey-box h3{font-family:var(--serif);font-size:1.15rem;color:var(--white);margin-bottom:12px}
+.journey-box h3 .gold{color:var(--gold);font-style:italic}
+.journey-steps{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:14px}
+.j-step{background:var(--card);border:1px solid rgba(201,168,76,.2);border-radius:6px;padding:8px 14px;font-size:.75rem;color:var(--white);font-weight:500;white-space:nowrap}
+.j-arrow{color:var(--gold);font-size:.8rem;font-weight:700}
+.nav-chapters{display:flex;gap:10px;margin-top:40px;flex-wrap:wrap}
+.nav-ch{flex:1;min-width:160px;background:var(--card);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:14px 18px;text-decoration:none;transition:all .2s}
+.nav-ch:hover{border-color:rgba(201,168,76,.4);transform:translateY(-2px)}
+.nav-ch .ch-label{font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:4px}
+.nav-ch .ch-name{font-size:.82rem;font-weight:600;color:var(--white)}
+footer{text-align:center;padding:32px 20px;border-top:1px solid rgba(255,255,255,.05);font-size:.7rem;color:var(--muted)}
+footer span{color:var(--gold)}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="signal-origin.html"><div class="nav-dot"></div>The <span>Signal</span></a>
+  <a class="nav-back" href="signal-origin.html">← Back to Hub</a>
+</nav>
+<section class="hero">
+  <div class="eyebrow">Chapter 04 · Offer Architecture</div>
+  <h1>SPARK <span class="gold it">Offer Architecture</span></h1>
+  <p class="hero-sub">Your offers repriced, repackaged, and sequenced to take clients on a <strong>journey — not a transaction.</strong></p>
+</section>
+<div class="body">
+  <div class="section">
+    <div class="section-label">The Client Journey</div>
+    <h2>From stranger to <span class="gold">long-term engagement</span></h2>
+    <p>Right now your offers sit side by side on a website as independent products. A stranger doesn't know where to start. A SPARK Session client doesn't know what comes next. There's no clear path that takes someone from "just found you" to "deeply committed client." The architecture below changes that.</p>
+    <div class="journey-box">
+      <h3>The <span class="gold">SPARK Journey</span></h3>
+      <p style="font-size:.82rem;color:var(--grey)">Each step builds trust, proves value, and creates a natural invitation to go deeper.</p>
+      <div class="journey-steps">
+        <div class="j-step">Newsletter / Content</div>
+        <div class="j-arrow">→</div>
+        <div class="j-step">SPARK Session™ ($1,500)</div>
+        <div class="j-arrow">→</div>
+        <div class="j-step">SPARK Tee Time™ ($5,500)</div>
+        <div class="j-arrow">→</div>
+        <div class="j-step">Quarterly Retainer ($3K/mo)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Offer 1 · Entry</div>
+    <div class="ladder">
+      <div class="ladder-step">
+        <div class="step-num">1</div>
+        <div class="step-header">
+          <div class="step-name">SPARK Session™ <span class="gold">— Repriced</span></div>
+          <div class="step-price">$1,500 (was $777)</div>
+        </div>
+        <div class="step-desc">One hour. One insight. One action. The diagnostic that strips away noise and maps the next move. Your entry point — now priced to signal the caliber of work and client you serve. At $777 you attract price-shoppers. At $1,500 you attract people who've already decided they need what you do.</div>
+        <div class="step-tags"><span class="tag">1 hour</span><span class="tag">Remote or in-person</span><span class="tag">Immediate clarity</span><span class="tag">Specific decision required</span></div>
+      </div>
+    </div>
+    <p>The price increase is also a positioning signal. A $777 session says "try me." A $1,500 session says "this is serious work." Your best clients — the ones who leave testimonials like Frank Michel's — don't want to "try" a coach. They want to commit to one.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Offer 2 · Flagship</div>
+    <div class="ladder">
+      <div class="ladder-step">
+        <div class="step-num">2</div>
+        <div class="step-header">
+          <div class="step-name">SPARK Tee Time™ <span class="gold">— Elevated to Flagship</span></div>
+          <div class="step-price">$5,500–$7,500</div>
+        </div>
+        <div class="step-desc">A full-day private immersive experience. Pre-round clarity call. Breakfast. 18 holes of coaching in motion. Early dinner debrief. Follow-up SPARK Session one week later. Black-car service, two nights, two meals. This is your most differentiated, most defensible product — and it should be the centrepiece of everything you market.</div>
+        <div class="step-tags"><span class="tag">All-inclusive day</span><span class="tag">Chicago or home course</span><span class="tag">Optional plus-1</span><span class="tag">Pattern reset</span><span class="tag">Follow-up session included</span></div>
+      </div>
+    </div>
+    <p>Comparable experiences — high-end leadership retreats, executive offsites, mastermind experiences — charge $5K–$25K for group formats. You're delivering this privately, with a 40-year expert, tailored entirely to the individual. The pricing ceiling here is higher than you've tested. Start at $5,500, move to $7,500 when demand justifies it.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Offer 3 · Ongoing</div>
+    <div class="ladder">
+      <div class="ladder-step">
+        <div class="step-num">3</div>
+        <div class="step-header">
+          <div class="step-name">SPARK Retainer <span class="gold">— New Offer</span></div>
+          <div class="step-price">$2,500–$4,000/month</div>
+        </div>
+        <div class="step-desc">Monthly ongoing engagement for leaders who've had a SPARK Session or Tee Time and want to keep the mirror active. Two sessions per month. Async access between sessions. Accountability on the specific pattern identified in their initial work. The pattern doesn't resolve in a day — this offer serves the ones who want to make sure it stays resolved.</div>
+        <div class="step-tags"><span class="tag">2 sessions/month</span><span class="tag">Async accountability</span><span class="tag">Pattern tracking</span><span class="tag">Minimum 3-month commitment</span></div>
+      </div>
+    </div>
+    <p>This is predictable recurring revenue — the thing the session model fundamentally can't provide. Four retainer clients at $3,000/month = $144K ARR before a single new SPARK Session or Tee Time booking. This offer should be introduced at the follow-up session included in Tee Time.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Offer 4 · Authority</div>
+    <div class="ladder">
+      <div class="ladder-step">
+        <div class="step-num">4</div>
+        <div class="step-header">
+          <div class="step-name">SPARK Keynote <span class="gold">— Activate Speaking</span></div>
+          <div class="step-price">$5,000–$20,000</div>
+        </div>
+        <div class="step-desc">"How you do one thing is how you do everything" as a keynote for executive audiences, leadership conferences, founder summits, and high-performance organizations. Your story — from locker room to boardroom, the CEO and the 7-iron — is a natural 45-minute talk that plants the seed for downstream Tee Time bookings.</div>
+        <div class="step-tags"><span class="tag">45–60 min</span><span class="tag">Executive audiences</span><span class="tag">Founder/athlete crossover</span><span class="tag">Downstream pipeline</span></div>
+      </div>
+    </div>
+    <p>Speaking isn't just revenue. It's your most efficient lead generation channel. One keynote to a room of 100 founders will generate more SPARK Session bookings than six months of social media. Prioritise speaking engagements in Year 1 of the activation plan.</p>
+  </div>
+
+  <div class="nav-chapters">
+    <a class="nav-ch" href="positioning-blueprint.html"><div class="ch-label">Chapter 03</div><div class="ch-name">← Positioning Blueprint</div></a>
+    <a class="nav-ch" href="lead-reactivation.html"><div class="ch-label">Chapter 05</div><div class="ch-name">Lead Reactivation →</div></a>
+  </div>
+</div>
+<footer><p>The <span>Signal</span> · Bob Regnerus · Chapter 04 of 09</p></footer>
+</body>
+</html>

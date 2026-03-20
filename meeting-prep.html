@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bob Regnerus — Friday Meeting Prep · The Signal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#07080f;--navy:#0b0f1e;--card:#111624;
+  --gold:#c9a84c;--gold-b:rgba(201,168,76,.22);--gold-dim:rgba(201,168,76,.08);
+  --white:#f2f2f5;--grey:#7a84a0;--muted:#4a5270;
+  --green:#3a7a4a;--red-soft:rgba(220,80,80,.12);--red-b:rgba(220,80,80,.25);--red-text:#e07070;
+  --serif:'Playfair Display',Georgia,serif;--sans:'Inter',-apple-system,sans-serif;
+  --max:820px;
+}
+body{font-family:var(--sans);background:var(--black);color:var(--white);margin:0;line-height:1.7}
+.nav{position:sticky;top:0;z-index:99;background:rgba(7,8,15,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--gold-b);height:52px;display:flex;align-items:center;padding:0 32px;justify-content:space-between}
+.nav-brand{display:flex;align-items:center;gap:8px;text-decoration:none;font-family:var(--serif);font-size:.88rem;font-weight:700;color:var(--white)}
+.nav-brand span{color:var(--gold)}
+.nav-dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.nav-back{font-size:.62rem;font-weight:600;color:var(--gold);text-decoration:none;border:1px solid var(--gold-b);padding:5px 14px;border-radius:20px;transition:all .15s;background:var(--gold-dim)}
+.nav-back:hover{border-color:rgba(201,168,76,.5)}
+
+.wrap{max-width:var(--max);margin:0 auto;padding:48px 32px 80px}
+
+/* header */
+.meeting-header{background:linear-gradient(135deg,#0d1520,var(--card));border:1px solid var(--gold-b);border-radius:16px;padding:30px;margin-bottom:32px;position:relative;overflow:hidden}
+.meeting-header::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),rgba(201,168,76,.2))}
+.mh-eyebrow{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:10px}
+.mh-title{font-family:var(--serif);font-size:1.8rem;font-weight:700;line-height:1.1;margin-bottom:8px}
+.mh-title .it{font-style:italic;color:var(--gold)}
+.mh-meta{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px}
+.mh-tag{font-size:.65rem;background:var(--gold-dim);border:1px solid var(--gold-b);color:var(--gold);padding:4px 12px;border-radius:20px;font-weight:600}
+.mh-tag-ok{font-size:.65rem;background:rgba(58,122,74,.12);border:1px solid rgba(58,122,74,.3);color:#6fc896;padding:4px 12px;border-radius:20px;font-weight:600}
+
+/* section */
+.section{margin-bottom:32px}
+.section-label{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.section-label::after{content:'';flex:1;height:1px;background:var(--gold-b)}
+
+/* goals */
+.goals{display:flex;flex-direction:column;gap:10px}
+.goal{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start}
+.goal-num{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#000;font-size:.78rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.goal-title{font-size:.86rem;font-weight:700;color:var(--white);margin-bottom:4px}
+.goal-body{font-size:.78rem;color:var(--grey);line-height:1.65}
+.goal-chapter{font-size:.62rem;color:var(--gold);font-weight:700;margin-top:6px}
+
+/* what we built */
+.built-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:600px){.built-grid{grid-template-columns:1fr}}
+.built-card{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:14px 16px;text-decoration:none;transition:all .18s}
+.built-card:hover{border-color:var(--gold-b)}
+.bc-label{font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:6px}
+.bc-title{font-size:.84rem;font-weight:700;color:var(--white);margin-bottom:5px}
+.bc-desc{font-size:.72rem;color:var(--grey);line-height:1.6}
+.bc-link{font-size:.66rem;color:var(--gold);margin-top:6px;display:block}
+
+/* walk-through */
+.walkthrough{display:flex;flex-direction:column;gap:0}
+.wt-step{display:flex;gap:14px;padding-bottom:20px}
+.wt-step:last-child{padding-bottom:0}
+.wt-left{display:flex;flex-direction:column;align-items:center;flex-shrink:0}
+.wt-num{width:28px;height:28px;border-radius:50%;background:var(--gold-dim);border:1px solid var(--gold-b);color:var(--gold);font-size:.76rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+.wt-connector{width:1px;flex:1;background:var(--gold-b);min-height:16px;margin:4px 0}
+.wt-step:last-child .wt-connector{display:none}
+.wt-time{font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:4px}
+.wt-title{font-size:.84rem;font-weight:700;color:var(--white);margin-bottom:5px}
+.wt-body{font-size:.76rem;color:var(--grey);line-height:1.65}
+.wt-tip{font-size:.72rem;color:var(--muted);background:var(--gold-dim);border:1px solid var(--gold-b);border-radius:6px;padding:7px 10px;margin-top:8px;line-height:1.55}
+.wt-tip strong{color:var(--gold)}
+
+/* talking points */
+.tp-list{display:flex;flex-direction:column;gap:8px}
+.tp{background:var(--card);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:12px 16px}
+.tp-q{font-size:.78rem;font-weight:700;color:var(--white);margin-bottom:4px}
+.tp-a{font-size:.74rem;color:var(--grey);line-height:1.65}
+.tp-a strong{color:var(--white)}
+
+/* watch-outs */
+.watchout{background:var(--red-soft);border:1px solid var(--red-b);border-radius:8px;padding:12px 16px;margin-bottom:8px;display:flex;gap:10px}
+.wo-icon{font-size:.9rem;flex-shrink:0}
+.wo-body{font-size:.76rem;color:rgba(240,220,220,.75);line-height:1.6}
+.wo-body strong{color:var(--red-text)}
+
+/* close */
+.close-card{background:var(--gold-dim);border:1px solid var(--gold-b);border-radius:12px;padding:22px 24px;text-align:center}
+.close-title{font-family:var(--serif);font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:8px}
+.close-title .it{font-style:italic;color:var(--gold)}
+.close-body{font-size:.78rem;color:var(--grey);line-height:1.7;margin-bottom:16px}
+.close-options{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.co-item{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:12px 16px;text-align:left;flex:1;min-width:160px}
+.co-price{font-family:var(--serif);font-size:1.1rem;font-weight:700;color:var(--gold)}
+.co-name{font-size:.78rem;font-weight:700;color:var(--white);margin:3px 0}
+.co-desc{font-size:.68rem;color:var(--grey)}
+
+/* url card */
+.url-card{background:var(--card);border:1px solid var(--gold-b);border-radius:10px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px;flex-wrap:wrap}
+.url-label{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.url-val{font-family:monospace;font-size:.8rem;color:var(--gold)}
+.url-btn{font-size:.65rem;font-weight:700;color:var(--black);background:var(--gold);border:none;padding:6px 14px;border-radius:5px;cursor:pointer;text-decoration:none}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-brand" href="signal-origin.html"><div class="nav-dot"></div>The <span>Signal</span></a>
+  <a class="nav-back" href="signal-origin.html">← Back to Hub</a>
+</nav>
+
+<div class="wrap">
+
+  <!-- HEADER -->
+  <div class="meeting-header">
+    <div class="mh-eyebrow">Meeting Prep Brief</div>
+    <h1 class="mh-title">Bob Regnerus<br><span class="it">Friday March 20</span></h1>
+    <div class="mh-meta">
+      <div class="mh-tag">Signal Code: CONVICTION</div>
+      <div class="mh-tag">30–45 min recommended</div>
+      <div class="mh-tag-ok">✓ Site Live on Netlify</div>
+      <div class="mh-tag-ok">✓ 13 files deployed</div>
+    </div>
+  </div>
+
+  <!-- LIVE URL -->
+  <div class="section">
+    <div class="section-label">Live Session URL</div>
+    <div class="url-card">
+      <div>
+        <div class="url-label">Bob's Signal Hub — Share this</div>
+        <div class="url-val">https://bob-regnerus-signal.netlify.app</div>
+      </div>
+      <a class="url-btn" href="https://bob-regnerus-signal.netlify.app" target="_blank">Open →</a>
+    </div>
+    <div style="font-size:.72rem;color:var(--muted);line-height:1.6">This is what Bob sees. Walk him through it live in the meeting — don't just send the link. The experience of being walked through his own session is the product.</div>
+  </div>
+
+  <!-- BOB'S 3 GOALS -->
+  <div class="section">
+    <div class="section-label">Bob's 3 Stated Goals — Know These Cold</div>
+    <div class="goals">
+      <div class="goal">
+        <div class="goal-num">1</div>
+        <div>
+          <div class="goal-title">200 Real People — Not Followers</div>
+          <div class="goal-body">Bob explicitly said he doesn't want followers. He wants 200 specific, real people in his world who matter — people who can move his work forward, refer him, or become clients. Quality over reach.</div>
+          <div class="goal-chapter">→ Chapter 06: LinkedIn Blueprint · 200 List Strategy section</div>
+        </div>
+      </div>
+      <div class="goal">
+        <div class="goal-num">2</div>
+        <div>
+          <div class="goal-title">15–20 Door Openers</div>
+          <div class="goal-body">People who put Bob in rooms he can't get into alone. Connectors, hosts, introducers — not just clients. These are the people who say "you need to meet Bob" to the right audiences.</div>
+          <div class="goal-chapter">→ Chapter 06: LinkedIn Blueprint · Door Openers section</div>
+        </div>
+      </div>
+      <div class="goal">
+        <div class="goal-num">3</div>
+        <div>
+          <div class="goal-title">The Brandon Fong Athletics Island</div>
+          <div class="goal-body">Longer-term vision — becoming a known name in the athletics space, building toward something bigger like Brandon Fong's island model. The architecture needs to support this trajectory, not just immediate revenue.</div>
+          <div class="goal-chapter">→ Chapter 03: Positioning Blueprint · Chapter 09: Activation Plan</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT WE BUILT -->
+  <div class="section">
+    <div class="section-label">What We Built — Know Every Piece</div>
+    <div class="built-grid">
+      <a class="built-card" href="intro.html">
+        <div class="bc-label">Before We Begin</div>
+        <div class="bc-title">intro.html — The Orientation Page</div>
+        <div class="bc-desc">Opens the session by quoting Bob's own words back to him and mapping all 3 goals to specific chapters. Sets the frame before anything else.</div>
+        <div class="bc-link">→ Start the walk-through here</div>
+      </a>
+      <a class="built-card" href="signal-origin.html">
+        <div class="bc-label">Session Hub</div>
+        <div class="bc-title">signal-origin.html — The 9 Chapters</div>
+        <div class="bc-desc">The full Signal session — all 9 deliverables with chapter navigation, signal code (CONVICTION), and bonus deliverables.</div>
+        <div class="bc-link">→ Main navigation point</div>
+      </a>
+      <a class="built-card" href="linkedin-blueprint.html">
+        <div class="bc-label">Chapter 06 — Custom-Built</div>
+        <div class="bc-title">LinkedIn Blueprint + 200 List</div>
+        <div class="bc-desc">Built specifically from Bob's personal overview. Includes the 200 List strategy and Door Opener framework — his exact goals turned into an actionable system.</div>
+        <div class="bc-link">→ Likely the most important chapter for Bob</div>
+      </a>
+      <a class="built-card" href="website-redesign.html">
+        <div class="bc-label">Bonus A — Client-Facing</div>
+        <div class="bc-title">Website Redesign</div>
+        <div class="bc-desc">Full redesign of Bob's site in his brand palette (warm parchment, amber). Not Signal's colors — his identity. Ready to hand to a developer or deploy as-is.</div>
+        <div class="bc-link">→ Tangible proof of what the session produces</div>
+      </a>
+      <a class="built-card" href="spark-diagnostic.html">
+        <div class="bc-label">Bonus B — Lead Magnet</div>
+        <div class="bc-title">SPARK Pattern Diagnostic™</div>
+        <div class="bc-desc">5-question quiz, 4 pattern archetypes, revenue cost calculator, email capture. Built to attract his ideal client. Bob should validate the 4 archetypes — they're synthesized from session language.</div>
+        <div class="bc-link">→ Note: archetypes need Bob's sign-off</div>
+      </a>
+      <div class="built-card" style="border-color:var(--gold-b)">
+        <div class="bc-label">Signal Code · Personally Assigned</div>
+        <div class="bc-title" style="color:var(--gold)">CONVICTION</div>
+        <div class="bc-desc">Chosen because Bob's entire body of work is built on earned certainty — not bravado, but the deep conviction that comes from decades of pattern recognition. It's who he is.</div>
+        <div class="bc-link" style="color:var(--muted)">→ Enter in the hub to unlock the reveal</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WALK-THROUGH GUIDE -->
+  <div class="section">
+    <div class="section-label">How to Walk Him Through It — Step by Step</div>
+    <div class="walkthrough">
+      <div class="wt-step">
+        <div class="wt-left"><div class="wt-num">1</div><div class="wt-connector"></div></div>
+        <div>
+          <div class="wt-time">0–3 min · Open the intro</div>
+          <div class="wt-title">Start at intro.html — let him read his own words back</div>
+          <div class="wt-body">The intro page opens with Bob's own words quoted verbatim. Let that land before you say anything. It signals immediately: we listened, we built this for you specifically, not from a template.</div>
+          <div class="wt-tip"><strong>Say:</strong> "Before we open the session I want to show you how we framed everything — it starts with something you said."</div>
+        </div>
+      </div>
+      <div class="wt-step">
+        <div class="wt-left"><div class="wt-num">2</div><div class="wt-connector"></div></div>
+        <div>
+          <div class="wt-time">3–5 min · Open the hub</div>
+          <div class="wt-title">Show the signal-origin.html — the full architecture</div>
+          <div class="wt-body">Walk him through the chapter list. Don't open every chapter — show him the scope. 9 deliverables. His signal code waiting at the bottom. Make him feel the weight of it before you dive in.</div>
+          <div class="wt-tip"><strong>Say:</strong> "Nine chapters — every one of them built from what you told us. Let me show you the two I want to focus on today, and then you can explore the rest on your own time."</div>
+        </div>
+      </div>
+      <div class="wt-step">
+        <div class="wt-left"><div class="wt-num">3</div><div class="wt-connector"></div></div>
+        <div>
+          <div class="wt-time">5–20 min · The core chapter</div>
+          <div class="wt-title">Open Chapter 06: LinkedIn Blueprint — walk the 200 List</div>
+          <div class="wt-body">This is built directly from his 3 goals. The 200 List section and Door Opener framework map exactly to what he said he wanted. Walk him through the strategy, the naming logic, the execution steps. This is where he'll lean in.</div>
+          <div class="wt-tip"><strong>Watch for:</strong> He'll likely have reactions — names he's already thinking of, pushback on something, enthusiasm about a specific section. Those reactions are your signal for what matters most to him. Don't rush past them.</div>
+        </div>
+      </div>
+      <div class="wt-step">
+        <div class="wt-left"><div class="wt-num">4</div><div class="wt-connector"></div></div>
+        <div>
+          <div class="wt-time">20–28 min · The bonuses</div>
+          <div class="wt-title">Show the website redesign + SPARK diagnostic</div>
+          <div class="wt-body">These are the tangible proof that The Signal goes beyond strategy documents. A fully designed website in his brand. A working lead magnet tool. Note clearly that the 4 SPARK archetypes are a starting point — he owns them and should validate.</div>
+          <div class="wt-tip"><strong>Say:</strong> "The diagnostic archetypes — we synthesized these from your session language. They're yours, but you should sense-check them. If they're right, they become a core part of how you attract clients."</div>
+        </div>
+      </div>
+      <div class="wt-step">
+        <div class="wt-left"><div class="wt-num">5</div><div class="wt-connector"></div></div>
+        <div>
+          <div class="wt-time">28–32 min · The code</div>
+          <div class="wt-title">Scroll to the Signal Code — CONVICTION — let him unlock it</div>
+          <div class="wt-body">Hand it to him. Let him type it. The reveal is the moment. Don't explain it in advance — let him read the meaning after he enters the word. Then ask: "Does that land?"</div>
+          <div class="wt-tip"><strong>This is the emotional peak of the session.</strong> Don't rush past it. The code was chosen for a reason — because his work is built on conviction. If it lands, he'll feel seen. That's the close.</div>
+        </div>
+      </div>
+      <div class="wt-step">
+        <div class="wt-left"><div class="wt-num">6</div><div class="wt-connector"></div></div>
+        <div>
+          <div class="wt-time">32–45 min · The next step</div>
+          <div class="wt-title">Ask one question and present the path forward</div>
+          <div class="wt-body">Don't pitch. Ask: "Of everything here, what's the one thing you'd want to move on first?" His answer tells you exactly what to scope next. Then present the options below — not all of them, the one that fits what he just said.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIKELY QUESTIONS -->
+  <div class="section">
+    <div class="section-label">Likely Questions — Have These Ready</div>
+    <div class="tp-list">
+      <div class="tp">
+        <div class="tp-q">"How long did this take you to build?"</div>
+        <div class="tp-a"><strong>Don't answer with hours.</strong> "The right amount of time to get it right." What matters is what you're holding — nine deliverables, a website, a working tool. The time it took is irrelevant to the value.</div>
+      </div>
+      <div class="tp">
+        <div class="tp-q">"Can I share this with my team / send it to someone?"</div>
+        <div class="tp-a">Yes — that's the URL. It's live and shareable. <strong>This is actually a good signal</strong> — if he wants to share it, he values it. Note who he wants to share it with.</div>
+      </div>
+      <div class="tp">
+        <div class="tp-q">"What happens next? How do we actually implement this?"</div>
+        <div class="tp-a">This is the opening. <strong>"That's exactly the right question."</strong> Then present the engagement options. The session was the diagnosis. Implementation is the engagement.</div>
+      </div>
+      <div class="tp">
+        <div class="tp-q">"The SPARK archetypes — did you make these up?"</div>
+        <div class="tp-a">Honest answer: <strong>"We synthesized them from your session language — they're not pulled from your existing work. They belong to you if they're right. You tell us if they reflect what you actually see in your clients."</strong></div>
+      </div>
+      <div class="tp">
+        <div class="tp-q">"How is this different from a regular strategy session?"</div>
+        <div class="tp-a"><strong>"Most strategy sessions produce a PDF that lives in a folder. This lives on the internet, works as a lead magnet, and is already a website redesign. The session wasn't just analysis — it produced assets."</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WATCH-OUTS -->
+  <div class="section">
+    <div class="section-label">Watch-Outs</div>
+    <div class="watchout"><div class="wo-icon">⚠️</div><div class="wo-body"><strong>Don't overwhelm him with all 9 chapters.</strong> Show him the intro, the hub scope, Chapter 06, the bonuses, and the code. Let him explore the rest on his own. Too much in one meeting = decision fatigue.</div></div>
+    <div class="watchout"><div class="wo-icon">⚠️</div><div class="wo-body"><strong>Don't over-explain the SPARK archetypes.</strong> Flag clearly that they need his validation. Don't defend them — present them as a draft for his input. His ownership of them matters more than being right.</div></div>
+    <div class="watchout"><div class="wo-icon">⚠️</div><div class="wo-body"><strong>Don't skip the code moment.</strong> It's tempting to rush to next steps. The code is the emotional close of the session — it's where Bob feels that this was built for him specifically. Give it space.</div></div>
+    <div class="watchout"><div class="wo-icon">⚠️</div><div class="wo-body"><strong>Don't pitch before he asks.</strong> Let the session speak for itself for the first 30 minutes. The close comes naturally after the code reveal — not before.</div></div>
+  </div>
+
+  <!-- THE CLOSE -->
+  <div class="section">
+    <div class="section-label">Engagement Options — Present After the Code Reveal</div>
+    <div class="close-card">
+      <div class="close-title">The next step is <span class="it">his</span> move.</div>
+      <div class="close-body">After the code, ask: <em>"Of everything here — what would you want to move on first?"</em><br>Then match his answer to the right engagement below. Don't list all four — present the one that fits.</div>
+      <div class="close-options">
+        <div class="co-item">
+          <div class="co-price">$1,500</div>
+          <div class="co-name">The Session</div>
+          <div class="co-desc">Deep advisory — already delivered in part. Full session engagement.</div>
+        </div>
+        <div class="co-item">
+          <div class="co-price">$5,500–7,500</div>
+          <div class="co-name">Tee Time</div>
+          <div class="co-desc">The immersive experience. Full day, full implementation.</div>
+        </div>
+        <div class="co-item">
+          <div class="co-price">$2,500–4,000/mo</div>
+          <div class="co-name">Retainer</div>
+          <div class="co-desc">Ongoing execution partner. Best if he wants to move fast on the 200 List.</div>
+        </div>
+        <div class="co-item">
+          <div class="co-price">$5,000–20,000</div>
+          <div class="co-name">Keynote</div>
+          <div class="co-desc">If he mentions speaking or events — this is the door.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

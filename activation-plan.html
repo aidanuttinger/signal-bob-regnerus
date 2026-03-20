@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>90-Day Activation Plan — Bob Regnerus · The Signal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#07080f;--navy:#0b0f1e;--card:#111624;--gold:#c9a84c;--gold-border:rgba(201,168,76,0.22);--white:#f2f2f5;--grey:#7a84a0;--muted:#4a5270;--serif:'Playfair Display',Georgia,serif;--sans:'Inter',-apple-system,sans-serif;}
+body{font-family:var(--sans);background:var(--navy);color:var(--white);line-height:1.7;margin:0}
+.nav{position:fixed;top:0;left:0;right:0;z-index:999;background:rgba(7,8,15,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,.12);height:52px;display:flex;align-items:center;padding:0 32px;gap:16px}
+.nav-brand{font-family:var(--serif);font-size:.85rem;font-weight:700;color:var(--white);display:flex;align-items:center;gap:8px;text-decoration:none}
+.nav-dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.nav-brand span{color:var(--gold)}
+.nav-back{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .15s}
+.nav-back:hover{color:var(--gold)}
+.hero{padding:88px 40px 52px;text-align:center;position:relative;overflow:hidden;background:var(--black);border-bottom:1px solid rgba(201,168,76,.1)}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 40%,rgba(201,168,76,.07) 0%,transparent 65%);pointer-events:none}
+.eyebrow{font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:14px;display:inline-flex;align-items:center;gap:12px}
+.eyebrow::before,.eyebrow::after{content:'';width:22px;height:1px;background:rgba(201,168,76,.5)}
+h1{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:700;line-height:1.1;margin-bottom:16px}
+h1 .gold{color:var(--gold)} h1 .it{font-style:italic}
+.hero-sub{font-size:.82rem;color:var(--grey);max-width:520px;margin:0 auto;line-height:1.85}
+.hero-sub strong{color:var(--white)}
+.body{max-width:780px;margin:0 auto;padding:52px 32px 80px}
+.section{margin-bottom:52px}
+.section-label{font-size:.56rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.section-label::after{content:'';flex:1;height:1px;background:rgba(201,168,76,.15)}
+h2{font-family:var(--serif);font-size:1.6rem;font-weight:700;color:var(--white);margin-bottom:14px;line-height:1.2}
+h2 .gold{color:var(--gold);font-style:italic}
+p{font-size:.88rem;color:var(--grey);line-height:1.85;margin-bottom:14px}
+p strong{color:var(--white)}
+.phase{background:var(--card);border:1px solid rgba(201,168,76,.15);border-radius:12px;padding:28px 32px;margin-bottom:20px;position:relative;overflow:hidden}
+.phase::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--gold)}
+.phase-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;gap:16px;flex-wrap:wrap}
+.phase-name{font-family:var(--serif);font-size:1.15rem;font-weight:700;color:var(--white)}
+.phase-name .gold{color:var(--gold)}
+.phase-timing{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:700;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);padding:5px 12px;border-radius:20px;white-space:nowrap}
+.phase-tasks{margin-bottom:14px}
+.task{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px}
+.task-check{width:18px;height:18px;border-radius:4px;border:1px solid rgba(201,168,76,.4);flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center}
+.task-check-inner{width:8px;height:8px;border-radius:2px;background:rgba(201,168,76,.2)}
+.task-text{font-size:.82rem;color:var(--grey);line-height:1.55}
+.task-text strong{color:var(--white)}
+.milestone{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.25);border-radius:8px;padding:12px 16px;margin-top:14px}
+.milestone-label{font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:4px}
+.milestone-text{font-size:.82rem;color:var(--white);font-weight:500}
+.metrics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0}
+@media(max-width:580px){.metrics-grid{grid-template-columns:1fr 1fr}}
+.metric-card{background:var(--card);border:1px solid rgba(201,168,76,.12);border-radius:8px;padding:18px 20px;text-align:center}
+.metric-num{font-family:var(--serif);font-size:1.6rem;font-weight:700;color:var(--gold);margin-bottom:4px}
+.metric-label{font-size:.7rem;color:var(--grey);line-height:1.4}
+.closing{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-radius:12px;padding:28px 32px;margin-top:32px;text-align:center}
+.closing h3{font-family:var(--serif);font-size:1.3rem;font-weight:700;color:var(--white);margin-bottom:10px}
+.closing h3 .gold{color:var(--gold);font-style:italic}
+.closing p{font-size:.84rem;margin-bottom:0;max-width:500px;margin-left:auto;margin-right:auto}
+.nav-chapters{display:flex;gap:10px;margin-top:40px;flex-wrap:wrap}
+.nav-ch{flex:1;min-width:160px;background:var(--card);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:14px 18px;text-decoration:none;transition:all .2s}
+.nav-ch:hover{border-color:rgba(201,168,76,.4);transform:translateY(-2px)}
+.nav-ch .ch-label{font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:4px}
+.nav-ch .ch-name{font-size:.82rem;font-weight:600;color:var(--white)}
+footer{text-align:center;padding:32px 20px;border-top:1px solid rgba(255,255,255,.05);font-size:.7rem;color:var(--muted)}
+footer span{color:var(--gold)}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="signal-origin.html"><div class="nav-dot"></div>The <span>Signal</span></a>
+  <a class="nav-back" href="signal-origin.html">← Back to Hub</a>
+</nav>
+<section class="hero">
+  <div class="eyebrow">Chapter 09 · Activation Plan</div>
+  <h1>90 Days to <span class="gold it">Fully Broadcast</span></h1>
+  <p class="hero-sub">Week by week — <strong>no overwhelm, no guessing.</strong> Just the next move, and the one after that.</p>
+</section>
+<div class="body">
+
+  <div class="section">
+    <div class="section-label">The North Star</div>
+    <p>By Day 90 you have: a rebuilt LinkedIn profile generating weekly inbound, a SPARK Insights newsletter with a conversion architecture, a fully priced offer suite, a reactivated warm list with at least 2–3 new bookings from dormant contacts, and one Tee Time confirmed. That's not a fantasy — it's the output of doing the right things in the right sequence.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Phase 1 · Weeks 1–2</div>
+    <div class="phase">
+      <div class="phase-header">
+        <div class="phase-name">Foundation: <span class="gold">Get the Signal Right</span></div>
+        <div class="phase-timing">Days 1–14</div>
+      </div>
+      <div class="phase-tasks">
+        <div class="task"><div class="task-check"><div class="task-check-inner"></div></div><div class="task-text"><strong>Rebuild LinkedIn profile</strong> — new headline, about section, featured section. Takes 2 hours. Immediate positioning shift.</div></div>
+        <div class="task"><div class="task-check"><div class="task-check-inner"></div></div><div class="task-text"><strong>Update SPARK Session pricing to $1,500</strong> — on the website and in all booking links. No gradual increase. Clean cut.</div></div>
+        <div class="task"><div class="task-check"><div class="task-check-inner"></div></div><div class="task-text"><strong>Pin The Mental Yardage Book</strong> as list-builder on LinkedIn, website, and in email signature.</div></div>
+        <div class="task"><div class="task-check"><div class="task-check-inner"></div></div><div class="task-text"><strong>Write first SPARK Insights edition</strong> using the new 5-part anatomy (Chapter 07). Publish and send.</div></div>
+        <div class="task"><div class="task-check"><div class="task-check-inner"></div></div><div class="task-text"><strong>Segment your email list</strong> — active vs. cold. Tag past clients separately for the reactivation sequence.</div></div>
+      </div>
+      <div class="milestone"><div class="milestone-label">Week 2 Milestone</div><div class="milestone-text">LinkedIn rebuilt. Pricing updated. First structured newsletter sent. List segmented.</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Phase 2 · Weeks 3–4</div>
+    <div class="phase">
+      <div class="phase-header">
+        <div class="phase-name">Reactivation: <span class="gold">Wake the Warm List</span></div>
+        <div class="phase-timing">Days 15–28</div>
+      </div>
+      <div class="phase-tasks">
+        <div class="task"><div class="task-check"><div class="task-check-inner"></div></div><div class="task-text"><strong>Send reactivation sequence to past SPARK Session clients</strong> — personal check-in, value drop, Tee Time invitation (Chapter 05 templates).</div></div>
+        <div class="task"><div class="task-check"><div class="task-check-inner"></div></div><div class="task-text"><strong>Send newsletter-to-booking CTA</strong> to active subscribers — one direct, bounded invitation to book a session this month.</div></div>
+        <div class="task"><div class="task-check"><div class="task-check-inner"></div></div><div class="task-text"><strong>Personal outreach to top 10 referrers</strong> — thank them for past referrals, offer a reciprocal session.</div></div>
+        <div class="task"><div class="task-check"><div class="task-check-inner"></div></div><div class="task-text"><strong>Post 3x on LinkedIn this week</strong> — Pattern Story Monday, Golf Mirror Wednesday, Conviction Friday. No CTA yet — just building presence.</div></div>
+        <div class="task"><div class="task-check"><div class="task-check-inner"></div></div><div class="task-text"><strong>Design the Retainer offer</strong> — one-page description, pricing, commitment structure. Ready to present to right clients at end of sessions.</div></div>
+      </div>
+      <div class="milestone"><div class="milestone-label">Week 4 Milestone</div><div class="milestone-text">Reactivation emails sent. First 1–2 responses received. LinkedIn rhythm established. Retainer offer ready.</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Phase 3 · Month 2</div>
+    <div class="phase">
+      <div class="phase-header">
+        <div class="phase-name">Engine: <span class="gold">Inbound Starts Working</span></div>
+        <div class="phase-timing">Days 29–60</div>
+      </div>
+      <div class="phase-tasks">
+        <div class="task"><div class="task-check"><div class="task-check-inner"></div></div><div class="task-text"><strong>Maintain 3x/week LinkedIn posting</strong> — content rhythm is now habitual. Start replying to every comment with depth, not thanks.</div></div>
+        <div class="task"><div class="task-check"><div class="task-check-inner"></div></div><div class="task-text"><strong>Introduce Tee Time CTA</strong> in one LinkedIn post and one newsletter edition. "Two slots open for spring. This is what happens." Link to Tee Time page.</div></div>
+        <div class="task"><div class="task-check"><div class="task-check-inner"></div></div><div class="task-text"><strong>Book first speaking engagement</strong> — EO chapter, founder conference, leadership event. One talk this quarter. Offer it at cost or free in exchange for email capture.</div></div>
+        <div class="task"><div class="task-check"><div class="task-check-inner"></div></div><div class="task-text"><strong>Offer Retainer to best-fit session client</strong> — at the end of a SPARK Session where the work is clearly ongoing. Not a pitch — a natural next step.</div></div>
+        <div class="task"><div class="task-check"><div class="task-check-inner"></div></div><div class="task-text"><strong>Ask for 2 testimonials</strong> from recent clients. Specific format: "what was the situation before, what shifted, what happened after." Add to website and LinkedIn.</div></div>
+      </div>
+      <div class="milestone"><div class="milestone-label">Day 60 Milestone</div><div class="milestone-text">LinkedIn generating weekly connection requests and DMs. Newsletter list growing. One Tee Time booked or in conversation. Speaking engagement confirmed.</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Phase 4 · Month 3</div>
+    <div class="phase">
+      <div class="phase-header">
+        <div class="phase-name">Scale: <span class="gold">Compound the Signal</span></div>
+        <div class="phase-timing">Days 61–90</div>
+      </div>
+      <div class="phase-tasks">
+        <div class="task"><div class="task-check"><div class="task-check-inner"></div></div><div class="task-text"><strong>Review and refine content</strong> — which LinkedIn posts got the most resonant engagement? Double down on those story types. Kill what isn't working.</div></div>
+        <div class="task"><div class="task-check"><div class="task-check-inner"></div></div><div class="task-text"><strong>Keynote pitch to 3 events or organizations</strong> — use the speaking engagement from Month 2 as proof. Start building a speaking page with video clip if possible.</div></div>
+        <div class="task"><div class="task-check"><div class="task-check-inner"></div></div><div class="task-text"><strong>Activate referral system</strong> — every client at end of engagement gets: "If you know one person circling a real decision who'd benefit from this work, I'd love an introduction."</div></div>
+        <div class="task"><div class="task-check"><div class="task-check-inner"></div></div><div class="task-text"><strong>Review pricing</strong> — if SPARK Sessions are filling up, raise to $2,000. Scarcity is a natural pricing signal. Don't wait for permission.</div></div>
+      </div>
+      <div class="milestone"><div class="milestone-label">Day 90 Milestone</div><div class="milestone-text">Consistent inbound from LinkedIn. At least 1 retainer client. 2+ Tee Times delivered or booked. Speaking pipeline active. Revenue baseline materially higher than Day 0.</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">90-Day Success Metrics</div>
+    <div class="metrics-grid">
+      <div class="metric-card"><div class="metric-num">3×/wk</div><div class="metric-label">LinkedIn posting rhythm</div></div>
+      <div class="metric-card"><div class="metric-num">2–4</div><div class="metric-label">Reactivated warm leads booked</div></div>
+      <div class="metric-card"><div class="metric-num">1+</div><div class="metric-label">Tee Time confirmed</div></div>
+      <div class="metric-card"><div class="metric-num">1</div><div class="metric-label">Retainer client signed</div></div>
+      <div class="metric-card"><div class="metric-num">$1,500</div><div class="metric-label">New SPARK Session price live</div></div>
+      <div class="metric-card"><div class="metric-num">1</div><div class="metric-label">Speaking engagement booked</div></div>
+    </div>
+  </div>
+
+  <div class="closing">
+    <h3>The Signal is already there.<br>Now it's time to <span class="gold">broadcast it.</span></h3>
+    <p>You've spent 40 years earning the right to say what you say. This plan doesn't reinvent you — it amplifies you. The work is excellent. The methodology is real. The clients who find you, love you. Now let's make sure they can find you in the first place.</p>
+  </div>
+
+  <div class="nav-chapters">
+    <a class="nav-ch" href="ideal-client.html"><div class="ch-label">Chapter 08</div><div class="ch-name">← Ideal Client Profile</div></a>
+    <a class="nav-ch" href="signal-origin.html"><div class="ch-label">All Chapters</div><div class="ch-name">← Back to Hub</div></a>
+  </div>
+</div>
+<footer><p>The <span>Signal</span> · Bob Regnerus · Chapter 09 of 09</p></footer>
+</body>
+</html>

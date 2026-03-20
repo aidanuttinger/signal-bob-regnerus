@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkedIn Authority Blueprint — Bob Regnerus · The Signal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#07080f;--navy:#0b0f1e;--card:#111624;--gold:#c9a84c;--gold-border:rgba(201,168,76,0.22);--white:#f2f2f5;--grey:#7a84a0;--muted:#4a5270;--serif:'Playfair Display',Georgia,serif;--sans:'Inter',-apple-system,sans-serif;}
+body{font-family:var(--sans);background:var(--navy);color:var(--white);line-height:1.7;margin:0}
+.nav{position:fixed;top:0;left:0;right:0;z-index:999;background:rgba(7,8,15,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,.12);height:52px;display:flex;align-items:center;padding:0 32px;gap:16px}
+.nav-brand{font-family:var(--serif);font-size:.85rem;font-weight:700;color:var(--white);display:flex;align-items:center;gap:8px;text-decoration:none}
+.nav-dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.nav-brand span{color:var(--gold)}
+.nav-back{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .15s}
+.nav-back:hover{color:var(--gold)}
+.hero{padding:88px 40px 52px;text-align:center;position:relative;overflow:hidden;background:var(--black);border-bottom:1px solid rgba(201,168,76,.1)}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 40%,rgba(201,168,76,.07) 0%,transparent 65%);pointer-events:none}
+.eyebrow{font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:14px;display:inline-flex;align-items:center;gap:12px}
+.eyebrow::before,.eyebrow::after{content:'';width:22px;height:1px;background:rgba(201,168,76,.5)}
+h1{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:700;line-height:1.1;margin-bottom:16px}
+h1 .gold{color:var(--gold)} h1 .it{font-style:italic}
+.hero-sub{font-size:.82rem;color:var(--grey);max-width:520px;margin:0 auto;line-height:1.85}
+.hero-sub strong{color:var(--white)}
+.body{max-width:780px;margin:0 auto;padding:52px 32px 80px}
+.section{margin-bottom:52px}
+.section-label{font-size:.56rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.section-label::after{content:'';flex:1;height:1px;background:rgba(201,168,76,.15)}
+h2{font-family:var(--serif);font-size:1.6rem;font-weight:700;color:var(--white);margin-bottom:14px;line-height:1.2}
+h2 .gold{color:var(--gold);font-style:italic}
+p{font-size:.88rem;color:var(--grey);line-height:1.85;margin-bottom:14px}
+p strong{color:var(--white)}
+.profile-section{background:var(--card);border:1px solid rgba(201,168,76,.15);border-radius:12px;padding:26px 30px;margin-bottom:14px}
+.ps-label{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:10px}
+.ps-current{font-size:.8rem;color:var(--muted);line-height:1.65;margin-bottom:10px;font-style:italic;padding:10px 14px;background:rgba(255,255,255,.03);border-radius:6px;border-left:3px solid rgba(255,255,255,.1)}
+.ps-recommended{font-size:.84rem;color:var(--white);line-height:1.65;padding:10px 14px;background:rgba(201,168,76,.06);border-radius:6px;border-left:3px solid var(--gold)}
+.ps-why{font-size:.76rem;color:var(--grey);margin-top:8px;line-height:1.6}
+.ps-why strong{color:var(--white)}
+.content-type{background:var(--card);border:1px solid rgba(201,168,76,.12);border-radius:10px;padding:22px 26px;margin-bottom:14px;display:flex;gap:16px;align-items:flex-start}
+.ct-icon{font-size:1.5rem;flex-shrink:0;margin-top:2px}
+.ct-body .ct-title{font-weight:600;color:var(--white);margin-bottom:4px;font-size:.9rem}
+.ct-body .ct-desc{font-size:.8rem;color:var(--grey);line-height:1.65;margin-bottom:6px}
+.ct-body .ct-example{font-size:.76rem;color:var(--gold);font-style:italic}
+.rhythm-table{width:100%;border-collapse:collapse;margin-bottom:14px}
+.rhythm-table th{font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:700;padding:10px 14px;border-bottom:1px solid rgba(201,168,76,.2);text-align:left}
+.rhythm-table td{font-size:.8rem;padding:11px 14px;border-bottom:1px solid rgba(255,255,255,.05);color:var(--grey);vertical-align:top}
+.rhythm-table td:first-child{color:var(--white);font-weight:500;white-space:nowrap}
+.rhythm-table tr:last-child td{border-bottom:none}
+.outreach-template{background:var(--card);border:1px solid rgba(201,168,76,.15);border-radius:10px;padding:22px 26px;margin:14px 0}
+.ot-label{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:10px}
+.ot-text{font-size:.84rem;color:var(--white);line-height:1.75;font-style:italic;border-left:3px solid rgba(201,168,76,.3);padding-left:14px}
+.nav-chapters{display:flex;gap:10px;margin-top:40px;flex-wrap:wrap}
+.nav-ch{flex:1;min-width:160px;background:var(--card);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:14px 18px;text-decoration:none;transition:all .2s}
+.nav-ch:hover{border-color:rgba(201,168,76,.4);transform:translateY(-2px)}
+.nav-ch .ch-label{font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:4px}
+.nav-ch .ch-name{font-size:.82rem;font-weight:600;color:var(--white)}
+footer{text-align:center;padding:32px 20px;border-top:1px solid rgba(255,255,255,.05);font-size:.7rem;color:var(--muted)}
+footer span{color:var(--gold)}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a class="nav-brand" href="signal-origin.html"><div class="nav-dot"></div>The <span>Signal</span></a>
+  <a class="nav-back" href="signal-origin.html">← Back to Hub</a>
+</nav>
+<section class="hero">
+  <div class="eyebrow">Chapter 06 · LinkedIn Authority Blueprint</div>
+  <h1>Your <span class="gold it">Inbound Machine</span></h1>
+  <p class="hero-sub">How to turn LinkedIn into your #1 client channel — <strong>without it feeling like work.</strong></p>
+</section>
+<div class="body">
+
+  <div class="section">
+    <div class="section-label">The Opportunity</div>
+    <h2>Your ideal client is on LinkedIn <span class="gold">every morning.</span></h2>
+    <p>The founder who's outgrown their definition of success. The M&A partner circling a life decision. The CEO whose white-knuckle grip is showing up in every meeting. They're scrolling LinkedIn at 7am while half-listening to their kids at breakfast. They're looking for the thing that stops them — the story, the insight, the one line that makes them feel seen.</p>
+    <p><strong>Your stories are that thing.</strong> The CEO and the 7-iron. Paul's burnout. The two-round experiment. These aren't coaching anecdotes — they're content that converts. LinkedIn is simply the distribution channel you haven't turned on yet.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Profile Rebuild</div>
+    <h2>First impression, <span class="gold">rebuilt.</span></h2>
+
+    <div class="profile-section">
+      <div class="ps-label">Headline</div>
+      <div class="ps-current">Current (assumed): Coach | Purpose Factor® Facilitator | EMCC-Accredited</div>
+      <div class="ps-recommended">I help founders and leaders who've outgrown the answers they already have. | Creator of SPARK Sessions™ &amp; SPARK Tee Time™</div>
+      <div class="ps-why"><strong>Why:</strong> The current headline describes credentials. The new one describes the person reading it. The moment your ideal client reads "outgrown the answers they already have" — they stop scrolling.</div>
+    </div>
+
+    <div class="profile-section">
+      <div class="ps-label">About Section (Opening Lines)</div>
+      <div class="ps-current">Likely: credentials-first, bio-style, lists certifications</div>
+      <div class="ps-recommended">"You've done the work. The therapy. The mastermind. The other coaches. And you still can't see the pattern running through everything. That's where I come in. After 40 years in locker rooms and boardrooms — 1,500 athletes, one philosophy — I've learned one thing: how you do one thing is how you do everything. On a golf course, I can see it in your swing before you can hide it. In business, it shows up in how you grip your deals, your team, and your own next chapter. Bring me your $50K problem. In one hour, we'll find the pattern underneath it."</div>
+      <div class="ps-why"><strong>Why:</strong> Opens with the client's experience, not your credentials. Creates immediate resonance. Introduces your philosophy and methodology in plain language. Ends with a specific, confident CTA.</div>
+    </div>
+
+    <div class="profile-section">
+      <div class="ps-label">Featured Section</div>
+      <div class="ps-current">Likely: empty or underutilised</div>
+      <div class="ps-recommended">Pin 3 items: (1) SPARK Session booking link with a compelling one-liner. (2) Your best-performing piece of content or the CEO/7-iron story. (3) SPARK Tee Time page. These are the three things a stranger should see first after reading your headline.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Content Strategy</div>
+    <h2>The stories that <span class="gold">stop the scroll</span></h2>
+
+    <div class="content-type">
+      <div class="ct-icon">📖</div>
+      <div class="ct-body">
+        <div class="ct-title">The Pattern Story (2x/week)</div>
+        <div class="ct-desc">A specific moment from a coaching session, a round of golf, or 40 years of experience that illustrates your core insight. Always starts with a scene. Always ends with the pattern revealed. Never names clients — describes the universal human situation.</div>
+        <div class="ct-example">Example: "I played a round last week with a CEO who couldn't stop autopsying his shots. By the 9th hole, I realised he did the same thing in every board meeting. Here's what I told him..."</div>
+      </div>
+    </div>
+    <div class="content-type">
+      <div class="ct-icon">💡</div>
+      <div class="ct-body">
+        <div class="ct-title">The Conviction Post (1x/week)</div>
+        <div class="ct-desc">A short, direct take on leadership, performance, or decision-making. No fluff. 3-5 sentences. The kind of thing someone screenshots and sends to their business partner. Your philosophy in its purest form.</div>
+        <div class="ct-example">Example: "Most founders don't have a business problem. They have a grip problem. Squeeze tighter and you lose both the shot and the company. The answer is always: loosen the grip."</div>
+      </div>
+    </div>
+    <div class="content-type">
+      <div class="ct-icon">🏌️</div>
+      <div class="ct-body">
+        <div class="ct-title">The Golf Mirror Post (1x/week)</div>
+        <div class="ct-desc">Golf is your unfair advantage. No one else is using the golf course as a business coaching metaphor with this level of specificity and earned experience. Own this lane entirely. Every round you play is content.</div>
+        <div class="ct-example">Example: "Shot an 83 on Sunday. Back was tweaked — had no choice but to swing within myself. Loosened the grip. Let the game come to me. Shot 4 birdies on the front. Same clubs. Same course. Same player. Different relationship with control."</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Posting Rhythm</div>
+    <h2>Sustainable. <span class="gold">Consistent. Converts.</span></h2>
+    <table class="rhythm-table">
+      <tr><th>Day</th><th>Content Type</th><th>Format</th></tr>
+      <tr><td>Monday</td><td>The Pattern Story — starts the week with depth</td><td>Long-form post, 200-400 words</td></tr>
+      <tr><td>Wednesday</td><td>The Golf Mirror — mid-week disruption</td><td>Short post + optional photo, 100-200 words</td></tr>
+      <tr><td>Friday</td><td>The Conviction Take — ends the week with an edge</td><td>3-5 sentences, punchy</td></tr>
+    </table>
+    <p>Three posts per week. Consistent. Never promotional — the content IS the promotion. One CTA per week maximum, rotated between SPARK Session booking and newsletter signup.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Outreach Templates</div>
+    <h2>DMs that <span class="gold">don't feel like DMs</span></h2>
+
+    <div class="outreach-template">
+      <div class="ot-label">Connection Request (to target prospect)</div>
+      <div class="ot-text">"[Name] — your work in [specific area] stood out to me. I'm Coach Reg — I work with founders at threshold moments, usually when what got them here isn't working anymore. Would love to connect."</div>
+    </div>
+    <div class="outreach-template">
+      <div class="ot-label">Follow-up After Connecting</div>
+      <div class="ot-text">"Thanks for connecting. No pitch — just curious: you've built [thing]. What's the next threshold looking like for you? I ask because that's exactly the space I work in."</div>
+    </div>
+    <div class="outreach-template">
+      <div class="ot-label">When Someone Engages With Your Content</div>
+      <div class="ot-text">"[Name] — thanks for the comment on [post]. The bit you highlighted about [their specific response] — that's the exact pattern I see most often in the founders I work with. If you ever want to explore it further, I have a SPARK Session format that's built exactly for that."</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">The Room-Getting Strategy</div>
+    <h2>The <span class="gold">200 List.</span><br>Not followers. Real people.</h2>
+    <p>You said it clearly: your pool doesn't need to be big. <strong>Maybe 200 people. But they need to be real.</strong> This is a fundamentally different strategy from building an audience — and it's the right one for where you are.</p>
+    <p>The 200 List is a curated, living document of the exact people you want in your world: founders at threshold moments, M&A advisors, EO/YPO chapter leaders, sports executives, high-performance coaches, investors who play golf. People with the mindset and means to engage. Not 10,000 LinkedIn followers. 200 people who matter.</p>
+
+    <div class="outreach-template" style="margin-top:20px">
+      <div class="ot-label">How to Build the 200 List</div>
+      <div class="ot-text" style="font-style:normal;color:var(--grey);font-size:.84rem;line-height:1.75">
+        <strong style="color:var(--white);display:block;margin-bottom:8px">Step 1 — Mine what you already have.</strong>
+        Go back through every SPARK Session client, every speaking engagement attendee, every newsletter subscriber, every LinkedIn connection who has ever engaged with your content. Anyone you'd want to have a conversation with goes on the list. Start here — this alone is probably 50–80 people.<br><br>
+        <strong style="color:var(--white);display:block;margin-bottom:8px">Step 2 — Add the people you haven't met yet.</strong>
+        Use LinkedIn's search to find founders in your target profile: $5M–$50M businesses, based in Chicago and surrounding markets, EO/YPO members, golf-adjacent. You're not mass-connecting. You're identifying 10–20 new names per month to add with intention.<br><br>
+        <strong style="color:var(--white);display:block;margin-bottom:8px">Step 3 — Nurture, don't sell.</strong>
+        The 200 List is not a sales funnel. It's a relationship ledger. Comment on their content. Send them something relevant (your newsletter, a specific post). Check in on real things. The goal is to be someone they're genuinely glad to hear from — so that when the moment arrives, the conversation is already warm.
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">The Highest-Leverage Strategy In Your Business</div>
+    <h2>The 15–20 <span class="gold">Door Openers.</span></h2>
+    <p>From your 200-person list, 15–20 people will naturally emerge as door openers — people who put you on a stage, bring you into a meeting, invite you to a roundtable, or say "you need to talk to Bob" in exactly the right room at exactly the right moment.</p>
+    <p><strong>These people are not clients. They're champions.</strong> And activating them is the highest-leverage activity in your entire business — because one door opener can deliver five SPARK Sessions and a Tee Time booking in a single conversation you're not even in the room for.</p>
+
+    <div class="outreach-template">
+      <div class="ot-label">How to Identify Your Door Openers</div>
+      <div class="ot-text" style="font-style:normal;color:var(--grey);font-size:.84rem;line-height:1.75">
+        Look for people who already exist in the intersection of: <strong style="color:var(--white)">(a) they've experienced your work or believe in it deeply</strong>, <strong style="color:var(--white)">(b) they're well-connected in the rooms where your ideal clients gather</strong>, and <strong style="color:var(--white)">(c) they're natural connectors — people who get energy from introducing people, not just from being connected.</strong><br><br>
+        Past clients who are EO/YPO members. Golf club presidents. Event organisers in the entrepreneurial world. Podcast hosts whose audience is founders. Executive coaches who don't do what you do. People who've referred you before without being asked. Start there.
+      </div>
+    </div>
+
+    <div class="outreach-template" style="margin-top:14px">
+      <div class="ot-label">How to Activate a Door Opener (Message Template)</div>
+      <div class="ot-text">"[Name] — I wanted to reach out personally. You're one of the people I most respect in this space, and frankly, you've been in my corner in ways you may not even realise. I'm at a point where I'm being more intentional about getting into the right rooms — and I think you know exactly which rooms those are. Would love 20 minutes to share what I'm building and hear who comes to mind for you. No agenda beyond that."</div>
+    </div>
+
+    <div class="outreach-template" style="margin-top:14px">
+      <div class="ot-label">What to Give Your Door Openers</div>
+      <div class="ot-text" style="font-style:normal;color:var(--grey);font-size:.84rem;line-height:1.75">
+        Make it effortless for them to refer you. Give them:<br><br>
+        <strong style="color:var(--white)">1. One sentence</strong> they can say in any room: <em style="color:var(--gold)">"If you're a founder who's outgrown the answers you already have, you need to talk to Bob Regnerus."</em><br><br>
+        <strong style="color:var(--white)">2. A link</strong> to your SPARK Session page — so when someone asks "how do I book him?" they can answer immediately.<br><br>
+        <strong style="color:var(--white)">3. A complimentary SPARK Session</strong> for them if they haven't had one. You cannot activate a door opener who hasn't experienced the work. The session IS the proof of concept.<br><br>
+        <strong style="color:var(--white)">4. Regular updates</strong> on what you're building — door openers stay warm when they feel like insiders, not contacts.
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-chapters">
+    <a class="nav-ch" href="lead-reactivation.html"><div class="ch-label">Chapter 05</div><div class="ch-name">← Lead Reactivation</div></a>
+    <a class="nav-ch" href="content-signal.html"><div class="ch-label">Chapter 07</div><div class="ch-name">Content Signal →</div></a>
+  </div>
+</div>
+<footer><p>The <span>Signal</span> · Bob Regnerus · Chapter 06 of 09</p></footer>
+</body>
+</html>

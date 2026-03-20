@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Before We Begin — Bob Regnerus · The Signal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#07080f;--navy:#0b0f1e;--card:#111624;
+  --gold:#c9a84c;--gold-dim:rgba(201,168,76,0.08);--gold-border:rgba(201,168,76,0.22);
+  --white:#f2f2f5;--grey:#7a84a0;--muted:#4a5270;
+  --serif:'Playfair Display',Georgia,serif;--sans:'Inter',-apple-system,sans-serif;
+}
+html{scroll-behavior:smooth;scroll-padding-top:58px}
+body{font-family:var(--sans);background:var(--black);color:var(--white);overflow-x:hidden;line-height:1.7;margin:0}
+.nav{position:fixed;top:0;left:0;right:0;z-index:999;background:rgba(7,8,15,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,.12);height:52px;display:flex;align-items:center;padding:0 32px;gap:16px}
+.nav-brand{font-family:var(--serif);font-size:.85rem;font-weight:700;color:var(--white);display:flex;align-items:center;gap:8px;text-decoration:none}
+.nav-dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.nav-brand span{color:var(--gold)}
+.nav-btn{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid rgba(201,168,76,.3);padding:6px 16px;border-radius:4px;transition:all .15s;margin-left:auto}
+.nav-btn:hover{background:rgba(201,168,76,.08)}
+
+/* ─── HERO ─── */
+.hero{padding:96px 40px 64px;text-align:center;position:relative;overflow:hidden;border-bottom:1px solid rgba(201,168,76,.1)}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 40%,rgba(201,168,76,.07) 0%,transparent 65%);pointer-events:none}
+.eyebrow{font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:14px;display:inline-flex;align-items:center;gap:12px;position:relative}
+.eyebrow::before,.eyebrow::after{content:'';width:22px;height:1px;background:rgba(201,168,76,.5)}
+.hero-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:700;line-height:1.1;margin-bottom:16px;position:relative}
+.hero-title .gold{color:var(--gold)} .hero-title .it{font-style:italic}
+.hero-body{font-size:.88rem;color:var(--grey);line-height:1.9;max-width:560px;margin:0 auto 10px;position:relative}
+.hero-body strong{color:var(--white)}
+.hero-sub{font-size:.72rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;position:relative}
+.hero-sub span{color:var(--gold)}
+
+/* ─── BODY ─── */
+.body{max-width:860px;margin:0 auto;padding:56px 32px 80px}
+.section{margin-bottom:56px}
+.section-label{font-size:.56rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.section-label::after{content:'';flex:1;height:1px;background:rgba(201,168,76,.15)}
+h2{font-family:var(--serif);font-size:1.7rem;font-weight:700;color:var(--white);margin-bottom:14px;line-height:1.2}
+h2 .gold{color:var(--gold);font-style:italic}
+p{font-size:.88rem;color:var(--grey);line-height:1.85;margin-bottom:14px}
+p strong{color:var(--white)}
+
+/* ─── HIS WORDS ─── */
+.his-words{background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.15);border-radius:12px;padding:32px 36px;margin:24px 0;position:relative}
+.his-words::before{content:'\201C';position:absolute;top:12px;left:20px;font-family:var(--serif);font-size:5rem;color:rgba(201,168,76,.1);line-height:1;font-weight:700}
+.his-words-text{font-family:var(--serif);font-size:.96rem;font-style:italic;color:var(--white);line-height:1.85;position:relative}
+.his-words-text p{color:var(--white);margin-bottom:10px;font-size:.96rem}
+.his-words-text p:last-child{margin-bottom:0}
+.his-words-attr{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-top:16px;font-style:normal}
+
+/* ─── GOALS MAP ─── */
+.goals-grid{display:grid;grid-template-columns:1fr;gap:18px;margin:24px 0}
+.goal-card{background:var(--card);border:1px solid rgba(201,168,76,.12);border-radius:12px;overflow:hidden;display:flex}
+.goal-num{width:52px;background:rgba(201,168,76,.08);border-right:1px solid rgba(201,168,76,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.goal-num span{font-family:var(--serif);font-size:1.5rem;font-weight:700;color:rgba(201,168,76,.4)}
+.goal-body{padding:22px 26px;flex:1}
+.goal-title{font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--white);margin-bottom:6px}
+.goal-title .gold{color:var(--gold);font-style:italic}
+.goal-desc{font-size:.82rem;color:var(--grey);line-height:1.65;margin-bottom:12px}
+.goal-chapters{display:flex;flex-wrap:wrap;gap:6px}
+.goal-ch{font-size:.62rem;letter-spacing:.06em;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);color:var(--gold);padding:4px 10px;border-radius:4px}
+
+/* ─── NORTH STAR ─── */
+.north-star{background:linear-gradient(135deg,rgba(201,168,76,.06),rgba(201,168,76,.02));border:1px solid rgba(201,168,76,.2);border-radius:14px;padding:32px 36px;margin:24px 0;position:relative;overflow:hidden}
+.north-star::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),rgba(201,168,76,.2))}
+.ns-eyebrow{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:14px}
+.ns-title{font-family:var(--serif);font-size:1.4rem;font-weight:700;color:var(--white);margin-bottom:12px}
+.ns-title .gold{color:var(--gold);font-style:italic}
+.ns-body{font-size:.86rem;color:var(--grey);line-height:1.85}
+.ns-body strong{color:var(--white)}
+
+/* ─── WHAT TO EXPECT ─── */
+.agenda-list{display:flex;flex-direction:column;gap:14px;margin:24px 0}
+.agenda-item{display:flex;gap:16px;align-items:flex-start;background:var(--card);border:1px solid rgba(255,255,255,.05);border-radius:10px;padding:18px 22px;transition:border-color .2s}
+.agenda-item:hover{border-color:rgba(201,168,76,.2)}
+.agenda-icon{width:36px;height:36px;border-radius:50%;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.9rem}
+.agenda-content .a-title{font-size:.88rem;font-weight:600;color:var(--white);margin-bottom:3px}
+.agenda-content .a-body{font-size:.78rem;color:var(--grey);line-height:1.6}
+
+/* ─── SESSION OUTCOME ─── */
+.outcome-box{background:var(--navy);border:1px solid rgba(201,168,76,.2);border-radius:12px;padding:32px 36px;text-align:center;margin:28px 0}
+.ob-eyebrow{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:14px}
+.ob-title{font-family:var(--serif);font-size:1.5rem;font-weight:700;color:var(--white);margin-bottom:12px}
+.ob-title .gold{color:var(--gold);font-style:italic}
+.ob-list{list-style:none;display:flex;flex-direction:column;gap:10px;text-align:left;max-width:500px;margin:0 auto 24px}
+.ob-list li{display:flex;gap:12px;font-size:.84rem;color:var(--grey);align-items:flex-start;line-height:1.6}
+.ob-list li .ck{color:var(--gold);font-weight:700;flex-shrink:0;margin-top:2px}
+.ob-cta{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--black);font-family:var(--sans);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:13px 28px;border-radius:5px;text-decoration:none;transition:opacity .15s}
+.ob-cta:hover{opacity:.85}
+
+footer{text-align:center;padding:32px 20px;border-top:1px solid rgba(255,255,255,.05);font-size:.7rem;color:var(--muted)}
+footer span{color:var(--gold)}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-brand" href="signal-origin.html"><div class="nav-dot"></div>The <span>Signal</span></a>
+  <a class="nav-btn" href="signal-origin.html">See All Chapters →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="eyebrow">Signal Session · Bob Regnerus · March 2026</div>
+  <h1 class="hero-title">Before we <span class="gold it">begin.</span></h1>
+  <p class="hero-body">
+    You told us exactly where you are and what you need.<br>
+    <strong>Everything in this session was built around that.</strong><br>
+    Here's what we heard — and here's what we've prepared for you.
+  </p>
+  <div class="hero-sub">9 Deliverables · Built on your words · <span>Friday, March 2026</span></div>
+</section>
+
+<div class="body">
+
+  <!-- HIS WORDS -->
+  <div class="section">
+    <div class="section-label">In Your Own Words</div>
+    <h2>What you <span class="gold">told us.</span></h2>
+    <p>We started here. Not with assumptions — with what you actually said. Before building anything, we read this carefully and designed everything around it.</p>
+    <div class="his-words">
+      <div class="his-words-text">
+        <p>My business runs on conversations. When people experience me in a room, things shift for them. That's been true for 40 years of coaching and every client I've ever had. The work sells itself once someone is sitting across from me.</p>
+        <p>The bottleneck is getting into those rooms.</p>
+        <p>I need more conversations with the right people. Not followers. Not content consumers. Thoughtful people with the mindset and means to actually engage. My pool doesn't need to be big. Maybe 200 people. But they need to be real.</p>
+        <p>I need 15–20 of those people to become door openers. People who put me on a stage, bring me into a meeting, invite me to a roundtable, or simply say "you need to talk to Bob" in the right room at the right time.</p>
+        <p>I'm building something longer term with Brandon Fong. My own island built around an athletics lens. That's the bigger vision. But the fuel for that is the same thing: conversations that lead to trust that lead to people experiencing my work.</p>
+        <p>Everything starts with getting into more rooms. That's the needle.</p>
+      </div>
+      <div class="his-words-attr">— Bob Regnerus, March 2026</div>
+    </div>
+  </div>
+
+  <!-- GOALS MAP -->
+  <div class="section">
+    <div class="section-label">How We Addressed Each Goal</div>
+    <h2>Three needs. <span class="gold">Nine answers.</span></h2>
+    <p>Every chapter in this session was built to address one of your three stated priorities. Here's the map.</p>
+
+    <div class="goals-grid">
+      <div class="goal-card">
+        <div class="goal-num"><span>1</span></div>
+        <div class="goal-body">
+          <div class="goal-title">The <span class="gold">200 Real People</span> Strategy</div>
+          <div class="goal-desc">Not followers. Not content consumers. A curated list of 200 thoughtful people with mindset and means — built deliberately through LinkedIn targeting, lead reactivation, and the Pattern Diagnostic as a qualifying tool. Quality over reach. Depth over scale. Chapter 06 now includes the full "200 List" methodology — how to identify, segment, and cultivate the right people, not the most people.</div>
+          <div class="goal-chapters">
+            <span class="goal-ch">Ch 06 · LinkedIn Blueprint</span>
+            <span class="goal-ch">Ch 05 · Lead Reactivation</span>
+            <span class="goal-ch">Ch 08 · Ideal Client Profile</span>
+            <span class="goal-ch">Bonus B · Pattern Diagnostic</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="goal-card">
+        <div class="goal-num"><span>2</span></div>
+        <div class="goal-body">
+          <div class="goal-title">The <span class="gold">15–20 Door Openers</span></div>
+          <div class="goal-desc">The specific people who put you in rooms — on stages, in meetings, at roundtables. Not clients. Champions. Chapter 06 now includes a dedicated Door Opener strategy: how to identify your natural connectors, what to give them, and how to make it easy for them to say "you need to talk to Bob." This is the highest-leverage activity in your entire business right now and it requires almost no content creation.</div>
+          <div class="goal-chapters">
+            <span class="goal-ch">Ch 06 · LinkedIn Blueprint</span>
+            <span class="goal-ch">Ch 05 · Lead Reactivation</span>
+            <span class="goal-ch">Ch 09 · Activation Plan</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="goal-card">
+        <div class="goal-num"><span>3</span></div>
+        <div class="goal-body">
+          <div class="goal-title">Brandon Fong & <span class="gold">The Athletics Island</span></div>
+          <div class="goal-desc">The longer-term vision — your own platform built around an athletics lens, co-built with Brandon Fong. Everything in this Signal session is designed to fuel that. The positioning (Coach Reg as pattern recognition expert), the SPARK methodology, the Tee Time experience, the content strategy — all of it builds the authority, audience, and trust base that the island requires. You don't need to pivot. You need to amplify. The signal work IS the fuel.</div>
+          <div class="goal-chapters">
+            <span class="goal-ch">Ch 03 · Positioning Blueprint</span>
+            <span class="goal-ch">Ch 04 · Offer Architecture</span>
+            <span class="goal-ch">Ch 07 · Content Signal</span>
+            <span class="goal-ch">Bonus A · Website</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NORTH STAR -->
+  <div class="section">
+    <div class="section-label">The Bigger Picture</div>
+    <div class="north-star">
+      <div class="ns-eyebrow">The North Star</div>
+      <h2 class="ns-title">The athletics island <span class="gold">is the destination.</span><br>The Signal is the fuel.</h2>
+      <div class="ns-body">
+        <p>What you're building with Brandon Fong — a platform anchored in the athletics lens, with you as the pattern recognition expert at its centre — requires exactly what this session delivers. An authority position that's precise and defensible. A methodology with a name. A body of content that demonstrates the work. A warm network of 200 real people who already believe in you. A set of door openers who can put you in the rooms where the island gets discovered and funded.</p>
+        <p>You don't need to build two things. <strong>The Signal work and the island work are the same work.</strong> Everything we've built here points directly toward the longer vision. The SPARK brand, the Tee Time experience, the positioning — all of it is island infrastructure, built now, while the commercial machine runs.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT TO EXPECT -->
+  <div class="section">
+    <div class="section-label">Friday's Session</div>
+    <h2>What we'll <span class="gold">cover together.</span></h2>
+    <p>This session isn't a presentation. It's a conversation. Each chapter is a document you'll take with you — but the real work happens when you react to what you see and we refine it together. Here's the agenda.</p>
+
+    <div class="agenda-list">
+      <div class="agenda-item">
+        <div class="agenda-icon">🔍</div>
+        <div class="agenda-content">
+          <div class="a-title">The Signal Read — What We Found</div>
+          <div class="a-body">We start with the diagnostic: what's working, what's leaking, and the one shift that changes everything. This is Chapter 01 — and it names the pattern running through your current business broadcast.</div>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-icon">💰</div>
+        <div class="agenda-content">
+          <div class="a-title">Revenue Architecture + Offer Repricing</div>
+          <div class="a-body">Walk through the full offer suite — SPARK Session at $1,500, Tee Time at $5,500, Retainer, Keynote. The journey from first conversation to long-term client. Chapters 02 + 04.</div>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-icon">🎯</div>
+        <div class="agenda-content">
+          <div class="a-title">Positioning + The Coach Reg Signal</div>
+          <div class="a-body">The new messaging architecture — hero statement, one-liner, philosophy line, CTA. How to say who you are so the right people immediately feel seen and reach out. Chapter 03.</div>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-icon">🚪</div>
+        <div class="agenda-content">
+          <div class="a-title">The 200 List + The 15–20 Door Openers</div>
+          <div class="a-body">The room-getting strategy. How to build the right 200-person network and identify the 15–20 people who will become your champions. This is the highest-leverage section of the session. Chapters 05 + 06.</div>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-icon">📡</div>
+        <div class="agenda-content">
+          <div class="a-title">Content Signal + LinkedIn Authority Blueprint</div>
+          <div class="a-body">The specific content strategy that builds authority without grinding. Your newsletter as a conversion engine. LinkedIn as your primary inbound channel. Chapters 06 + 07.</div>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-icon">🌐</div>
+        <div class="agenda-content">
+          <div class="a-title">Your New Website + The SPARK Diagnostic Tool</div>
+          <div class="a-body">The full redesign of coachregnerus.com — built around the new positioning — and a free lead magnet tool for ads and social that qualifies the right people before they ever speak to you. Bonus A + B.</div>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-icon">📅</div>
+        <div class="agenda-content">
+          <div class="a-title">90-Day Activation Plan</div>
+          <div class="a-body">The exact sequence, week by week. What to do first, second, and third to go from here to fully broadcast in 90 days. No overwhelm. No guessing. Chapter 09.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OUTCOME -->
+  <div class="section">
+    <div class="section-label">What You Leave With</div>
+    <div class="outcome-box">
+      <div class="ob-eyebrow">Session Outcome — Bob Regnerus</div>
+      <h2 class="ob-title">By the end of Friday,<br>you'll have <span class="gold">all of this.</span></h2>
+      <ul class="ob-list">
+        <li><span class="ck">✓</span>A clear, precise positioning statement that makes the right people feel immediately seen</li>
+        <li><span class="ck">✓</span>A fully repriced, repackaged offer suite with a logical client journey</li>
+        <li><span class="ck">✓</span>A strategy to build your 200-person curated network and activate 15–20 door openers</li>
+        <li><span class="ck">✓</span>A LinkedIn profile rebuild that turns your profile into an inbound asset</li>
+        <li><span class="ck">✓</span>A content system that builds authority without requiring daily output</li>
+        <li><span class="ck">✓</span>A reactivation playbook to turn dormant contacts into booked sessions</li>
+        <li><span class="ck">✓</span>A new website that broadcasts who you actually are</li>
+        <li><span class="ck">✓</span>A free diagnostic tool for ads and social that qualifies leads before they reach you</li>
+        <li><span class="ck">✓</span>A 90-day week-by-week activation plan with no guesswork</li>
+        <li><span class="ck">✓</span>A clear line between what you're doing now and the Brandon Fong island vision</li>
+      </ul>
+      <a class="ob-cta" href="signal-origin.html">Enter Your Signal Session →</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>The <span>Signal</span> · Bob Regnerus · March 2026 · Prepared by Aidan Uttinger</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coach Reg — Bob Regnerus · Pattern Recognition for High Performers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  /* ── Coach Reg — Light Palette
+     The work is illumination. Awareness. Clarity.
+     The fog lifting on a morning round.
+     This is the after — not the during.
+  ──────────────────────────── */
+  --bg:#f7f4ee;
+  --surface:#f0ebe0;
+  --card:#ffffff;
+  --white:#ffffff;
+  --deep:#1a2318;        /* deep forest charcoal — main text */
+  --body:#3d4e3a;        /* body text */
+  --grey:#6a7868;        /* secondary text */
+  --muted:#9aaa96;       /* quiet text */
+  --border:rgba(26,35,24,.09);
+  --border-light:rgba(26,35,24,.05);
+
+  --amber:#c17f3a;
+  --amber-bright:#d4913f;
+  --amber-soft:rgba(193,127,58,.08);
+  --amber-border:rgba(193,127,58,.22);
+  --amber-mid:rgba(193,127,58,.15);
+
+  --forest:#2e5438;
+  --forest-mid:#3d6b4f;
+  --forest-light:#5a8c6e;
+  --forest-pale:rgba(46,84,56,.06);
+  --forest-border:rgba(46,84,56,.2);
+
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Inter',-apple-system,sans-serif;
+  --max:1100px;
+  --shadow:0 2px 20px rgba(26,35,24,.07);
+  --shadow-lg:0 8px 40px rgba(26,35,24,.1);
+}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{font-family:var(--sans);background:var(--bg);color:var(--deep);overflow-x:hidden;line-height:1.7;margin:0}
+
+/* ─── NAV ─── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  background:rgba(247,244,238,.97);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  height:60px;display:flex;align-items:center;
+  padding:0 48px;justify-content:space-between;
+}
+.nav-brand{font-family:var(--serif);font-size:.95rem;font-weight:700;color:var(--deep);text-decoration:none;display:flex;align-items:center;gap:10px}
+.nav-brand .dot{width:7px;height:7px;border-radius:50%;background:var(--amber);flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:4px}
+.nav-link{font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:var(--grey);text-decoration:none;padding:6px 14px;border-radius:4px;transition:all .15s}
+.nav-link:hover{color:var(--deep);background:rgba(26,35,24,.05)}
+.nav-cta{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;background:var(--deep);color:var(--bg);padding:8px 20px;border-radius:4px;text-decoration:none;transition:opacity .15s}
+.nav-cta:hover{opacity:.8}
+@media(max-width:720px){.nav-links{display:none}.nav{padding:0 24px}}
+
+/* ─── HERO ─── */
+.hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:100px 48px 80px;position:relative;overflow:hidden;text-align:center;
+  background:var(--white);
+}
+.hero-bg{
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%,rgba(193,127,58,.07) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 40% at 20% 100%,rgba(46,84,56,.05) 0%,transparent 55%),
+    radial-gradient(ellipse 40% 35% at 80% 90%,rgba(193,127,58,.04) 0%,transparent 50%);
+}
+.hero-inner{position:relative;max-width:800px;margin:0 auto}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:14px;
+  font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--amber);font-weight:700;margin-bottom:20px;
+}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';width:28px;height:1px;background:rgba(193,127,58,.4)}
+.hero-name{font-family:var(--serif);font-size:clamp(.8rem,1.4vw,.95rem);font-weight:400;color:var(--muted);letter-spacing:.18em;text-transform:uppercase;margin-bottom:16px}
+.hero-headline{
+  font-family:var(--serif);
+  font-size:clamp(2.4rem,5.5vw,4.4rem);
+  font-weight:700;line-height:1.06;
+  margin-bottom:28px;letter-spacing:-.015em;
+  color:var(--deep);
+}
+.hero-headline .it{font-style:italic}
+.hero-headline .amber{color:var(--amber)}
+.hero-sub{font-size:clamp(.9rem,1.5vw,1.05rem);color:var(--grey);line-height:1.9;max-width:540px;margin:0 auto 36px}
+.hero-sub strong{color:var(--body)}
+.hero-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--deep);color:var(--bg);
+  font-family:var(--sans);font-size:.73rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:14px 30px;border-radius:5px;text-decoration:none;transition:opacity .15s;
+}
+.btn-primary:hover{opacity:.8}
+.btn-amber{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--amber);color:var(--white);
+  font-family:var(--sans);font-size:.73rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:14px 30px;border-radius:5px;text-decoration:none;transition:opacity .15s;
+}
+.btn-amber:hover{opacity:.85}
+.btn-outline{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1.5px solid var(--border);color:var(--body);
+  font-family:var(--sans);font-size:.73rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:14px 30px;border-radius:5px;text-decoration:none;
+  background:transparent;transition:all .15s;
+}
+.btn-outline:hover{border-color:var(--amber);color:var(--amber)}
+.hero-proof{margin-top:64px;display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap}
+.proof-item{text-align:center}
+.proof-num{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--deep);line-height:1}
+.proof-label{font-size:.63rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:5px}
+.proof-div{width:1px;height:36px;background:var(--border)}
+@media(max-width:600px){.proof-div{display:none}.hero-proof{gap:20px}}
+
+/* ─── STRIP ─── */
+.strip{background:var(--forest);padding:22px 48px}
+.strip-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.strip-quote{font-family:var(--serif);font-size:.92rem;font-style:italic;color:rgba(240,235,224,.8);flex:1;min-width:200px}
+.strip-quote strong{color:#f0ebe0;font-style:normal}
+.strip-attr{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,235,224,.45);white-space:nowrap}
+
+/* ─── SECTIONS ─── */
+.section{padding:88px 48px}
+@media(max-width:720px){.section{padding:64px 24px}}
+.section-white{background:var(--white)}
+.section-cream{background:var(--bg)}
+.section-surface{background:var(--surface)}
+.inner{max-width:var(--max);margin:0 auto}
+.label{
+  font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--amber);font-weight:700;margin-bottom:22px;
+  display:flex;align-items:center;gap:14px;
+}
+.label::after{content:'';flex:1;height:1px;background:rgba(193,127,58,.2)}
+.section-title{font-family:var(--serif);font-size:clamp(1.9rem,3.5vw,2.9rem);font-weight:700;line-height:1.08;margin-bottom:16px;color:var(--deep)}
+.section-title .it{font-style:italic}
+.section-title .amber{color:var(--amber)}
+.section-title .forest{color:var(--forest)}
+.section-body{font-size:.9rem;color:var(--grey);line-height:1.9;max-width:640px}
+.section-body strong{color:var(--body)}
+.divider{height:1px;background:var(--border-light)}
+
+/* ─── PATTERN ─── */
+.pattern-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:52px;align-items:start}
+@media(max-width:840px){.pattern-grid{grid-template-columns:1fr}}
+.big-q{
+  font-family:var(--serif);
+  font-size:clamp(1.5rem,2.8vw,2rem);
+  font-weight:700;line-height:1.25;color:var(--deep);
+  border-left:4px solid var(--amber);
+  padding:20px 26px;
+  background:var(--amber-soft);
+  border-radius:0 10px 10px 0;
+  margin-bottom:28px;
+}
+.big-q .amber{color:var(--amber);font-style:italic}
+.insight-list{display:flex;flex-direction:column;gap:20px}
+.insight-item{display:flex;gap:14px;align-items:flex-start}
+.insight-icon{width:38px;height:38px;border-radius:50%;background:var(--forest-pale);border:1px solid var(--forest-border);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;font-size:.9rem}
+.insight-content .i-title{font-size:.88rem;font-weight:700;color:var(--deep);margin-bottom:4px}
+.insight-content .i-body{font-size:.8rem;color:var(--grey);line-height:1.7}
+.pattern-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:36px 32px;box-shadow:var(--shadow)}
+.pr-eyebrow{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);font-weight:700;margin-bottom:14px}
+.pr-quote{font-family:var(--serif);font-size:1.02rem;font-style:italic;color:var(--deep);line-height:1.7;margin-bottom:12px}
+.pr-source{font-size:.72rem;color:var(--grey);margin-bottom:24px}
+.pr-source strong{color:var(--body)}
+.pr-div{height:1px;background:var(--border-light);margin:20px 0}
+
+/* ─── TEE TIME ─── */
+.tee-section{background:var(--deep);position:relative;overflow:hidden}
+.tee-section::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 60% at 65% 50%,rgba(61,107,79,.25) 0%,transparent 65%)}
+.tee-feature{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+@media(max-width:900px){.tee-feature{grid-template-columns:1fr}}
+.tee-label{color:rgba(240,235,224,.5)}
+.tee-label::after{background:rgba(240,235,224,.1)}
+.tee-title{color:#f0ebe0}
+.tee-title .amber{color:var(--amber)}
+.flagship-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(90,140,110,.15);border:1px solid rgba(90,140,110,.3);
+  color:#8dc4a6;
+  font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  padding:6px 16px;border-radius:20px;margin-bottom:20px;
+}
+.flagship-badge .dot{width:5px;height:5px;border-radius:50%;background:#8dc4a6;animation:bdot 2s ease-in-out infinite}
+@keyframes bdot{0%,100%{opacity:1}50%{opacity:.3}}
+.tee-desc{font-size:.88rem;color:rgba(240,235,224,.65);line-height:1.9;margin-bottom:20px}
+.tee-desc strong{color:rgba(240,235,224,.9)}
+.tee-items{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.tee-item{display:flex;gap:12px;align-items:center;font-size:.82rem;color:rgba(240,235,224,.6)}
+.tee-item::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--amber);flex-shrink:0}
+.tee-item strong{color:rgba(240,235,224,.88)}
+.tee-card{background:rgba(255,255,255,.04);border:1px solid rgba(193,127,58,.25);border-radius:16px;padding:40px 34px;text-align:center;backdrop-filter:blur(10px)}
+.price-label{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);font-weight:700;margin-bottom:8px}
+.price-amount{font-family:var(--serif);font-size:3.4rem;font-weight:700;color:#f0ebe0;line-height:1;margin-bottom:4px}
+.price-note{font-size:.74rem;color:rgba(240,235,224,.45);margin-bottom:28px}
+.tee-includes{text-align:left;background:rgba(255,255,255,.04);border-radius:10px;padding:20px 22px;margin-bottom:24px}
+.inc-title{font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(240,235,224,.3);font-weight:700;margin-bottom:12px}
+.inc-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.inc-list li{font-size:.78rem;color:rgba(240,235,224,.6);display:flex;gap:10px;align-items:flex-start;line-height:1.4}
+.inc-list li::before{content:'✓';color:var(--amber);font-weight:700;font-size:.78rem;flex-shrink:0;margin-top:1px}
+.btn-tee{
+  width:100%;display:flex;align-items:center;justify-content:center;gap:10px;
+  background:var(--amber);color:var(--deep);
+  font-family:var(--sans);font-size:.73rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:16px 24px;border-radius:6px;text-decoration:none;transition:opacity .15s;
+}
+.btn-tee:hover{opacity:.88}
+.tee-note{font-size:.65rem;color:rgba(240,235,224,.3);margin-top:10px}
+
+/* ─── OFFERS ─── */
+.offers-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:48px}
+@media(max-width:1000px){.offers-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.offers-grid{grid-template-columns:1fr}}
+.offer-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:28px 24px;transition:all .2s;box-shadow:var(--shadow)}
+.offer-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:rgba(193,127,58,.3)}
+.offer-card.featured{border-color:rgba(193,127,58,.35);background:linear-gradient(135deg,rgba(193,127,58,.04),var(--white))}
+.offer-step{font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:10px}
+.offer-name{font-family:var(--serif);font-size:1.08rem;font-weight:700;color:var(--deep);line-height:1.2;margin-bottom:8px}
+.offer-name .amber{color:var(--amber);font-style:italic}
+.offer-price{font-size:.84rem;color:var(--amber);font-weight:700;margin-bottom:12px}
+.offer-desc{font-size:.78rem;color:var(--grey);line-height:1.65;margin-bottom:16px}
+.offer-tag{font-size:.63rem;letter-spacing:.05em;background:var(--bg);border:1px solid var(--border);color:var(--muted);padding:4px 10px;border-radius:4px;display:inline-block}
+.journey-flow{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:28px;flex-wrap:wrap}
+.jf-item{font-size:.72rem;font-weight:500;color:var(--body);padding:6px 16px;background:var(--white);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow)}
+.jf-arrow{color:var(--amber);font-size:.85rem;font-weight:700}
+
+/* ─── WHO IT'S FOR ─── */
+.who-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:44px}
+@media(max-width:700px){.who-grid{grid-template-columns:1fr}}
+.who-yes{background:rgba(46,84,56,.04);border:1px solid rgba(46,84,56,.15);border-radius:12px;padding:28px}
+.who-no{background:rgba(180,60,60,.03);border:1px solid rgba(180,60,60,.12);border-radius:12px;padding:28px}
+.who-title{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;margin-bottom:16px}
+.who-yes .who-title{color:var(--forest-mid)}
+.who-no .who-title{color:#b04040}
+.who-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+.who-list li{display:flex;gap:12px;font-size:.84rem;color:var(--grey);line-height:1.6;align-items:flex-start}
+.who-yes .who-list li .b{color:var(--forest-mid);flex-shrink:0;font-weight:700}
+.who-no .who-list li .b{color:#b04040;flex-shrink:0;font-weight:700}
+.who-callout{margin-top:36px;background:var(--deep);border-radius:12px;padding:28px 32px;text-align:center}
+.who-callout p{font-family:var(--serif);font-size:1.15rem;font-style:italic;color:#f0ebe0;margin:0}
+.who-callout .amber{color:var(--amber)}
+
+/* ─── TESTIMONIALS ─── */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:48px}
+@media(max-width:900px){.testi-grid{grid-template-columns:1fr}}
+.testi-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:30px 28px;display:flex;flex-direction:column;box-shadow:var(--shadow);transition:all .2s;position:relative;overflow:hidden}
+.testi-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.testi-card::before{content:'\201C';position:absolute;top:10px;right:18px;font-family:var(--serif);font-size:5rem;color:rgba(193,127,58,.07);line-height:1;font-weight:700}
+.stars{display:flex;gap:3px;margin-bottom:16px}
+.star{color:var(--amber);font-size:.75rem}
+.testi-quote{font-family:var(--serif);font-size:.92rem;font-style:italic;color:var(--body);line-height:1.8;flex:1;margin-bottom:22px}
+.testi-name{font-size:.8rem;font-weight:700;color:var(--deep)}
+.testi-role{font-size:.72rem;color:var(--grey)}
+
+/* ─── ABOUT ─── */
+.about-grid{display:grid;grid-template-columns:2fr 1fr;gap:56px;align-items:start;margin-top:44px}
+@media(max-width:800px){.about-grid{grid-template-columns:1fr}}
+.about-text p{font-size:.9rem;color:var(--grey);line-height:1.9;margin-bottom:16px}
+.about-text p strong{color:var(--body)}
+.about-text .pull{
+  font-family:var(--serif);font-size:1.08rem;font-style:italic;
+  color:var(--deep);border-left:4px solid var(--amber);
+  padding:16px 22px;background:var(--amber-soft);
+  border-radius:0 8px 8px 0;margin:28px 0;line-height:1.65;
+}
+.creds{display:flex;flex-direction:column;gap:14px}
+.cred{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px;box-shadow:var(--shadow)}
+.cred-val{font-family:var(--serif);font-size:1.8rem;font-weight:700;color:var(--amber);line-height:1}
+.cred-label{font-size:.73rem;color:var(--grey);margin-top:5px;line-height:1.4}
+
+/* ─── LEAD MAGNET ─── */
+.magnet-section{background:var(--bg)}
+.magnet-inner{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+@media(max-width:800px){.magnet-inner{grid-template-columns:1fr}}
+.m-title{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.3rem);font-weight:700;color:var(--deep);margin-bottom:12px;line-height:1.2}
+.m-title .amber{color:var(--amber);font-style:italic}
+.m-desc{font-size:.88rem;color:var(--grey);line-height:1.9}
+.m-desc strong{color:var(--body)}
+.m-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:32px 28px;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+.m-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--amber),rgba(193,127,58,.25))}
+.m-badge{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);font-weight:700;margin-bottom:10px}
+.m-card-title{font-family:var(--serif);font-size:1.15rem;font-weight:700;color:var(--deep);margin-bottom:6px}
+.m-card-sub{font-size:.78rem;color:var(--grey);margin-bottom:18px;line-height:1.65}
+.m-features{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.m-features li{font-size:.8rem;color:var(--body);display:flex;gap:8px;align-items:center}
+.m-features li::before{content:'→';color:var(--amber);font-weight:700;font-size:.75rem}
+.btn-magnet{
+  width:100%;display:flex;align-items:center;justify-content:center;gap:8px;
+  background:var(--amber);color:var(--white);
+  font-family:var(--sans);font-size:.72rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:14px 20px;border-radius:7px;text-decoration:none;transition:opacity .15s;
+}
+.btn-magnet:hover{opacity:.87}
+.m-note{font-size:.64rem;color:var(--muted);text-align:center;margin-top:8px}
+
+/* ─── NEWSLETTER ─── */
+.nl-section{background:var(--surface);border-top:1px solid var(--border)}
+.nl-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+@media(max-width:800px){.nl-grid{grid-template-columns:1fr}}
+.nl-title{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.3rem);font-weight:700;color:var(--deep);margin-bottom:12px}
+.nl-title .amber{color:var(--amber);font-style:italic}
+.nl-desc{font-size:.88rem;color:var(--grey);line-height:1.9}
+.nl-desc strong{color:var(--body)}
+.nl-form-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:28px;box-shadow:var(--shadow)}
+.nl-form-label{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);font-weight:700;margin-bottom:14px}
+.nl-form{display:flex;flex-direction:column;gap:10px}
+.nl-input{
+  background:var(--bg);border:1px solid var(--border);
+  color:var(--deep);font-family:var(--sans);font-size:.88rem;
+  padding:12px 16px;border-radius:7px;outline:none;transition:border-color .2s;
+}
+.nl-input:focus{border-color:rgba(193,127,58,.4)}
+.nl-input::placeholder{color:var(--muted)}
+.nl-btn{
+  background:var(--deep);border:none;color:var(--bg);
+  font-family:var(--sans);font-size:.7rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:13px 20px;border-radius:7px;cursor:pointer;transition:opacity .15s;
+}
+.nl-btn:hover{opacity:.8}
+.nl-note{font-size:.64rem;color:var(--muted);text-align:center}
+
+/* ─── BOOK CTA ─── */
+.book-section{text-align:center;padding:100px 48px;background:var(--white);position:relative;overflow:hidden}
+.book-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 50% at 50% 50%,rgba(193,127,58,.07) 0%,transparent 60%);pointer-events:none}
+.book-inner{position:relative;max-width:640px;margin:0 auto}
+.book-eyebrow{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--amber);font-weight:700;margin-bottom:16px;display:inline-flex;align-items:center;gap:14px}
+.book-eyebrow::before,.book-eyebrow::after{content:'';width:24px;height:1px;background:rgba(193,127,58,.4)}
+.book-title{font-family:var(--serif);font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:700;line-height:1.08;margin-bottom:16px;color:var(--deep)}
+.book-title .amber{color:var(--amber);font-style:italic}
+.book-sub{font-size:.92rem;color:var(--grey);line-height:1.9;margin-bottom:36px}
+.book-sub strong{color:var(--body)}
+.book-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;align-items:center}
+.book-or{font-size:.7rem;color:var(--muted)}
+
+/* ─── FOOTER ─── */
+.footer{background:var(--deep);padding:44px 48px}
+.footer-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:start}
+@media(max-width:640px){.footer-inner{grid-template-columns:1fr}}
+.footer-brand{font-family:var(--serif);font-size:.92rem;font-weight:700;color:#f0ebe0}
+.footer-brand .amber{color:var(--amber)}
+.footer-sub{font-size:.7rem;color:rgba(240,235,224,.35);margin-top:4px}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap;justify-content:flex-end}
+.footer-link{font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(240,235,224,.4);text-decoration:none;transition:color .15s}
+.footer-link:hover{color:var(--amber)}
+.footer-copy{font-size:.68rem;color:rgba(240,235,224,.25);margin-top:24px;padding-top:20px;border-top:1px solid rgba(255,255,255,.06);text-align:center;grid-column:1/-1}
+
+/* ─── SIGNAL BADGE ─── */
+.signal-badge{
+  position:fixed;bottom:24px;right:24px;z-index:888;
+  background:var(--deep);border:1px solid rgba(193,127,58,.3);
+  border-radius:40px;padding:8px 16px 8px 12px;
+  display:flex;align-items:center;gap:8px;
+  font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  color:var(--amber);cursor:pointer;
+  text-decoration:none;transition:opacity .2s;box-shadow:0 4px 16px rgba(26,35,24,.2);
+}
+.signal-badge:hover{opacity:.85}
+.signal-badge .s-dot{width:5px;height:5px;border-radius:50%;background:var(--amber);animation:sdot 2.5s ease-in-out infinite}
+@keyframes sdot{0%,100%{opacity:1}50%{opacity:.25}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-brand" href="#hero"><div class="dot"></div>Coach Reg</a>
+  <div class="nav-links">
+    <a class="nav-link" href="#work">The Work</a>
+    <a class="nav-link" href="#tee-time">Tee Time</a>
+    <a class="nav-link" href="#offers">Offers</a>
+    <a class="nav-link" href="#about">About</a>
+    <a class="nav-link" href="#newsletter">Newsletter</a>
+  </div>
+  <a class="nav-cta" href="#book">Book a Session</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero section-white" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Pattern Recognition · Since 1984</div>
+    <div class="hero-name">Bob Regnerus · Coach Reg</div>
+    <h1 class="hero-headline">
+      I help founders and leaders<br>who've <span class="amber it">outgrown</span> the answers<br>they already have.
+    </h1>
+    <p class="hero-sub">
+      <strong>40 years. 1,500 athletes.</strong> One question: what's the pattern running through everything you do?<br>
+      On the course, I can see it in your swing before you can hide it.
+    </p>
+    <div class="hero-ctas">
+      <a class="btn-amber" href="#tee-time">See SPARK Tee Time™</a>
+      <a class="btn-outline" href="#book">Book a SPARK Session →</a>
+    </div>
+    <div class="hero-proof">
+      <div class="proof-item"><div class="proof-num">40</div><div class="proof-label">Years</div></div>
+      <div class="proof-div"></div>
+      <div class="proof-item"><div class="proof-num">1,500+</div><div class="proof-label">Athletes</div></div>
+      <div class="proof-div"></div>
+      <div class="proof-item"><div class="proof-num">1</div><div class="proof-label">Question</div></div>
+      <div class="proof-div"></div>
+      <div class="proof-item"><div class="proof-num">EMCC</div><div class="proof-label">Accredited</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-inner">
+    <div class="strip-quote">"Bob helped me rethink my whole approach — to business, to leadership, to <strong>how I carry myself</strong>. That's not coaching. That's transformation."</div>
+    <div class="strip-attr">Jhana Li · Founder, Spyglass Ops</div>
+  </div>
+</div>
+
+<!-- THE PATTERN -->
+<section class="section section-cream" id="work">
+  <div class="inner">
+    <div class="label">The Work</div>
+    <div class="pattern-grid">
+      <div>
+        <h2 class="section-title"><span class="amber it">How you do one thing</span><br>is how you do everything.</h2>
+        <div class="big-q">On the course, I can see it in your swing<br>before you can <span class="amber">hide it.</span></div>
+        <div class="insight-list">
+          <div class="insight-item">
+            <div class="insight-icon">⚡</div>
+            <div class="insight-content">
+              <div class="i-title">Pattern Recognition</div>
+              <div class="i-body">In 40 years and 1,500 athletes, I've learned that what looks like a business problem is usually a pattern problem. The white-knuckle grip on the club — the same one you have on your business. I find it in 60 minutes.</div>
+            </div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-icon">⛳</div>
+            <div class="insight-content">
+              <div class="i-title">Golf as the Mirror</div>
+              <div class="i-body">You can rehearse how you show up in a meeting. You can't rehearse your swing under pressure. That's where the truth lives — and that's where the real work begins.</div>
+            </div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-icon">🎯</div>
+            <div class="insight-content">
+              <div class="i-title">Conviction, Not Advice</div>
+              <div class="i-body">I don't tell you what to do. I help you see what you already know. Most coaches give you more information. I give you the one insight that makes everything else click into place.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pattern-card">
+        <div class="pr-eyebrow">What Clients Experience</div>
+        <div class="pr-quote">"I went into the SPARK Session thinking I had a strategy problem. Bob helped me see it was a conviction problem — and I knew the answer the moment he named it."</div>
+        <div class="pr-source"><strong>Frank Michel</strong> · Partner, Brandywine M&A Advisors</div>
+        <div class="pr-div"></div>
+        <div class="pr-eyebrow" style="margin-top:0">The S.P.A.R.K. Framework</div>
+        <div class="pr-quote">"After 40 years in locker rooms and boardrooms, I've built a methodology that's precise, repeatable, and battle-tested. It's not intuition. It's a framework."</div>
+        <div class="pr-source" style="margin-bottom:20px"><strong>Bob Regnerus</strong> · Coach Reg</div>
+        <a class="btn-outline" href="#book" style="width:100%;justify-content:center">Bring me your $50K problem →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TEE TIME FLAGSHIP — stays dark, intentionally -->
+<section class="section tee-section" id="tee-time">
+  <div class="inner">
+    <div class="label tee-label">The Flagship Experience</div>
+    <div class="tee-feature">
+      <div>
+        <div class="flagship-badge"><div class="dot"></div>Most Differentiated Offer</div>
+        <h2 class="section-title tee-title">SPARK Tee Time™ —<br><span class="amber it">A Day That Changes</span><br>Everything.</h2>
+        <p class="tee-desc">There is no other experience like this. A <strong>full-day private immersive</strong> where we do the real work on the course — then debrief it over dinner. Your business patterns, your leadership patterns, your life patterns: all of them show up in your swing. <strong>All of them are workable.</strong></p>
+        <p class="tee-desc">One day. One client. One pattern reset. This is the experience your peers will be asking you about for years.</p>
+        <div class="tee-items">
+          <div class="tee-item"><strong>Morning clarity call</strong> — arrive knowing exactly what we're solving</div>
+          <div class="tee-item"><strong>Breakfast + 18 holes</strong> — coaching in motion, pattern work in real time</div>
+          <div class="tee-item"><strong>Early dinner debrief</strong> — what we found, what it means, what changes</div>
+          <div class="tee-item"><strong>Follow-up SPARK Session™</strong> — one week later, included</div>
+          <div class="tee-item"><strong>Black-car service, two nights, two meals</strong> — Chicago or your home course</div>
+          <div class="tee-item"><strong>Optional plus-one</strong> — business partner, spouse, COO</div>
+        </div>
+        <a class="btn-tee" href="#book">Reserve Your Day →</a>
+      </div>
+      <div class="tee-card">
+        <div class="price-label">Investment</div>
+        <div class="price-amount">$5,500</div>
+        <div class="price-note">All-inclusive · Chicago or home course</div>
+        <div class="tee-includes">
+          <div class="inc-title">Everything Included</div>
+          <ul class="inc-list">
+            <li>Pre-day clarity call (60 min)</li>
+            <li>Full day on the course (18 holes + coaching)</li>
+            <li>Breakfast + early dinner debrief</li>
+            <li>Black-car transport</li>
+            <li>Two nights accommodation</li>
+            <li>Follow-up SPARK Session™ (1 week post)</li>
+            <li>Pattern summary + action brief</li>
+          </ul>
+        </div>
+        <a class="btn-tee" href="#book">Book SPARK Tee Time™ →</a>
+        <div class="tee-note">Limited availability. Inquiry required.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- OFFERS -->
+<section class="section section-white" id="offers">
+  <div class="inner">
+    <div class="label">The SPARK Journey</div>
+    <h2 class="section-title">Four ways to work<br>with <span class="amber it">Coach Reg.</span></h2>
+    <p class="section-body">Each offer is a step on the journey. Most clients start with a SPARK Session. Most who have a Tee Time don't want it to end.</p>
+    <div class="journey-flow">
+      <div class="jf-item">SPARK Insights (free)</div>
+      <div class="jf-arrow">→</div>
+      <div class="jf-item">SPARK Session™</div>
+      <div class="jf-arrow">→</div>
+      <div class="jf-item">SPARK Tee Time™</div>
+      <div class="jf-arrow">→</div>
+      <div class="jf-item">SPARK Retainer</div>
+    </div>
+    <div class="offers-grid">
+      <div class="offer-card">
+        <div class="offer-step">Step 01 · Entry</div>
+        <div class="offer-name">SPARK Session™</div>
+        <div class="offer-price">$1,500</div>
+        <div class="offer-desc">One hour. One insight. One action. The diagnostic that strips away noise and maps the pattern underneath your biggest current decision. Remote or in-person.</div>
+        <div class="offer-tag">60 min · Immediate clarity</div>
+      </div>
+      <div class="offer-card featured">
+        <div class="offer-step">Step 02 · Flagship ✦</div>
+        <div class="offer-name">SPARK Tee Time™</div>
+        <div class="offer-price">$5,500–$7,500</div>
+        <div class="offer-desc">A full-day private immersive. The most differentiated offer in executive coaching. 18 holes, breakfast, dinner, follow-up session. One pattern reset you'll remember for years.</div>
+        <div class="offer-tag">All-day · All-inclusive</div>
+      </div>
+      <div class="offer-card">
+        <div class="offer-step">Step 03 · Ongoing</div>
+        <div class="offer-name">SPARK <span class="amber">Retainer</span></div>
+        <div class="offer-price">$2,500–$4,000/mo</div>
+        <div class="offer-desc">Monthly ongoing engagement. Two sessions per month, async access. For leaders who want to keep the mirror active. Minimum 3-month commitment.</div>
+        <div class="offer-tag">Recurring · Pattern tracking</div>
+      </div>
+      <div class="offer-card">
+        <div class="offer-step">Step 04 · Authority</div>
+        <div class="offer-name">SPARK <span class="amber">Keynote</span></div>
+        <div class="offer-price">$5,000–$20,000</div>
+        <div class="offer-desc">"How you do one thing is how you do everything" as a keynote for executive audiences, leadership conferences, and founder summits. 45–60 minutes.</div>
+        <div class="offer-tag">Speaking · Executive audiences</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WHO IT'S FOR -->
+<section class="section section-cream">
+  <div class="inner">
+    <div class="label">Right Fit</div>
+    <h2 class="section-title">This work is not<br>for <span class="amber it">everyone.</span></h2>
+    <p class="section-body">The clearer I am about who I'm for, the better the work gets. I'm not for everyone. And that's exactly what makes it work for those I am for.</p>
+    <div class="who-grid">
+      <div class="who-yes">
+        <div class="who-title">✓ This is for you if...</div>
+        <ul class="who-list">
+          <li><span class="b">✓</span>You've done therapy, masterminds, coaching — and still sense something isn't landing</li>
+          <li><span class="b">✓</span>You're at a threshold: outgrown your definition of success, circling a real decision</li>
+          <li><span class="b">✓</span>You want a mirror, not a prescription — you're done with generic frameworks</li>
+          <li><span class="b">✓</span>You have a specific $50K+ problem you're navigating right now</li>
+          <li><span class="b">✓</span>You're ready to act on what you discover</li>
+        </ul>
+      </div>
+      <div class="who-no">
+        <div class="who-title">✗ This isn't for you if...</div>
+        <ul class="who-list">
+          <li><span class="b">✗</span>You're early-stage and looking for tactics or accountability frameworks</li>
+          <li><span class="b">✗</span>You want to be told what to do, not shown what you already know</li>
+          <li><span class="b">✗</span>You're looking for general motivation or hustle-culture inspiration</li>
+          <li><span class="b">✗</span>You need more information rather than a different lens</li>
+          <li><span class="b">✗</span>You're not ready to sit with what you find</li>
+        </ul>
+      </div>
+    </div>
+    <div class="who-callout">
+      <p>"Bring me your <span class="amber">$50K problem.</span> In one hour, we'll find the pattern underneath it."</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section section-white">
+  <div class="inner">
+    <div class="label">What Clients Say</div>
+    <h2 class="section-title">The work speaks<br>for <span class="amber it">itself.</span></h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <div class="testi-quote">"Bob helped me rethink my whole approach — to business, to leadership, to how I carry myself. The insights I got in one session had been hiding behind years of coaching, masterminds, and therapy. He found them in an hour."</div>
+        <div class="testi-name">Jhana Li</div>
+        <div class="testi-role">Founder, Spyglass Ops</div>
+      </div>
+      <div class="testi-card">
+        <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <div class="testi-quote">"I went in thinking I had a strategy problem. Bob helped me see it was a conviction problem — and the moment he named it, I knew he was right. I knew the answer. I'd just been refusing to see the pattern."</div>
+        <div class="testi-name">Frank Michel</div>
+        <div class="testi-role">Partner, Brandywine M&A Advisors</div>
+      </div>
+      <div class="testi-card">
+        <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+        <div class="testi-quote">"Coach Reg doesn't coach you the way coaches coach you. He observes, asks the one question you haven't asked yourself, and quietly waits while you figure out that you already knew the answer. Remarkable work."</div>
+        <div class="testi-name">Michael Hauge</div>
+        <div class="testi-role">Story Expert · Hollywood Consultant</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section class="section section-cream" id="about">
+  <div class="inner">
+    <div class="label">About Coach Reg</div>
+    <h2 class="section-title">40 years.<br>One <span class="amber it">question.</span></h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I started in locker rooms. Competitive athletics, high-level coaching, the kind of environment where pressure doesn't lie — and everyone's trying to hide it anyway. <strong>You can't hide your pattern from a golf swing.</strong> And I learned that early.</p>
+        <p>Over 40 years and 1,500 athletes — from amateur golfers to professional competitors to the boardrooms of founders who happen to play — I developed a methodology for finding the pattern running underneath everything. It has a name: <strong>S.P.A.R.K.</strong> And it works just as well in a boardroom as on the back nine.</p>
+        <div class="pull">"The tighter you grip the club, the worse you play." I've watched this truth reveal itself in golf and business so many times it stopped surprising me. What surprises me is how rarely people are shown it.</div>
+        <p>I'm an EMCC-accredited coach and a certified Purpose Factor® facilitator. But mostly I'm someone who's spent four decades getting very good at one thing: <strong>finding the pattern that's running the show — and helping you decide what to do with it.</strong></p>
+        <p>I work with a small number of clients at a time. That's intentional. If you're reading this and something is landing, that's worth paying attention to.</p>
+      </div>
+      <div class="creds">
+        <div class="cred"><div class="cred-val">40</div><div class="cred-label">Years in high-performance coaching</div></div>
+        <div class="cred"><div class="cred-val">1,500+</div><div class="cred-label">Athletes coached across levels</div></div>
+        <div class="cred"><div class="cred-val">EMCC</div><div class="cred-label">Accredited professional coach</div></div>
+        <div class="cred"><div class="cred-val">PF®</div><div class="cred-label">Certified Purpose Factor® facilitator</div></div>
+        <div class="cred"><div class="cred-val">S.P.A.R.K.</div><div class="cred-label">Proprietary methodology · 40 years in the making</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- LEAD MAGNET CTA -->
+<section class="section magnet-section" id="diagnostic">
+  <div class="inner">
+    <div class="magnet-inner">
+      <div>
+        <div class="label">Free Tool</div>
+        <h2 class="m-title">Find the pattern<br>costing you <span class="amber">revenue.</span></h2>
+        <p class="m-desc">
+          <strong>Takes 3 minutes.</strong> Five questions about where you're stuck — and you'll see the pattern underneath it, what it's costing you, and the one shift that changes it.<br><br>
+          This is the same diagnostic I run at the start of every SPARK Session. Now you can take it before we ever speak.
+        </p>
+      </div>
+      <div class="m-card">
+        <div class="m-badge">Free · 3 Minutes · Instant Result</div>
+        <div class="m-card-title">The SPARK Pattern Diagnostic™</div>
+        <div class="m-card-sub">Five questions. One pattern revealed. The hidden revenue cost — calculated.</div>
+        <ul class="m-features">
+          <li>Identifies your dominant performance pattern</li>
+          <li>Calculates the monthly revenue impact</li>
+          <li>Shows the one shift that moves it</li>
+          <li>Sends your personalised report to your inbox</li>
+        </ul>
+        <a class="btn-magnet" href="spark-diagnostic.html">Take the Diagnostic →</a>
+        <div class="m-note">No obligation. No pitch. Just the pattern.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="section nl-section" id="newsletter">
+  <div class="inner">
+    <div class="nl-grid">
+      <div>
+        <div class="label">Weekly Newsletter</div>
+        <h2 class="nl-title">SPARK <span class="amber">Insights.</span></h2>
+        <p class="nl-desc">
+          <strong>Weekly observations</strong> from 40 years of watching high performers hit the same invisible wall — and the one shift that moves them past it.<br><br>
+          Stories from the course. Patterns from the boardroom. The kind of thing that makes you put down your phone and actually think.<br><br>
+          No tactics. No hustle. Just the signal.
+        </p>
+      </div>
+      <div>
+        <div class="nl-form-card">
+          <div class="nl-form-label">Join SPARK Insights — Free</div>
+          <div class="nl-form">
+            <input class="nl-input" type="text" placeholder="Your first name">
+            <input class="nl-input" type="email" placeholder="Email address">
+            <button class="nl-btn">Subscribe to SPARK Insights →</button>
+            <div class="nl-note">No spam. Unsubscribe anytime.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK CTA -->
+<section class="book-section" id="book">
+  <div class="book-inner">
+    <div class="book-eyebrow">Ready to Start</div>
+    <h2 class="book-title">Bring me your<br><span class="amber">$50K problem.</span></h2>
+    <p class="book-sub">In one hour, we'll find the pattern underneath it. No pitch. No long intake form. Just a conversation with someone who's been seeing this pattern for four decades. <strong>If it's the right fit, we'll know.</strong></p>
+    <div class="book-ctas">
+      <a class="btn-primary" href="mailto:bob@coachregnerus.com?subject=SPARK Session Inquiry">Book a SPARK Session — $1,500 →</a>
+      <div class="book-or">or</div>
+      <a class="btn-outline" href="mailto:bob@coachregnerus.com?subject=SPARK Tee Time Inquiry">Inquire About Tee Time</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Coach <span class="amber">Reg</span> · Bob Regnerus</div>
+      <div class="footer-sub">Pattern Recognition Coaching · Chicago, IL · Est. 1984</div>
+    </div>
+    <div class="footer-links">
+      <a class="footer-link" href="#work">The Work</a>
+      <a class="footer-link" href="#tee-time">Tee Time</a>
+      <a class="footer-link" href="#offers">Offers</a>
+      <a class="footer-link" href="#about">About</a>
+      <a class="footer-link" href="#newsletter">Newsletter</a>
+      <a class="footer-link" href="#book">Book</a>
+    </div>
+    <div class="footer-copy">© 2026 Bob Regnerus · Coach Reg · coachregnerus.com · All rights reserved.</div>
+  </div>
+</footer>
+
+<a class="signal-badge" href="signal-origin.html">
+  <div class="s-dot"></div>
+  The Signal Session ↗
+</a>
+
+</body>
+</html>
