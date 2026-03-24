@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bob Regnerus — The Signal Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --parchment:#f7f4ee;--forest:#3e2e1a;--amber:#c17f3a;
+  --amber-dim:rgba(193,127,58,0.08);--amber-border:rgba(193,127,58,0.22);
+  --white:#f7f4ee;--grey:#8a7b68;--muted:#5a4d3d;
+  --serif:'Playfair Display',Georgia,serif;--sans:'Inter',-apple-system,sans-serif;
+}
+body{font-family:var(--sans);background:var(--forest);color:var(--white);min-height:100vh;line-height:1.7}
+
+.hero{background:linear-gradient(160deg,#2c1f0e 0%,var(--forest) 60%,#3a2a18 100%);padding:100px 20px 80px;border-bottom:2px solid var(--amber-border);text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;right:0;width:600px;height:600px;background:radial-gradient(circle at 80% 20%,rgba(193,127,58,.06) 0%,transparent 60%);pointer-events:none}
+.hero-inner{max-width:900px;margin:0 auto;padding:0 60px;position:relative}
+
+.brand{font-family:var(--serif);font-size:.9rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:40px;color:var(--white)}
+.brand-dot{width:6px;height:6px;border-radius:50%;background:var(--amber)}
+.brand span{color:var(--amber)}
+
+.hero-eyebrow{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);font-weight:600;margin-bottom:18px;display:inline-flex;align-items:center;gap:10px}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';width:20px;height:1px;background:var(--amber)}
+
+.hero-title{font-family:var(--serif);font-size:clamp(2.4rem,5vw,3.8rem);font-weight:700;line-height:1.08;color:var(--white);margin-bottom:20px}
+.hero-title .gold{color:var(--amber)}
+.hero-subtitle{font-size:1.1rem;color:var(--grey);max-width:600px;margin:0 auto 32px;line-height:1.8}
+.hero-subtitle strong{color:var(--white)}
+
+.main{max-width:1000px;margin:0 auto;padding:64px 40px 80px}
+
+.section-title{font-family:var(--serif);font-size:1.4rem;font-weight:700;color:var(--white);margin-bottom:32px;text-align:center;position:relative;padding-bottom:20px}
+.section-title::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:40px;height:2px;background:var(--amber);border-radius:1px}
+
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-bottom:64px}
+.grid.single{grid-template-columns:1fr}
+
+.card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:6px;padding:32px;text-decoration:none;transition:all .3s ease;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.card::before{content:'';position:absolute;top:0;right:0;width:100px;height:100px;background:radial-gradient(circle,rgba(193,127,58,.08) 0%,transparent 70%);pointer-events:none}
+.card:hover{border-color:var(--amber-border);background:rgba(193,127,58,.04)}
+.card-number{font-family:var(--serif);font-size:2.2rem;font-weight:700;color:var(--amber);margin-bottom:8px;position:relative}
+.card-label{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--amber);font-weight:700;margin-bottom:12px;position:relative}
+.card-title{font-family:var(--serif);font-size:1.2rem;font-weight:700;color:var(--white);margin-bottom:8px;position:relative}
+.card-description{font-size:.85rem;color:var(--grey);line-height:1.7;flex-grow:1;margin-bottom:16px;position:relative}
+.card-cta{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);font-weight:700;display:inline-flex;align-items:center;gap:8px;position:relative}
+.card-cta::after{content:'→';margin-left:4px}
+
+.special-card{background:var(--amber-dim);border:1px solid var(--amber-border)}
+.special-card:hover{background:var(--amber-dim);border-color:var(--amber)}
+
+footer{border-top:1px solid rgba(255,255,255,.05);padding:40px 20px;text-align:center}
+footer a{color:var(--amber);text-decoration:none;font-size:.75rem;margin:0 12px;letter-spacing:.08em;text-transform:uppercase}
+footer a:hover{text-decoration:underline}
+.footer-brand{font-family:var(--serif);font-size:.8rem;color:var(--muted);margin-top:16px}
+.footer-brand span{color:var(--amber)}
+
+@media(max-width:700px){.grid{grid-template-columns:1fr} .hero-inner{padding:0 20px}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="brand"><div class="brand-dot"></div>The <span>Signal</span></div>
+    <div class="hero-eyebrow">Signal Session</div>
+    <h1 class="hero-title">Bob Regnerus — <span class="gold">Coach Reg</span></h1>
+    <p class="hero-subtitle">Pattern Recognition for Founders at Threshold. <strong>40 years. 1,500+ athletes. One question that changes everything.</strong></p>
+  </div>
+</div>
+
+<div class="main">
+  <h2 class="section-title">Your Signal Session Deliverables</h2>
+
+  <div class="grid">
+    <a href="session-summary.html" class="card">
+      <div class="card-number">01</div>
+      <div class="card-label">Session Summary</div>
+      <div class="card-title">The Pattern We Found</div>
+      <div class="card-description">Your full Signal Session diagnostic — the pattern underneath your decisions, your positioning, and the path forward.</div>
+      <div class="card-cta">View Summary</div>
+    </a>
+
+    <a href="positioning-blueprint.html" class="card">
+      <div class="card-number">02</div>
+      <div class="card-label">Positioning Blueprint</div>
+      <div class="card-title">Coach Reg — Pattern Recognition</div>
+      <div class="card-description">Your positioning strategy distilled. Who you serve, why they listen, and the single sentence that opens every door.</div>
+      <div class="card-cta">View Blueprint</div>
+    </a>
+
+    <a href="signal-origin.html" class="card">
+      <div class="card-number">03</div>
+      <div class="card-label">Signal Origin</div>
+      <div class="card-title">The Story Underneath</div>
+      <div class="card-description">40 years from the court to the fairway to the boardroom. Your origin story distilled into its most powerful form.</div>
+      <div class="card-cta">Read Origin</div>
+    </a>
+
+    <a href="linkedin-blueprint.html" class="card">
+      <div class="card-number">04</div>
+      <div class="card-label">LinkedIn Blueprint</div>
+      <div class="card-title">Your Digital Presence</div>
+      <div class="card-description">A complete LinkedIn overhaul — headline, about section, and content strategy built around your pattern recognition positioning.</div>
+      <div class="card-cta">View Blueprint</div>
+    </a>
+
+    <a href="offer-architecture.html" class="card">
+      <div class="card-number">05</div>
+      <div class="card-label">Offer Architecture</div>
+      <div class="card-title">SPARK Session &amp; Tee Time</div>
+      <div class="card-description">Your offer stack refined — SPARK Session, SPARK Tee Time, and keynote positioning for founders at threshold.</div>
+      <div class="card-cta">View Architecture</div>
+    </a>
+
+    <a href="content-signal.html" class="card">
+      <div class="card-number">06</div>
+      <div class="card-label">Content Signal</div>
+      <div class="card-title">Your Content Strategy</div>
+      <div class="card-description">Themes, pillars, and a 30-day content plan that builds authority and attracts founders who need what you see.</div>
+      <div class="card-cta">View Strategy</div>
+    </a>
+
+    <a href="revenue-architecture.html" class="card">
+      <div class="card-number">07</div>
+      <div class="card-label">Revenue Architecture</div>
+      <div class="card-title">The Business Model</div>
+      <div class="card-description">Revenue pathways, pricing strategy, and the systems that turn pattern recognition into a scalable practice.</div>
+      <div class="card-cta">View Architecture</div>
+    </a>
+
+    <a href="activation-plan.html" class="card">
+      <div class="card-number">08</div>
+      <div class="card-label">Activation Plan</div>
+      <div class="card-title">First 90 Days</div>
+      <div class="card-description">Week-by-week activation plan to launch your repositioned brand and start attracting the right founders.</div>
+      <div class="card-cta">View Plan</div>
+    </a>
+  </div>
+
+  <h2 class="section-title">Your Website</h2>
+
+  <div class="grid single">
+    <a href="bob-website.html" class="card special-card">
+      <div class="card-number">★</div>
+      <div class="card-label">Production Website</div>
+      <div class="card-title">CoachRegnerus.com — Pattern Recognition for Founders</div>
+      <div class="card-description">Your full website — SPARK Methodology, Tee Time, your origin story, and everything a founder at threshold needs to find you. Ready to deploy.</div>
+      <div class="card-cta">View Website</div>
+    </a>
+
+    <a href="spark-diagnostic.html" class="card">
+      <div class="card-number">★</div>
+      <div class="card-label">SPARK Diagnostic</div>
+      <div class="card-title">The Pattern Diagnostic</div>
+      <div class="card-description">Your SPARK pattern diagnostic — the lens that reveals what's running underneath your decisions, your grip, and your leadership style.</div>
+      <div class="card-cta">View Diagnostic</div>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <a href="session-summary.html">Summary</a>
+  <a href="positioning-blueprint.html">Positioning</a>
+  <a href="signal-origin.html">Origin</a>
+  <a href="linkedin-blueprint.html">LinkedIn</a>
+  <a href="bob-website.html">Website</a>
+  <div class="footer-brand">Built by The <span>Signal</span></div>
+</footer>
+
+</body>
+</html>

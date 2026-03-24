@@ -1,0 +1,2868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bob Regnerus — Coach Reg · Pattern Recognition for Founders at Threshold</title>
+<meta name="description" content="40 years. 1,500 athletes. One question: what's the pattern running through everything you do? Bob Regnerus helps founders and leaders who've outgrown the answers they already have.">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Bob Regnerus — Coach Reg · Pattern Recognition for Founders">
+<meta property="og:description" content="I help founders and leaders who've outgrown the answers they already have. 40 years. 1,500 athletes. SPARK Sessions, Tee Time, Keynote.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=1200&q=80">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://coachregnerus.com">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%232c1f0e'/><text y='.9em' x='50%' text-anchor='middle' font-size='52' fill='%23c17f3a'>R</text></svg>">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!--
+  REFERENCE SITES STUDIED:
+  - brene-brown.com — photography-forward, editorial warmth, authentic story
+  - estherperel.com — dynamic, conversational, intelligent spacing
+  - pentagram.com — editorial, typography-driven, asymmetric sections
+  - ideo.com — purpose-driven, creative layouts, strong content density
+  - linear.app — clean motion, earned authority, functional beauty
+
+  DESIGN DECISIONS:
+  - Playfair Display (headers): literary weight, earned authority, warmth
+  - Inter (body): clean, professional, readable at all sizes
+  - Palette: Parchment #f7f4ee (luxury warmth), Amber #c17f3a (earned gold),
+    Deep Forest #2c1f0e (gravitas), Secondary dark #1a1308
+  - Hero: centered, full-bleed typography — Signal Code hits immediately
+  - Layout: varied sections — centered hero, asymmetric story, full-bleed proof,
+    split methodology, card grid offers, diagonal dividers
+  - Motion: IntersectionObserver fade-ups, animated counters, hover states,
+    smooth scroll parallax on hero
+  - Brand voice: direct, warm, laconic. Story-first. Never hype.
+
+  PLACEHOLDER IMAGES TO REPLACE WITH REAL CLIENT PHOTOS:
+  - Hero portrait: Bob headshot (professional, warm, confident — golf course or office)
+  - Origin story: Bob on the golf course, mid-coaching moment
+  - Methodology section: Course or session action photo
+  - Proof section: Speaking photo or with client
+  - Tee Time: Golf course morning / immersive day photo
+-->
+
+<style>
+/* ============================================================
+   CSS CUSTOM PROPERTIES
+   ============================================================ */
+:root {
+  /* Brand Palette */
+  --parchment:    #f7f4ee;
+  --parchment-2:  #f0ece3;
+  --parchment-3:  #e8e2d6;
+  --amber:        #c17f3a;
+  --amber-light:  #d4944e;
+  --amber-faint:  rgba(193, 127, 58, 0.08);
+  --amber-border: rgba(193, 127, 58, 0.22);
+  --amber-strong: rgba(193, 127, 58, 0.45);
+  --forest:       #3e2e1a;
+  --forest-mid:   #4f3c26;
+  --forest-card:  #5c4730;
+  --forest-dark:  #2c1f0e;
+  --text:         #2d2419;
+  --text-mid:     #5a4d3d;
+  --text-muted:   #8a7b68;
+  --white:        #ffffff;
+  --white-dim:    rgba(255, 255, 255, 0.88);
+  --white-muted:  rgba(255, 255, 255, 0.55);
+
+  /* Typography */
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans:  'Inter', -apple-system, sans-serif;
+
+  /* Sizing */
+  --max: 1200px;
+  --section-v: 110px;
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--sans);
+  background: var(--parchment);
+  color: var(--text);
+  line-height: 1.75;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+
+/* ============================================================
+   SCROLL ANIMATIONS
+   ============================================================ */
+.fade-up {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+.fade-up:nth-child(2) { transition-delay: 0.1s; }
+.fade-up:nth-child(3) { transition-delay: 0.2s; }
+.fade-up:nth-child(4) { transition-delay: 0.3s; }
+.fade-up:nth-child(5) { transition-delay: 0.4s; }
+.fade-up:nth-child(6) { transition-delay: 0.5s; }
+
+.fade-in {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.fade-in.visible { opacity: 1; }
+
+/* ============================================================
+   TYPOGRAPHY UTILITIES
+   ============================================================ */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.6rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--amber);
+  margin-bottom: 20px;
+}
+.eyebrow::before, .eyebrow::after {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: var(--amber-strong);
+}
+
+.section-label {
+  font-size: 0.58rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--amber);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--amber-border);
+}
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  padding: 0 48px;
+  gap: 32px;
+  background: rgba(247, 244, 238, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--amber-border);
+  transition: background 0.3s;
+}
+
+.nav-brand {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--forest);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  letter-spacing: 0.01em;
+}
+.nav-brand .brand-reg {
+  color: var(--amber);
+  font-style: italic;
+}
+.nav-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--amber);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.nav-link {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--text-mid);
+  padding: 8px 14px;
+  border-radius: 4px;
+  transition: color 0.2s, background 0.2s;
+  letter-spacing: 0.02em;
+}
+.nav-link:hover {
+  color: var(--forest);
+  background: var(--amber-faint);
+}
+
+.nav-cta {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--parchment);
+  background: var(--forest);
+  padding: 10px 22px;
+  border-radius: 4px;
+  transition: background 0.2s;
+  margin-left: 8px;
+}
+.nav-cta:hover { background: var(--forest-mid); }
+
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
+  background: none;
+  border: none;
+  margin-left: auto;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--forest);
+  transition: all 0.3s;
+}
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 68px;
+  left: 0;
+  right: 0;
+  background: rgba(247, 244, 238, 0.99);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--amber-border);
+  padding: 20px 24px 28px;
+  z-index: 998;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mobile-menu.open { display: flex; }
+
+.mobile-menu a {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-mid);
+  padding: 12px 0;
+  border-bottom: 1px solid var(--amber-border);
+  transition: color 0.2s;
+}
+
+.mobile-menu a:last-child { border-bottom: none; }
+.mobile-menu a:hover { color: var(--forest); }
+
+/* ============================================================
+   HERO — FULL VIEWPORT, CENTERED
+   ============================================================ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 40px 80px;
+  position: relative;
+  overflow: hidden;
+  background: var(--forest-dark);
+}
+
+/* Textured background overlay */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 45%, rgba(193, 127, 58, 0.12) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(193, 127, 58, 0.06) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Subtle grain texture */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+/* Hero background image */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=1600&q=80');
+  /* REPLACE: Bob on the golf course, early morning light, coaching moment */
+  background-size: cover;
+  background-position: center 30%;
+  opacity: 0.12;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.hero-signal-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.62rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--amber);
+  margin-bottom: 32px;
+}
+.hero-signal-line::before, .hero-signal-line::after {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: rgba(193, 127, 58, 0.5);
+}
+
+.hero-headline {
+  font-family: var(--serif);
+  font-size: clamp(2.6rem, 5.5vw, 4.4rem);
+  font-weight: 700;
+  line-height: 1.08;
+  color: var(--white);
+  margin-bottom: 28px;
+  letter-spacing: -0.01em;
+}
+.hero-headline .amber { color: var(--amber); }
+.hero-headline .it { font-style: italic; }
+
+.hero-sub {
+  font-size: clamp(1rem, 1.8vw, 1.18rem);
+  color: var(--white-dim);
+  line-height: 1.85;
+  max-width: 600px;
+  margin: 0 auto 44px;
+  font-weight: 300;
+}
+.hero-sub strong {
+  color: var(--white);
+  font-weight: 500;
+}
+
+.hero-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 52px;
+  flex-wrap: wrap;
+}
+.hero-stat {
+  padding: 0 36px;
+  text-align: center;
+  border-right: 1px solid rgba(193, 127, 58, 0.25);
+  flex: 1;
+}
+.hero-stat:last-child { border-right: none; }
+.hero-stat .stat-num {
+  font-family: var(--serif);
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--amber);
+  line-height: 1;
+  display: block;
+  margin-bottom: 6px;
+}
+.hero-stat .stat-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--white-muted);
+  font-weight: 500;
+}
+
+.hero-cta-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--amber);
+  color: var(--forest-dark);
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 16px 34px;
+  border-radius: 4px;
+  transition: background 0.2s, transform 0.2s;
+  border: none;
+  cursor: pointer;
+}
+.btn-primary:hover {
+  background: var(--amber-light);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  color: var(--white-dim);
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 16px 28px;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.btn-secondary:hover {
+  color: var(--white);
+  border-color: rgba(193, 127, 58, 0.4);
+  background: rgba(193, 127, 58, 0.08);
+}
+
+/* Hero scroll indicator */
+.hero-scroll {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 2;
+}
+.hero-scroll span {
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+.scroll-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, rgba(193, 127, 58, 0.6), transparent);
+  animation: scrollpulse 2s ease-in-out infinite;
+}
+@keyframes scrollpulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.1); }
+}
+
+/* ============================================================
+   PHILOSOPHY STRIP
+   ============================================================ */
+.philosophy-strip {
+  background: var(--amber);
+  padding: 24px 48px;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+.philosophy-strip::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 50%);
+}
+.philosophy-text {
+  font-family: var(--serif);
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  font-weight: 600;
+  font-style: italic;
+  color: var(--forest-dark);
+  line-height: 1.4;
+  position: relative;
+}
+.philosophy-text .em {
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* ============================================================
+   SECTION WRAPPER
+   ============================================================ */
+.section-wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 48px;
+}
+@media (max-width: 768px) { .section-wrap { padding: 0 24px; } }
+
+/* ============================================================
+   THE PROBLEM — ASYMMETRIC LAYOUT
+   ============================================================ */
+.problem-section {
+  padding: var(--section-v) 0;
+  background: var(--parchment);
+  position: relative;
+}
+
+.problem-grid {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.problem-left {
+  position: sticky;
+  top: 96px;
+}
+
+.problem-right {
+  padding-top: 8px;
+}
+
+.big-pull-quote {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1.18;
+  color: var(--forest);
+  margin-bottom: 28px;
+  letter-spacing: -0.01em;
+}
+.big-pull-quote .amber { color: var(--amber); }
+.big-pull-quote .it { font-style: italic; }
+
+.problem-left p {
+  font-size: 0.95rem;
+  color: var(--text-mid);
+  line-height: 1.85;
+  margin-bottom: 20px;
+}
+
+.cost-callout {
+  background: var(--forest);
+  border-radius: 10px;
+  padding: 28px 32px;
+  margin-top: 32px;
+}
+.cost-callout .cc-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--amber);
+  margin-bottom: 12px;
+}
+.cost-callout .cc-text {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  color: var(--white-dim);
+  line-height: 1.55;
+  font-style: italic;
+}
+.cost-callout .cc-attr {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.35);
+  margin-top: 12px;
+  font-style: normal;
+}
+
+.problem-point {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--parchment-3);
+}
+.problem-point:last-child { border-bottom: none; }
+.pp-num {
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--amber-border);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 44px;
+  padding-top: 4px;
+}
+.pp-content {}
+.pp-title {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--forest);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+.pp-body {
+  font-size: 0.9rem;
+  color: var(--text-mid);
+  line-height: 1.8;
+}
+.pp-body strong { color: var(--forest); }
+
+/* ============================================================
+   METHODOLOGY — FULL BLEED DARK
+   ============================================================ */
+.methodology-section {
+  background: var(--forest);
+  padding: var(--section-v) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.methodology-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 50% 60% at 70% 50%, rgba(193, 127, 58, 0.08) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+/* Full-width header block for methodology */
+.methodology-header {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 72px;
+}
+
+.method-eyebrow {
+  font-size: 0.6rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--amber);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+.method-eyebrow::before, .method-eyebrow::after {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: rgba(193, 127, 58, 0.5);
+}
+
+.method-title {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+}
+.method-title .amber { color: var(--amber); font-style: italic; }
+
+.method-intro {
+  font-size: 1.02rem;
+  color: var(--white-dim);
+  line-height: 1.85;
+  margin-bottom: 0;
+  font-weight: 300;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.method-intro strong { color: var(--white); font-weight: 500; }
+
+/* Pattern Recognition definition — full width, two-column */
+.pattern-definition {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: rgba(193, 127, 58, 0.12);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 64px;
+}
+
+.pattern-def-block {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 44px 48px;
+}
+
+.pdb-eyebrow {
+  font-size: 0.58rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--amber);
+  margin-bottom: 16px;
+}
+
+.pdb-title {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 14px;
+  line-height: 1.2;
+}
+
+.pdb-body {
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.85;
+}
+.pdb-body strong { color: var(--white-dim); }
+
+/* SPARK row — 5 equal cards in a single row */
+.spark-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-bottom: 48px;
+}
+
+.spark-letter {
+  background: rgba(193, 127, 58, 0.06);
+  border: 1px solid var(--amber-border);
+  border-radius: 10px;
+  padding: 28px 22px;
+  transition: background 0.2s, border-color 0.2s;
+}
+.spark-letter:hover {
+  background: rgba(193, 127, 58, 0.12);
+  border-color: var(--amber-strong);
+}
+.sl-letter {
+  font-family: var(--serif);
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--amber);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.sl-word {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+.sl-desc {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.68);
+  line-height: 1.6;
+}
+
+.method-insight {
+  border-left: 3px solid var(--amber);
+  padding: 20px 28px;
+  background: rgba(193, 127, 58, 0.06);
+  border-radius: 0 8px 8px 0;
+  max-width: 780px;
+  margin: 0 auto;
+}
+.method-insight p {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--white-dim);
+  line-height: 1.65;
+  margin: 0;
+}
+.method-insight strong { color: var(--amber); font-style: normal; }
+
+/* ============================================================
+   HOW WE WORK — OFFERS
+   ============================================================ */
+.offers-section {
+  padding: var(--section-v) 0;
+  background: var(--parchment);
+  position: relative;
+}
+
+.offers-intro {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 64px;
+}
+.offers-intro h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+  font-weight: 700;
+  color: var(--forest);
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+.offers-intro h2 .amber { color: var(--amber); font-style: italic; }
+.offers-intro p {
+  font-size: 0.98rem;
+  color: var(--text-mid);
+  line-height: 1.85;
+}
+
+/* Client journey timeline */
+.journey-timeline {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 64px;
+  position: relative;
+  padding: 0 24px;
+}
+
+.journey-timeline::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--amber-border), var(--amber-strong), var(--amber-border), transparent);
+}
+
+.jt-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  max-width: 200px;
+  position: relative;
+  z-index: 1;
+}
+
+.jt-dot {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--parchment);
+  border: 2px solid var(--parchment-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  transition: border-color 0.2s, background 0.2s;
+  flex-shrink: 0;
+}
+
+.jt-dot-inner {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  transition: background 0.2s;
+}
+
+.jt-step.active .jt-dot {
+  border-color: var(--amber);
+  background: var(--amber-faint);
+}
+.jt-step.active .jt-dot-inner {
+  background: var(--amber);
+  box-shadow: 0 0 0 4px rgba(193, 127, 58, 0.15);
+}
+
+.jt-num {
+  font-size: 0.55rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.jt-step.active .jt-num { color: var(--amber); }
+
+.jt-name {
+  font-family: var(--serif);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--forest);
+  text-align: center;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+
+.jt-price {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.offers-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+.offer-card {
+  background: var(--white);
+  border: 1px solid var(--parchment-3);
+  border-radius: 14px;
+  padding: 36px 38px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.offer-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(44, 31, 14, 0.12);
+}
+.offer-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--amber);
+}
+.offer-card.flagship {
+  background: var(--forest);
+  border-color: rgba(193, 127, 58, 0.3);
+  margin-top: -12px;
+  box-shadow: 0 24px 64px rgba(44, 31, 14, 0.22);
+}
+.offer-card.flagship::before {
+  background: linear-gradient(90deg, var(--amber), rgba(193, 127, 58, 0.4));
+}
+
+.offer-badge {
+  display: inline-block;
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+.offer-badge.entry {
+  color: var(--amber);
+  background: var(--amber-faint);
+  border: 1px solid var(--amber-border);
+}
+.offer-badge.flagship-badge {
+  color: var(--forest-dark);
+  background: var(--amber);
+  border: 1px solid var(--amber);
+}
+.offer-badge.retainer {
+  color: var(--amber);
+  background: rgba(193, 127, 58, 0.1);
+  border: 1px solid rgba(193, 127, 58, 0.25);
+}
+.offer-badge.speaking {
+  color: var(--text-mid);
+  background: var(--parchment-2);
+  border: 1px solid var(--parchment-3);
+}
+
+.offer-name {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--forest);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+.offer-card.flagship .offer-name { color: var(--white); }
+.offer-name .amber { color: var(--amber); }
+
+.offer-tagline {
+  font-size: 0.88rem;
+  color: var(--text-mid);
+  margin-bottom: 20px;
+  font-style: italic;
+  line-height: 1.6;
+}
+.offer-card.flagship .offer-tagline { color: var(--white-muted); }
+
+.offer-price-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--parchment-3);
+}
+.offer-card.flagship .offer-price-row { border-color: rgba(193, 127, 58, 0.2); }
+.offer-price {
+  font-family: var(--serif);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--amber);
+  line-height: 1;
+}
+.offer-price-note {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.offer-card.flagship .offer-price-note { color: var(--white-muted); }
+
+.offer-includes {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+.offer-includes li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.86rem;
+  color: var(--text-mid);
+  line-height: 1.6;
+}
+.offer-card.flagship .offer-includes li { color: var(--white-dim); }
+.offer-includes li .check {
+  color: var(--amber);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.offer-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  border-radius: 4px;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: none;
+}
+.offer-cta.dark {
+  background: var(--forest);
+  color: var(--white);
+}
+.offer-cta.dark:hover {
+  background: var(--forest-mid);
+  transform: translateY(-1px);
+}
+.offer-cta.amber-btn {
+  background: var(--amber);
+  color: var(--forest-dark);
+}
+.offer-cta.amber-btn:hover {
+  background: var(--amber-light);
+  transform: translateY(-1px);
+}
+.offer-cta.outline {
+  background: transparent;
+  color: var(--amber);
+  border: 1px solid var(--amber-border);
+}
+.offer-cta.outline:hover {
+  background: var(--amber-faint);
+  border-color: var(--amber-strong);
+}
+
+/* Tee Time — single-column card layout, image removed per spec */
+.tee-time-inner {
+  display: block;
+}
+/* tee-time-image hidden via HTML removal */
+
+/* ============================================================
+   PROOF SECTION — FULL BLEED
+   ============================================================ */
+.proof-section {
+  padding: var(--section-v) 0;
+  background: var(--parchment);
+  position: relative;
+}
+
+.proof-header {
+  text-align: center;
+  margin-bottom: 72px;
+}
+.proof-header h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+  font-weight: 700;
+  color: var(--forest);
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+.proof-header h2 .amber { color: var(--amber); font-style: italic; }
+.proof-header p {
+  font-size: 0.98rem;
+  color: var(--text-mid);
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* Stats row */
+.proof-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--parchment-3);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 64px;
+}
+.proof-stat {
+  background: var(--white);
+  padding: 36px 28px;
+  text-align: center;
+}
+.ps-num {
+  font-family: var(--serif);
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: var(--amber);
+  line-height: 1;
+  display: block;
+  margin-bottom: 8px;
+}
+.ps-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* Testimonials — vertical stack, centered, max 760px */
+/* Testimonial carousel */
+.testimonials-grid {
+  position: relative;
+  max-width: 700px;
+  margin: 0 auto 52px;
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.testimonial-card {
+  min-width: 100%;
+  background: var(--white);
+  border: 1px solid var(--parchment-3);
+  border-left: 4px solid var(--amber);
+  border-radius: 12px;
+  padding: 48px 52px;
+  position: relative;
+  box-sizing: border-box;
+}
+.testimonial-card::before {
+  content: '\201C';
+  position: absolute;
+  top: 16px;
+  right: 32px;
+  font-family: var(--serif);
+  font-size: 5rem;
+  color: rgba(193, 127, 58, 0.08);
+  line-height: 1;
+  font-weight: 700;
+}
+.testimonial-text {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--forest);
+  line-height: 1.8;
+  margin-bottom: 24px;
+  position: relative;
+}
+.testimonial-attribution {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.ta-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--forest);
+}
+.ta-title {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+.testimonial-featured { }
+.testimonial-featured .testimonial-text { font-size: 1.15rem; }
+
+/* Carousel controls */
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 28px;
+}
+.carousel-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--parchment-3);
+  background: var(--white);
+  color: var(--forest);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.carousel-btn:hover {
+  background: var(--amber);
+  color: white;
+  border-color: var(--amber);
+}
+.carousel-dots {
+  display: flex;
+  gap: 8px;
+}
+.carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--parchment-3);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.carousel-dot.active {
+  background: var(--amber);
+}
+
+/* Credibility markers */
+.credibility-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  padding: 40px 0 0;
+  border-top: 1px solid var(--parchment-3);
+  flex-wrap: wrap;
+}
+.cred-item {
+  text-align: center;
+}
+.cred-item .ci-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-mid);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.cred-item .ci-value {
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--forest);
+}
+
+/* ============================================================
+   IDEAL CLIENT — WHO THIS IS FOR
+   ============================================================ */
+.ideal-section {
+  background: var(--forest-dark);
+  padding: var(--section-v) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.ideal-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 30% 60%, rgba(193, 127, 58, 0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.ideal-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 64px;
+}
+.ideal-header h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+.ideal-header h2 .amber { color: var(--amber); font-style: italic; }
+.ideal-header p {
+  font-size: 0.98rem;
+  color: var(--white-muted);
+  line-height: 1.85;
+}
+
+.ideal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 52px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ideal-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(193, 127, 58, 0.18);
+  border-radius: 12px;
+  padding: 24px 28px;
+  transition: all 0.3s;
+}
+.ideal-card:hover {
+  background: rgba(193, 127, 58, 0.06);
+  border-color: rgba(193, 127, 58, 0.35);
+  transform: translateY(-3px);
+}
+.ideal-card .ic-icon {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+.ideal-card .ic-title {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--amber);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+.ideal-card .ic-body {
+  font-size: 0.86rem;
+  color: rgba(255,255,255,0.78);
+  line-height: 1.75;
+}
+.ideal-card .ic-body strong { color: var(--white); }
+
+/* You are not right for section */
+.not-for-block {
+  background: rgba(224, 92, 92, 0.05);
+  border: 1px solid rgba(224, 92, 92, 0.2);
+  border-radius: 12px;
+  padding: 32px 36px;
+  max-width: 720px;
+  margin: 0 auto 44px;
+}
+.nfb-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: rgba(224, 92, 92, 0.8);
+  margin-bottom: 14px;
+}
+.nfb-text {
+  font-size: 0.9rem;
+  color: var(--white-muted);
+  line-height: 1.85;
+}
+.nfb-text strong { color: var(--white-dim); }
+
+/* The signal phrases */
+.signal-phrases {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  max-width: 840px;
+  margin: 0 auto;
+}
+.sp-item {
+  background: var(--amber);
+  border: none;
+  border-radius: 8px;
+  padding: 20px 22px;
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--forest-dark);
+  line-height: 1.55;
+  text-align: center;
+  transition: all 0.3s;
+}
+.sp-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(193,127,58,0.3);
+}
+
+/* ============================================================
+   ORIGIN STORY — ASYMMETRIC
+   ============================================================ */
+.origin-section {
+  padding: var(--section-v) 0;
+  background: var(--parchment);
+  position: relative;
+}
+
+.origin-grid {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.origin-content {}
+
+.origin-h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  font-weight: 700;
+  color: var(--forest);
+  line-height: 1.15;
+  margin-bottom: 28px;
+  letter-spacing: -0.01em;
+}
+.origin-h2 .amber { color: var(--amber); font-style: italic; }
+
+.origin-content p {
+  font-size: 0.95rem;
+  color: var(--text-mid);
+  line-height: 1.9;
+  margin-bottom: 20px;
+}
+.origin-content p strong { color: var(--forest); }
+
+.origin-pull {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--forest);
+  border-left: 4px solid var(--amber);
+  padding: 16px 20px;
+  background: rgba(193, 127, 58, 0.05);
+  border-radius: 0 8px 8px 0;
+  margin: 28px 0;
+  line-height: 1.55;
+}
+
+.origin-sidebar {}
+
+.origin-image {
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 28px;
+  position: relative;
+}
+.origin-image img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  /* REPLACE: Bob headshot or coaching moment — professional, warm, golf or office */
+  filter: brightness(0.9) saturate(0.85);
+}
+.origin-image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background: linear-gradient(to top, rgba(26,19,8,0.8), transparent);
+  font-family: var(--serif);
+  font-size: 0.85rem;
+  font-style: italic;
+  color: rgba(247,244,238,0.8);
+}
+
+.credentials-list {
+  background: var(--forest);
+  border-radius: 12px;
+  padding: 28px 30px;
+}
+.cl-title {
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--amber);
+  margin-bottom: 18px;
+}
+.cl-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.84rem;
+  color: var(--white-dim);
+  line-height: 1.6;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.cl-item:last-child { border-bottom: none; }
+.cl-item .cl-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--amber);
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+
+/* ============================================================
+   CONVICTION SECTION — BRAND STATEMENT
+   ============================================================ */
+.conviction-section {
+  padding: 96px 0;
+  background: var(--amber);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.conviction-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232c1f0e' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.conviction-content {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+.conviction-eyebrow {
+  font-size: 0.6rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: rgba(44,31,14,0.6);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+.conviction-eyebrow::before, .conviction-eyebrow::after {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: rgba(44,31,14,0.3);
+}
+.conviction-quote {
+  font-family: var(--serif);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 700;
+  color: var(--forest-dark);
+  line-height: 1.25;
+  margin-bottom: 24px;
+  letter-spacing: -0.01em;
+}
+.conviction-sub {
+  font-size: 1rem;
+  color: rgba(44,31,14,0.85);
+  line-height: 1.8;
+  margin-bottom: 36px;
+}
+.conviction-sub strong { color: var(--forest-dark); }
+
+/* ============================================================
+   CTA SECTION
+   ============================================================ */
+.cta-section {
+  padding: var(--section-v) 0;
+  background: var(--forest);
+  position: relative;
+  overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(193, 127, 58, 0.1) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.cta-inner {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.cta-inner .eyebrow { justify-content: center; }
+.cta-h2 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3.8vw, 3.2rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.12;
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+}
+.cta-h2 .amber { color: var(--amber); font-style: italic; }
+.cta-sub {
+  font-size: 1rem;
+  color: var(--white-muted);
+  line-height: 1.85;
+  margin-bottom: 44px;
+  font-weight: 300;
+}
+.cta-sub strong { color: var(--white-dim); }
+
+.cta-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 40px;
+  text-align: left;
+}
+.cta-option {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(193, 127, 58, 0.2);
+  border-radius: 12px;
+  padding: 28px 30px;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.cta-option:hover {
+  background: rgba(193, 127, 58, 0.08);
+  border-color: rgba(193, 127, 58, 0.45);
+  transform: translateY(-2px);
+}
+.co-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--amber);
+}
+.co-name {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+}
+.co-desc {
+  font-size: 0.84rem;
+  color: var(--white-muted);
+  line-height: 1.7;
+}
+.co-price {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--amber);
+  margin-top: auto;
+  padding-top: 8px;
+  border-top: 1px solid rgba(193, 127, 58, 0.2);
+}
+.co-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-top: 4px;
+}
+.co-cta::after {
+  content: '→';
+  transition: transform 0.2s;
+}
+.cta-option:hover .co-cta::after { transform: translateX(4px); }
+
+.cta-guarantee {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.3);
+  line-height: 1.7;
+}
+.cta-guarantee a {
+  color: var(--amber);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ============================================================
+   NEWSLETTER STRIP
+   ============================================================ */
+.newsletter-strip {
+  background: var(--parchment-2);
+  padding: 72px 0;
+  border-top: 1px solid var(--parchment-3);
+  border-bottom: 1px solid var(--parchment-3);
+}
+.newsletter-inner {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 64px;
+  align-items: center;
+}
+.nl-left {}
+.nl-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--amber);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.nl-label::after {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: var(--amber-border);
+}
+.nl-left h3 {
+  font-family: var(--serif);
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--forest);
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+.nl-left h3 .amber { color: var(--amber); font-style: italic; }
+.nl-left p {
+  font-size: 0.9rem;
+  color: var(--text-mid);
+  line-height: 1.8;
+}
+.nl-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.nl-form input[type="email"] {
+  width: 100%;
+  padding: 14px 18px;
+  background: var(--white);
+  border: 1px solid var(--parchment-3);
+  border-radius: 6px;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.nl-form input[type="email"]:focus {
+  border-color: var(--amber);
+}
+.nl-form input[type="email"]::placeholder { color: var(--text-muted); }
+.nl-form button {
+  width: 100%;
+  padding: 14px 24px;
+  background: var(--forest);
+  color: var(--white);
+  font-family: var(--sans);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.nl-form button:hover { background: var(--forest-mid); }
+.nl-privacy {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  background: var(--forest-dark);
+  padding: 64px 0 40px;
+}
+.footer-inner {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 52px;
+}
+.footer-brand {}
+.footer-brand .brand-mark {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+.footer-brand .brand-mark span { color: var(--amber); font-style: italic; }
+.footer-brand p {
+  font-size: 0.84rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.75;
+  margin-bottom: 20px;
+}
+.footer-social {
+  display: flex;
+  gap: 12px;
+}
+.footer-social a {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(193, 127, 58, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  color: var(--amber);
+  transition: all 0.2s;
+}
+.footer-social a:hover {
+  background: rgba(193, 127, 58, 0.12);
+  border-color: var(--amber-strong);
+}
+
+.footer-col {}
+.footer-col h4 {
+  font-size: 0.64rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--amber);
+  margin-bottom: 18px;
+}
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul li a {
+  font-size: 0.84rem;
+  color: rgba(255,255,255,0.6);
+  transition: color 0.2s;
+}
+.footer-col ul li a:hover { color: var(--white-dim); }
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-bottom p {
+  font-size: 0.74rem;
+  color: rgba(255,255,255,0.25);
+}
+.footer-bottom p span { color: var(--amber); }
+.footer-accred {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.25);
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  :root { --section-v: 88px; }
+
+  .problem-grid { grid-template-columns: 1fr; gap: 48px; }
+  .problem-left { position: static; }
+  .spark-row { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .pattern-definition { grid-template-columns: 1fr; }
+  .offers-grid { grid-template-columns: repeat(2, 1fr); }
+  .origin-grid { grid-template-columns: 1fr; gap: 48px; }
+  .proof-stats { grid-template-columns: repeat(2, 1fr); }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  .journey-timeline { flex-wrap: wrap; gap: 32px; }
+  .journey-timeline::before { display: none; }
+  .jt-step { max-width: 160px; }
+}
+
+@media (max-width: 768px) {
+  :root { --section-v: 72px; }
+
+  .nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .nav-cta { display: none; }
+  .nav-hamburger { display: flex; }
+
+  .hero { padding: 100px 24px 72px; }
+  .hero-stats { gap: 0; }
+  .hero-stat { padding: 0 20px; }
+  .hero-stat .stat-num { font-size: 1.8rem; }
+
+  .philosophy-strip { padding: 20px 24px; }
+
+  .offers-grid { grid-template-columns: 1fr; }
+  .spark-row { grid-template-columns: 1fr 1fr; }
+  .testimonials-grid { max-width: 100%; }
+  .proof-stats { grid-template-columns: repeat(2, 1fr); }
+
+  .ideal-grid { grid-template-columns: 1fr; }
+  .signal-phrases { grid-template-columns: 1fr 1fr; }
+
+  .cta-options { grid-template-columns: 1fr; }
+
+  .newsletter-inner { grid-template-columns: 1fr; gap: 36px; }
+
+  .footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
+
+  .conviction-content { padding: 0 24px; }
+
+  .spark-row { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .hero-stats { flex-direction: column; gap: 20px; }
+  .hero-stat { border-right: none; border-bottom: 1px solid rgba(193,127,58,0.2); padding: 16px 0; }
+  .hero-stat:last-child { border-bottom: none; }
+
+  .signal-phrases { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+<nav class="nav" id="nav">
+  <a class="nav-brand" href="#">
+    <div class="nav-dot"></div>
+    Coach <span class="brand-reg">Reg</span>
+  </a>
+  <div class="nav-links">
+    <a class="nav-link" href="#methodology">The Work</a>
+    <a class="nav-link" href="#offers">Work With Me</a>
+    <a class="nav-link" href="#proof">Proof</a>
+    <a class="nav-link" href="#origin">Story</a>
+    <a class="nav-link" href="#newsletter">Newsletter</a>
+  </div>
+  <a class="nav-link" href="index.html" style="color:var(--amber);font-weight:600;">← Signal Overview</a>
+  <a class="nav-cta" href="#cta">Book a SPARK Session</a>
+  <button class="nav-hamburger" id="bob-hamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="bob-mobile-menu">
+  <a href="#methodology" onclick="closeBobMenu()">The Work</a>
+  <a href="#offers" onclick="closeBobMenu()">Work With Me</a>
+  <a href="#proof" onclick="closeBobMenu()">Proof</a>
+  <a href="#origin" onclick="closeBobMenu()">Story</a>
+  <a href="#newsletter" onclick="closeBobMenu()">Newsletter</a>
+  <a href="#cta" onclick="closeBobMenu()" style="color:var(--amber);font-weight:700;">Book a SPARK Session</a>
+</div>
+
+
+<!-- ============================================================
+     HERO — CENTERED, SIGNAL CODE FRONT AND CENTER
+     ============================================================ -->
+<section class="hero" id="top">
+  <div class="hero-bg" aria-hidden="true"></div>
+
+  <div class="hero-content">
+    <div class="hero-signal-line fade-in">Coach Reg &nbsp;·&nbsp; Pattern Recognition Coach &nbsp;·&nbsp; Since 1984</div>
+
+    <h1 class="hero-headline fade-up">
+      I help founders who've <span class="amber it">outgrown</span> the answers they already have.
+    </h1>
+
+    <p class="hero-sub fade-up" style="margin-bottom:28px;">
+      Forty years. Over 1,500 athletes. One question that changes everything:
+    </p>
+
+    <p class="fade-up" style="font-family:var(--serif);font-size:clamp(1.3rem,2.5vw,1.8rem);font-weight:700;font-style:italic;color:var(--amber);line-height:1.4;margin-bottom:52px;">
+      "What's the pattern running through everything you do?"
+    </p>
+
+    <div class="hero-stats fade-up">
+      <div class="hero-stat">
+        <span class="stat-num" data-target="40">40</span>
+        <span class="stat-label">Years Coaching</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-num" data-target="1500" data-suffix="+">1,500+</span>
+        <span class="stat-label">Athletes Coached</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-num" data-target="1">1</span>
+        <span class="stat-label">Hour to the Pattern</span>
+      </div>
+      <div class="hero-stat">
+        <span class="stat-num">EMCC</span>
+        <span class="stat-label">Accredited</span>
+      </div>
+    </div>
+
+    <div class="hero-cta-group fade-up">
+      <a class="btn-primary" href="#cta">Book a SPARK Session — $1,500</a>
+      <a class="btn-secondary" href="#methodology">See How It Works</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     PHILOSOPHY STRIP
+     ============================================================ -->
+<div class="philosophy-strip">
+  <div class="philosophy-text">
+    "How you do <span class="em">one thing</span> is how you do <span class="em">everything</span> — on the course, I can see it in your swing before you can hide it."
+  </div>
+</div>
+
+
+<!-- ============================================================
+     THE PROBLEM
+     ============================================================ -->
+<section class="problem-section" id="problem">
+  <div class="section-wrap">
+    <div class="section-label fade-up">What Gets in the Way</div>
+
+    <div class="problem-grid">
+      <div class="problem-left fade-up">
+        <h2 class="big-pull-quote">
+          You've done the work.<br>
+          You've hired the coaches.<br>
+          The pattern is <span class="amber it">still there.</span>
+        </h2>
+
+        <p>
+          The word "coach" has been so thoroughly diluted it now means almost nothing. A 25-year-old with a certification and a podcast is a coach. A former burnout survivor with a framework is a coach.
+        </p>
+        <p>
+          You — a founder with ten or twenty years in, who has already sat across from therapists and masterminds and executive coaches — know the difference. You're not looking for information. You've had plenty. You're looking for someone who can see what you can't.
+        </p>
+        <p>
+          Most coaching gives you frameworks. I give you a mirror — and a specific question about what's running underneath everything you're doing.
+        </p>
+
+        <div class="cost-callout">
+          <div class="cc-label">The Blind Spot Nobody Names</div>
+          <div class="cc-text">"Bring me your $50,000 problem. In one hour, we'll find the pattern underneath it."</div>
+          <div class="cc-attr">— The SPARK Session invitation</div>
+        </div>
+      </div>
+
+      <div class="problem-right">
+        <div class="problem-point fade-up">
+          <div class="pp-num">01</div>
+          <div class="pp-content">
+            <div class="pp-title">What got you here isn't working anymore</div>
+            <div class="pp-body">
+              The same instincts, the same style, the same grip — the habits that built your first decade of success are now the ceiling. <strong>Not the floor.</strong> Achievement that no longer satisfies isn't a motivation problem. It's a pattern problem.
+            </div>
+          </div>
+        </div>
+
+        <div class="problem-point fade-up">
+          <div class="pp-num">02</div>
+          <div class="pp-content">
+            <div class="pp-title">The answer is already inside you — but you're too close to see it</div>
+            <div class="pp-body">
+              Founders at a threshold don't need more thinking. They've been thinking for years. They need a different vantage point — someone outside the pressure, watching the swing, reading the pattern from a position of detachment and 40 years of pattern recognition. <strong>You can't see your own blind spot.</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="problem-point fade-up">
+          <div class="pp-num">03</div>
+          <div class="pp-content">
+            <div class="pp-title">The cost of circling is real — and it compounds</div>
+            <div class="pp-body">
+              Every month you spend in indecision on a $50K decision is a month of compounding cost. Not just financially — in clarity, in team confidence, in your own sense of forward motion. The pattern is running whether you can name it or not. <strong>Naming it is the first step to changing it.</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="problem-point fade-up">
+          <div class="pp-num">04</div>
+          <div class="pp-content">
+            <div class="pp-title">Most coaching is prescription when you need diagnosis</div>
+            <div class="pp-body">
+              Your current situation doesn't need a better framework or a 12-week program. It needs someone to sit with you — on the course, in a session, in a conversation — and ask the one question that cracks it open. <strong>The tighter the grip, the worse the shot. In golf and in business.</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     METHODOLOGY — DARK FULL BLEED
+     ============================================================ -->
+<section class="methodology-section" id="methodology">
+  <div class="section-wrap">
+
+    <!-- Full-width header -->
+    <div class="methodology-header fade-up">
+      <div class="method-eyebrow">The SPARK Methodology</div>
+      <h2 class="method-title">
+        Pattern recognition<br>for people at a <span class="amber">threshold.</span>
+      </h2>
+      <p class="method-intro">
+        SPARK isn't a coaching framework. It's a diagnostic lens developed over 40 years on the court, in the locker room, and on the fairway. <strong>It finds the pattern running underneath your decisions</strong> — the one that shows up in how you grip a golf club, how you open a difficult conversation, and how you've structured your business.
+      </p>
+    </div>
+
+    <!-- Pattern Recognition definition — two equal columns -->
+    <div class="pattern-definition fade-up">
+      <div class="pattern-def-block">
+        <div class="pdb-eyebrow">The Diagnostic</div>
+        <div class="pdb-title">Pattern Recognition</div>
+        <div class="pdb-body">
+          Every founder has a pattern. It's the thread that runs through how they make decisions, how they handle pressure, how they treat their people, and how they've built their company. <strong>Most can't see it — because they're inside it.</strong> Pattern recognition is the ability to stand outside someone's story long enough to name the through-line they've been living.
+        </div>
+      </div>
+      <div class="pattern-def-block">
+        <div class="pdb-eyebrow">Why the Golf Course</div>
+        <div class="pdb-title">The Unguarded Reveal</div>
+        <div class="pdb-body">
+          Under mild, unguarded pressure — a bad lie, a crucial putt, a hole that isn't going well — the mask comes off. <strong>How you grip a 7-iron under stress is how you grip a partnership decision.</strong> How you talk to yourself after a slice is how you talk to yourself after a hard quarter. The course doesn't care about your title. It just shows you the pattern.
+        </div>
+      </div>
+    </div>
+
+    <!-- SPARK acronym — 5 cards in a row -->
+    <div class="spark-row">
+      <div class="spark-letter fade-up">
+        <div class="sl-letter">S</div>
+        <div class="sl-word">Surface</div>
+        <div class="sl-desc">What you think the issue is. The stated problem. The thing you brought to the session.</div>
+      </div>
+      <div class="spark-letter fade-up">
+        <div class="sl-letter">P</div>
+        <div class="sl-word">Pattern</div>
+        <div class="sl-desc">The recurring behaviour underneath. How it shows up across every domain — work, relationships, performance.</div>
+      </div>
+      <div class="spark-letter fade-up">
+        <div class="sl-letter">A</div>
+        <div class="sl-word">Awareness</div>
+        <div class="sl-desc">The moment you see it clearly for the first time. The mirror held still long enough to look at it.</div>
+      </div>
+      <div class="spark-letter fade-up">
+        <div class="sl-letter">R</div>
+        <div class="sl-word">Reframe</div>
+        <div class="sl-desc">The specific shift that changes what's possible. Not a prescription — a new angle on the same reality.</div>
+      </div>
+      <div class="spark-letter fade-up">
+        <div class="sl-letter">K</div>
+        <div class="sl-word">Kinetic Action</div>
+        <div class="sl-desc">The one move that follows from the awareness. Concrete. Specific. Momentum-creating. Not a list — the next step.</div>
+      </div>
+    </div>
+
+    <div class="method-insight fade-up">
+      <p>"I'm a Purpose Factor® facilitator and EMCC-accredited executive coach. But the methodology that matters — the one that cracked open a Brandywine M&A partner and a Chicago-based CEO in a single hour — came from 40 years on a golf course. <strong>The swing doesn't lie.</strong>"</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     HOW WE WORK — OFFERS
+     ============================================================ -->
+<section class="offers-section" id="offers">
+  <div class="section-wrap">
+
+    <div class="offers-intro fade-up">
+      <div class="section-label" style="justify-content:center">How We Work Together</div>
+      <h2>From first conversation<br>to <span class="amber">long-term engagement.</span></h2>
+      <p>
+        Every client relationship begins with a single diagnostic hour. Most go further. The journey below is designed so each step creates a natural invitation to go deeper — never a transaction, always a progression.
+      </p>
+    </div>
+
+    <!-- Offers grid -->
+    <div class="offers-grid">
+
+      <!-- SPARK Session — top left -->
+      <div class="offer-card fade-up">
+        <div class="offer-badge entry">Entry Point</div>
+        <div class="offer-name">SPARK Session<span style="color:var(--amber)">™</span></div>
+        <div class="offer-tagline">One hour. One insight. One action. The diagnostic that strips away noise and maps the next move.</div>
+        <div class="offer-price-row">
+          <div class="offer-price">$1,500</div>
+          <div class="offer-price-note">60 minutes<br>Remote or in-person</div>
+        </div>
+        <ul class="offer-includes">
+          <li><span class="check">✓</span> A specific decision or threshold on the table — not a general exploration</li>
+          <li><span class="check">✓</span> Pattern identification in the first 20 minutes</li>
+          <li><span class="check">✓</span> The one question that changes the angle</li>
+          <li><span class="check">✓</span> A single concrete next action before we hang up</li>
+          <li><span class="check">✓</span> Written summary of the pattern and the move — within 48 hours</li>
+        </ul>
+        <a class="offer-cta dark" href="#cta">Book a SPARK Session →</a>
+      </div>
+
+      <!-- FLAGSHIP: Tee Time — top right -->
+      <div class="offer-card flagship fade-up">
+        <div class="offer-badge flagship-badge">Flagship Experience</div>
+        <div class="offer-name">SPARK Tee Time<span class="amber">™</span></div>
+        <div class="offer-tagline">A private, all-inclusive day designed to reset the pattern — on the course and off it.</div>
+        <div class="offer-price-row">
+          <div class="offer-price">$5,500</div>
+          <div class="offer-price-note">All-inclusive · One day<br>Follow-up session included</div>
+        </div>
+        <ul class="offer-includes">
+          <li><span class="check">✓</span> Pre-round clarity call (60 min) — we identify the exact pattern to watch for</li>
+          <li><span class="check">✓</span> Breakfast together before we tee off — the conversation starts here</li>
+          <li><span class="check">✓</span> 18 holes of coaching in motion — your game becomes your diagnostic</li>
+          <li><span class="check">✓</span> Early dinner debrief — integrating what the course revealed</li>
+          <li><span class="check">✓</span> Black-car service, two nights, two meals — everything handled</li>
+          <li><span class="check">✓</span> Follow-up SPARK Session one week later — pattern check, next move</li>
+          <li><span class="check">✓</span> Optional plus-one — bring a business partner or a peer who needs this</li>
+        </ul>
+        <a class="offer-cta amber-btn" href="#cta">Enquire About Tee Time →</a>
+      </div>
+
+      <!-- Retainer -->
+      <div class="offer-card fade-up">
+        <div class="offer-badge retainer">Ongoing Engagement</div>
+        <div class="offer-name">SPARK Retainer<span style="color:var(--amber)">™</span></div>
+        <div class="offer-tagline">The pattern doesn't resolve in a day. For the ones who want to keep the mirror active.</div>
+        <div class="offer-price-row">
+          <div class="offer-price">$3,000<span style="font-size:1rem;font-weight:400">/mo</span></div>
+          <div class="offer-price-note">Min. 3 months<br>2 sessions/month + async</div>
+        </div>
+        <ul class="offer-includes">
+          <li><span class="check">✓</span> Two 60-minute sessions per month — pattern tracking, next moves</li>
+          <li><span class="check">✓</span> Async access between sessions — voice note or message, always replied to</li>
+          <li><span class="check">✓</span> Pattern journal — a running record of what we've named and what's shifting</li>
+          <li><span class="check">✓</span> Priority access to SPARK Sessions and Tee Time dates</li>
+          <li><span class="check">✓</span> 3-month minimum ensures the pattern has time to actually change</li>
+        </ul>
+        <a class="offer-cta dark" href="#cta">Learn About Retainer →</a>
+      </div>
+
+      <!-- SPARK Keynote -->
+      <div class="offer-card fade-up">
+        <div class="offer-badge speaking">Speaking</div>
+        <div class="offer-name">SPARK Keynote<span style="color:var(--amber)">™</span></div>
+        <div class="offer-tagline">"How you do one thing is how you do everything" — for executive audiences, founder summits, and high-performance organisations.</div>
+        <div class="offer-price-row">
+          <div class="offer-price">$5K–$20K</div>
+          <div class="offer-price-note">45–60 minutes<br>Enquire for availability</div>
+        </div>
+        <ul class="offer-includes">
+          <li><span class="check">✓</span> Tailored to your audience — founders, executives, athletes, or mixed leaders</li>
+          <li><span class="check">✓</span> Pattern recognition framework applied to a room of people at once</li>
+          <li><span class="check">✓</span> Every talk generates downstream SPARK Session bookings from attendees</li>
+          <li><span class="check">✓</span> Q&amp;A and post-talk availability included</li>
+        </ul>
+        <a class="offer-cta dark" href="#cta">Enquire About Speaking →</a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     PROOF — RESULTS, TESTIMONIALS, CREDIBILITY
+     ============================================================ -->
+<section class="proof-section" id="proof">
+  <div class="section-wrap">
+    <div class="proof-header fade-up">
+      <div class="eyebrow" style="justify-content:center;">Client Outcomes</div>
+      <h2>The work speaks for <span class="amber">itself.</span></h2>
+      <p>
+        After 40 years, the proof isn't in the testimonials. It's in the patterns that shifted, the decisions that got made, and the people who send referrals years after their first session.
+      </p>
+    </div>
+
+    <!-- Stats -->
+    <div class="proof-stats fade-up">
+      <div class="proof-stat">
+        <span class="ps-num" data-target="40">40</span>
+        <span class="ps-label">Years Coaching at the Highest Level</span>
+      </div>
+      <div class="proof-stat">
+        <span class="ps-num" data-target="1500" data-suffix="+">1,500+</span>
+        <span class="ps-label">Athletes and Leaders Coached</span>
+      </div>
+      <div class="proof-stat">
+        <span class="ps-num">$50K+</span>
+        <span class="ps-label">Avg. Decision Value Unlocked per Session</span>
+      </div>
+      <div class="proof-stat">
+        <span class="ps-num">1 hr</span>
+        <span class="ps-label">Time to Pattern in a SPARK Session</span>
+      </div>
+    </div>
+
+    <!-- Testimonial Carousel -->
+    <div class="testimonials-grid" id="testimonialCarousel">
+      <div class="carousel-track" id="carouselTrack">
+
+        <div class="testimonial-card testimonial-featured">
+          <div class="testimonial-text">
+            "I've worked with other coaches before, but Bob is truly one of the best I've ever had the pleasure of working with. His ability to connect seemingly unrelated aspects of life — from the golf course to the boardroom — and identify the underlying pattern is extraordinary. Within an hour, he had named something I'd been circling for three years."
+          </div>
+          <div class="testimonial-attribution">
+            <div class="ta-name">Michael Liebowitz</div>
+            <div class="ta-title">Founder, Magnetic Mind Studio</div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-text">
+            "Bob has a remarkable ability to cut through the noise and identify what's actually happening beneath the surface. For someone in M&A, where the stakes are always high and the decisions rarely black and white, having that clarity in an hour is invaluable."
+          </div>
+          <div class="testimonial-attribution">
+            <div class="ta-name">Frank Michel</div>
+            <div class="ta-title">Partner, Brandywine M&A</div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-text">
+            "As someone who grew up in sport and moved into building a company, I needed a coach who could speak both languages fluently. Bob doesn't just understand performance — he lives it. The SPARK Session gave me a framework for my next six months that no masterminds or strategy sessions had come close to."
+          </div>
+          <div class="testimonial-attribution">
+            <div class="ta-name">Jhana Li</div>
+            <div class="ta-title">Founder, Spyglass Ops</div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-text">
+            "Jim Spaulding built something real in Philadelphia. When I saw his client list include Bob Regnerus, I called. That call turned into the most productive two hours I'd had in a decade. The pattern Bob identified in the first twenty minutes turned out to be the hinge that everything else was swinging on."
+          </div>
+          <div class="testimonial-attribution">
+            <div class="ta-name">Jim Spaulding</div>
+            <div class="ta-title">Founder-CEO, Philadelphia</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-btn" onclick="moveCarousel(-1)">←</button>
+        <div class="carousel-dots">
+          <div class="carousel-dot active" onclick="goToSlide(0)"></div>
+          <div class="carousel-dot" onclick="goToSlide(1)"></div>
+          <div class="carousel-dot" onclick="goToSlide(2)"></div>
+          <div class="carousel-dot" onclick="goToSlide(3)"></div>
+        </div>
+        <button class="carousel-btn" onclick="moveCarousel(1)">→</button>
+      </div>
+    </div>
+
+    <!-- Credibility bar -->
+    <div class="credibility-bar fade-up">
+      <div class="cred-item">
+        <div class="ci-label">Certification</div>
+        <div class="ci-value">EMCC Accredited</div>
+      </div>
+      <div class="cred-item">
+        <div class="ci-label">Methodology</div>
+        <div class="ci-value">Purpose Factor® Facilitator</div>
+      </div>
+      <div class="cred-item">
+        <div class="ci-label">Current Role</div>
+        <div class="ci-value">Head Golf Coach</div>
+      </div>
+      <div class="cred-item">
+        <div class="ci-label">Newsletter</div>
+        <div class="ci-value">SPARK Insights™</div>
+      </div>
+      <div class="cred-item">
+        <div class="ci-label">Speaking</div>
+        <div class="ci-value">Executive Audiences</div>
+      </div>
+      <div class="cred-item">
+        <div class="ci-label">Since</div>
+        <div class="ci-value">1984</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     WHO THIS IS FOR
+     ============================================================ -->
+<section class="ideal-section" id="who">
+  <div class="section-wrap">
+
+    <div class="ideal-header fade-up">
+      <div class="eyebrow" style="color:var(--amber);justify-content:center;">Who This Is For</div>
+      <h2>Founders at a <span class="amber">threshold.</span></h2>
+      <p>
+        The clearest signal that this work is right for you? You've already done the work — and the pattern is still there. Precise positioning attracts precise people. Here's who I do my best work with.
+      </p>
+    </div>
+
+    <div class="ideal-grid">
+      <div class="ideal-card fade-up">
+        <div class="ic-icon">⧖</div>
+        <div class="ic-title">You've built something real</div>
+        <div class="ic-body">
+          Founder or CEO. Ten to thirty years in. Revenue between $2M and $50M. Respected externally. <strong>Internally questioning everything.</strong> The external markers of success are in place — but they no longer feel like the destination.
+        </div>
+      </div>
+      <div class="ideal-card fade-up">
+        <div class="ic-icon">◈</div>
+        <div class="ic-title">You've outgrown the answers you have</div>
+        <div class="ic-body">
+          You've tried therapy. Masterminds. Executive retreats. Other coaches. They were useful — but you're not looking for information. <strong>You're looking for someone who can see what you can't.</strong> The blind spot nobody has named yet.
+        </div>
+      </div>
+      <div class="ideal-card fade-up">
+        <div class="ic-icon">◎</div>
+        <div class="ic-title">You have a specific decision in front of you</div>
+        <div class="ic-body">
+          A real threshold — a transition, a partnership decision, a chapter that needs to end, a direction you can't commit to yet. <strong>Something with real stakes attached.</strong> The SPARK Session requires a specific decision. Not general motivation.
+        </div>
+      </div>
+      <div class="ideal-card fade-up">
+        <div class="ic-icon">∫</div>
+        <div class="ic-title">You're ready to act on what you discover</div>
+        <div class="ic-body">
+          This work moves fast. In one hour, you'll see something you haven't seen before. The question is whether you'll do something with it. <strong>My best clients act within a week of our first session.</strong> If you're looking for permission to keep circling — I'm not your guy.
+        </div>
+      </div>
+    </div>
+
+    <!-- Signal phrases -->
+    <div class="ideal-header fade-up" style="margin-bottom:28px;">
+      <p style="font-size:0.82rem;color:rgba(255,255,255,0.4);letter-spacing:0.06em;">If you've said any of these recently, we should talk.</p>
+    </div>
+    <div class="signal-phrases fade-up">
+      <div class="sp-item">"I feel stuck but I don't know why"</div>
+      <div class="sp-item">"What got me here isn't working anymore"</div>
+      <div class="sp-item">"I've outgrown this version of myself"</div>
+      <div class="sp-item">"Something feels off and I can't articulate it"</div>
+      <div class="sp-item">"I know the answer — I just can't see it"</div>
+      <div class="sp-item">"I'm exhausted by achievement that no longer satisfies"</div>
+    </div>
+
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     ORIGIN STORY
+     ============================================================ -->
+<section class="origin-section" id="origin">
+  <div class="section-wrap">
+    <div class="section-label fade-up">The Story Behind the Work</div>
+
+    <div class="origin-grid">
+      <div class="origin-content">
+        <h2 class="origin-h2 fade-up">
+          Forty years in locker rooms<br>taught me something <span class="amber it">therapy school never does.</span>
+        </h2>
+
+        <p class="fade-up">
+          My business runs on conversations. When people experience me in a room, things shift for them. That's been true for 40 years of coaching and every client I've ever had. But for most of those years, that truth stayed in locker rooms and on golf courses — places where the social contract allows you to be direct, to ask the uncomfortable question, to hold a mirror steady while someone looks at themselves.
+        </p>
+
+        <p class="fade-up">
+          I've been a head golf coach for most of my adult life. And long before "executive coaching" was a category on LinkedIn, I was doing it on the fairway — watching how a CEO grips his 7-iron in the same white-knuckled way he grips a partnership decision. Watching how a founder pre-autopsies a shot before she takes it, the same way she pre-apologises before every difficult conversation.
+        </p>
+
+        <div class="origin-pull fade-up">
+          "How you do one thing is how you do everything. On the course, I can see it in your swing before you can hide it."
+        </div>
+
+        <p class="fade-up">
+          The insight that built everything I do came slowly, over thousands of rounds with thousands of athletes. <strong>The technical issue is never the real issue.</strong> The slice isn't about the club path — it's about the tension that arrived three holes ago and never left. The bad business decision isn't about the market — it's about the pattern that's been running since the company was founded.
+        </p>
+
+        <p class="fade-up">
+          Over four decades, I've coached 1,500 athletes and leaders. Purpose Factor® certified. EMCC accredited. But the methodology that actually works — the one that cracked open a Brandywine M&A partner and a Chicago-based CEO in a single hour — came from watching human beings under the mild, unguarded pressure of a round of golf.
+        </p>
+
+        <p class="fade-up">
+          The SPARK methodology formalized what I'd been doing intuitively for years. The golf course became the diagnostic tool it always was. And the founders who found me — people like Frank Michel, Jhana Li, Michael Liebowitz — found that in one conversation, I could name the pattern they'd been circling for years.
+        </p>
+
+        <p class="fade-up">
+          I'm building something longer-term with Brandon Fong — a platform anchored in the athletics lens, for the leaders who want to work at the intersection of sport and performance. But the foundation for everything is the same: conversations that lead to trust, that lead to people experiencing the work.
+        </p>
+
+        <p class="fade-up">
+          <strong>Everything starts with getting into more rooms.</strong> That's still the needle after 40 years.
+        </p>
+      </div>
+
+      <div class="origin-sidebar fade-up">
+        <div class="origin-image">
+          <img
+            src="https://images.unsplash.com/photo-1593111774240-d529f12cf4bb?w=700&q=80"
+            alt="Coach Reg — Bob Regnerus"
+            loading="lazy"
+          >
+          <!-- REPLACE: Professional photo of Bob — ideally on the course or in a coaching setting -->
+          <div class="origin-image-overlay">Coach Reg · 40 years</div>
+        </div>
+
+        <div class="credentials-list">
+          <div class="cl-title">Credentials & Background</div>
+          <div class="cl-item">
+            <div class="cl-dot"></div>
+            EMCC Accredited Executive Coach
+          </div>
+          <div class="cl-item">
+            <div class="cl-dot"></div>
+            Purpose Factor® Certified Facilitator
+          </div>
+          <div class="cl-item">
+            <div class="cl-dot"></div>
+            Head Golf Coach (Current)
+          </div>
+          <div class="cl-item">
+            <div class="cl-dot"></div>
+            40 Years Coaching Athletes and Leaders
+          </div>
+          <div class="cl-item">
+            <div class="cl-dot"></div>
+            1,500+ Athletes Through the Work
+          </div>
+          <div class="cl-item">
+            <div class="cl-dot"></div>
+            SPARK Insights™ Newsletter Author
+          </div>
+          <div class="cl-item">
+            <div class="cl-dot"></div>
+            Keynote Speaker — Executive Audiences
+          </div>
+          <div class="cl-item">
+            <div class="cl-dot"></div>
+            Co-building The Athletics Island with Brandon Fong
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONVICTION STATEMENT
+     ============================================================ -->
+<section class="conviction-section">
+  <div class="conviction-content">
+    <div class="conviction-eyebrow">The Signal Word</div>
+    <div class="conviction-quote">
+      Conviction is what I build in every client. It's what separates the ones who move from the ones who keep circling.
+    </div>
+    <p class="conviction-sub">
+      It's the thing I've been giving away for 40 years — in locker rooms, on fairways, and in boardrooms. <strong>Now it's time to broadcast it.</strong>
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     NEWSLETTER STRIP
+     ============================================================ -->
+<section class="newsletter-strip" id="newsletter">
+  <div class="section-wrap">
+    <div class="newsletter-inner">
+      <div class="nl-left fade-up">
+        <div class="nl-label">SPARK Insights™</div>
+        <h3 style="font-size:clamp(1.6rem,3vw,2.4rem);">Pattern recognition,<br>delivered <span class="amber">weekly.</span></h3>
+        <p>
+          Every edition opens with a specific scene — on the course, in a session, from 40 years of coaching — and closes with one question designed to make you sit with something. Not a newsletter. A mirror.
+        </p>
+      </div>
+      <div class="nl-right fade-up">
+        <form class="nl-form" name="spark-newsletter" method="POST" data-netlify="true" action="/thank-you">
+          <input type="hidden" name="form-name" value="spark-newsletter">
+          <input type="email" name="email" placeholder="Your email address" required aria-label="Email address">
+          <button type="submit">Join SPARK Insights™ — Free</button>
+        </form>
+        <p class="nl-privacy">No noise. One email, some weeks. Unsubscribe anytime.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CTA SECTION
+     ============================================================ -->
+<section class="cta-section" id="cta">
+  <div class="section-wrap">
+    <div class="cta-inner">
+      <div class="eyebrow" style="justify-content:center;">Begin the Work</div>
+      <h2 class="cta-h2">
+        Bring me your <span class="amber">$50,000</span> problem.<br>
+        In one hour, we'll find<br>the pattern underneath it.
+      </h2>
+      <p class="cta-sub">
+        The SPARK Session is a one-hour diagnostic for founders and leaders at a threshold. <strong>You leave with a pattern named and a move mapped.</strong> Most clients book their first session within 24 hours of realising they needed one.
+      </p>
+
+      <div class="cta-options">
+        <a class="cta-option" href="https://calendly.com" target="_blank" rel="noopener">
+          <!-- REPLACE: real Calendly link for SPARK Session booking -->
+          <div class="co-label">Entry Point</div>
+          <div class="co-name">SPARK Session™</div>
+          <div class="co-desc">One hour. One insight. One action. A specific decision on the table — and the pattern underneath it, named.</div>
+          <div class="co-price">$1,500 · 60 minutes</div>
+          <span class="co-cta">Book Now</span>
+        </a>
+        <a class="cta-option" href="mailto:bob@coachregnerus.com" target="_blank" rel="noopener">
+          <!-- REPLACE: real contact email / inquiry form link -->
+          <div class="co-label">Flagship Experience</div>
+          <div class="co-name">SPARK Tee Time™</div>
+          <div class="co-desc">A private all-day experience on the course. Pre-round clarity call, 18 holes of coaching in motion, dinner debrief, follow-up session.</div>
+          <div class="co-price">$5,500 · Full day · All-inclusive</div>
+          <span class="co-cta">Enquire</span>
+        </a>
+      </div>
+
+      <p class="cta-guarantee">
+        Not sure which is right for you? <a href="mailto:bob@coachregnerus.com">Send a message</a> and we'll figure it out in a brief conversation. I respond to every message personally.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+  <div class="section-wrap">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="brand-mark">Coach <span>Reg</span> · Bob Regnerus</div>
+        <p>
+          Pattern recognition for founders and leaders at threshold moments. 40 years. 1,500 athletes. One question: what's the pattern running through everything you do?
+        </p>
+        <div class="footer-social">
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="Instagram">&#9679;</a>
+          <a href="#" aria-label="Twitter">&#x2715;</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Work</h4>
+        <ul>
+          <li><a href="#offers">SPARK Session™</a></li>
+          <li><a href="#offers">SPARK Tee Time™</a></li>
+          <li><a href="#offers">SPARK Retainer™</a></li>
+          <li><a href="#offers">Keynote Speaking</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>About</h4>
+        <ul>
+          <li><a href="#methodology">The Methodology</a></li>
+          <li><a href="#origin">My Story</a></li>
+          <li><a href="#proof">Client Proof</a></li>
+          <li><a href="#who">Is This For You?</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#newsletter">SPARK Insights™</a></li>
+          <li><a href="#cta">Book a Session</a></li>
+          <li><a href="mailto:bob@coachregnerus.com">Get in Touch</a></li>
+          <li><a href="#">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Bob Regnerus · <span>Coach Reg</span> · All rights reserved</p>
+      <div class="footer-accred">
+        <span>EMCC Accredited</span>
+        <span>Purpose Factor® Facilitator</span>
+        <span>Built by The Signal</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ============================================================
+     JAVASCRIPT — SCROLL ANIMATIONS + COUNTERS
+     ============================================================ -->
+<script>
+/* ---- IntersectionObserver scroll animations ---- */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-up, .fade-in').forEach(el => observer.observe(el));
+
+/* ---- Mobile nav ---- */
+const bobHamburger = document.getElementById('bob-hamburger');
+const bobMobileMenu = document.getElementById('bob-mobile-menu');
+
+if (bobHamburger && bobMobileMenu) {
+  bobHamburger.addEventListener('click', () => {
+    const isOpen = bobMobileMenu.classList.contains('open');
+    bobMobileMenu.classList.toggle('open');
+    bobHamburger.setAttribute('aria-expanded', String(!isOpen));
+  });
+
+  document.addEventListener('click', (e) => {
+    if (bobMobileMenu.classList.contains('open') && !bobMobileMenu.contains(e.target) && !bobHamburger.contains(e.target)) {
+      bobMobileMenu.classList.remove('open');
+      bobHamburger.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+
+function closeBobMenu() {
+  const menu = document.getElementById('bob-mobile-menu');
+  const btn = document.getElementById('bob-hamburger');
+  if (menu) menu.classList.remove('open');
+  if (btn) btn.setAttribute('aria-expanded', 'false');
+}
+
+/* ---- Animated counters ---- */
+function animateCounter(el, target, suffix, duration) {
+  let start = null;
+  const isDecimal = target % 1 !== 0;
+  function step(ts) {
+    if (!start) start = ts;
+    const progress = Math.min((ts - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    const val = Math.round(ease * target);
+    el.textContent = val.toLocaleString() + (suffix || '');
+    if (progress < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseFloat(el.dataset.target);
+      const suffix = el.dataset.suffix || '';
+      if (!isNaN(target)) {
+        animateCounter(el, target, suffix, 2200);
+      }
+      counterObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('[data-target]').forEach(el => counterObserver.observe(el));
+
+/* ---- Navbar background transition ---- */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 60) {
+    nav.style.boxShadow = '0 2px 24px rgba(44,31,14,0.12)';
+  } else {
+    nav.style.boxShadow = 'none';
+  }
+}, { passive: true });
+
+/* ---- Smooth anchor scroll with offset ---- */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      const offset = 72;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+});
+
+// Testimonial carousel
+let currentSlide = 0;
+const track = document.getElementById('carouselTrack');
+const dots = document.querySelectorAll('.carousel-dot');
+const totalSlides = dots.length;
+
+function goToSlide(n) {
+  currentSlide = n;
+  track.style.transform = `translateX(-${currentSlide * 100}%)`;
+  dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+}
+
+function moveCarousel(dir) {
+  let next = currentSlide + dir;
+  if (next < 0) next = totalSlides - 1;
+  if (next >= totalSlides) next = 0;
+  goToSlide(next);
+}
+
+// Auto-advance every 6 seconds
+setInterval(() => moveCarousel(1), 6000);
+</script>
+
+</body>
+</html>
