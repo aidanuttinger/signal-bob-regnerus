@@ -16,7 +16,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <!--
   REFERENCE SITES STUDIED:
@@ -80,8 +80,7 @@
 
   /* Typography */
   --serif: 'Playfair Display', Georgia, serif;
-  --sans:  'Syne', system-ui, sans-serif;
-  --mono:  'DM Mono', monospace;
+  --sans:  'Inter', -apple-system, sans-serif;
 
   /* Sizing */
   --max: 1200px;
@@ -110,60 +109,6 @@ body {
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 
-/* ---- Accessibility: focus styles ---- */
-:focus { outline: none; }
-
-:focus-visible {
-  outline: 2px solid var(--sage);
-  outline-offset: 3px;
-  border-radius: 3px;
-}
-
-/* Button-specific */
-.btn-primary:focus-visible,
-.btn-secondary:focus-visible,
-.nav-cta:focus-visible,
-.offer-cta:focus-visible {
-  outline: 2px solid var(--sage);
-  outline-offset: 4px;
-}
-
-/* Input focus — already has a custom style, extend it */
-.nl-form input[type="email"]:focus-visible {
-  outline: none; /* custom style already handles this */
-}
-
-/* ---- Skip link ---- */
-.skip-link {
-  position: absolute;
-  top: -120%;
-  left: 24px;
-  background: var(--green);
-  color: var(--white);
-  font-family: var(--sans);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 12px 20px;
-  border-radius: 0 0 4px 4px;
-  z-index: 99999;
-  transition: top 0.2s;
-}
-.skip-link:focus { top: 0; }
-
-/* ============================================================
-   PAGE VEIL
-   ============================================================ */
-#page-veil {
-  position: fixed;
-  inset: 0;
-  background: var(--deeper);
-  z-index: 10000;
-  pointer-events: none;
-  transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
 /* ============================================================
    SCROLL PROGRESS BAR
    ============================================================ */
@@ -171,11 +116,12 @@ a { color: inherit; text-decoration: none; }
   position: fixed;
   top: 0;
   left: 0;
-  height: 2px;
+  height: 3px;
   width: 0%;
   background: linear-gradient(90deg, var(--green), var(--sage));
   z-index: 10000;
   transition: width 0.1s linear;
+  box-shadow: 0 0 8px rgba(116, 198, 157, 0.5);
 }
 
 /* ============================================================
@@ -186,101 +132,19 @@ a { color: inherit; text-decoration: none; }
   transform: translateY(36px);
   transition: opacity 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94),
               transform 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  will-change: opacity, transform;
 }
-.fade-up.visible { opacity: 1; transform: translateY(0); will-change: auto; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+.fade-up:nth-child(2) { transition-delay: 0.1s; }
+.fade-up:nth-child(3) { transition-delay: 0.2s; }
+.fade-up:nth-child(4) { transition-delay: 0.3s; }
+.fade-up:nth-child(5) { transition-delay: 0.4s; }
+.fade-up:nth-child(6) { transition-delay: 0.5s; }
 
 .fade-in {
   opacity: 0;
   transition: opacity 1s ease;
-  will-change: opacity, transform;
 }
-.fade-in.visible { opacity: 1; will-change: auto; }
-
-/* ============================================================
-   HERO LOAD SEQUENCE — gated behind body.page-loaded
-   ============================================================ */
-.hero-signal-line,
-.hero-headline,
-.hero-sub,
-.hero-quote,
-.hero-stats,
-.hero-cta-group {
-  opacity: 0;
-}
-
-body.page-loaded .hero-signal-line {
-  animation: fadeInUp 0.8s 0.3s forwards;
-}
-body.page-loaded .hero-headline {
-  animation: fadeInUp 0.9s 0.5s forwards;
-}
-body.page-loaded .hero-sub {
-  animation: fadeInUp 0.8s 0.75s forwards;
-}
-body.page-loaded .hero-quote {
-  animation: fadeInUp 0.8s 0.9s forwards;
-}
-body.page-loaded .hero-stats {
-  animation: fadeInUp 0.8s 1.1s forwards;
-}
-body.page-loaded .hero-cta-group {
-  animation: fadeInUp 0.8s 1.3s forwards;
-}
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ============================================================
-   will-change DECLARATIONS
-   ============================================================ */
-.hero-orb { will-change: transform; }
-
-.offer-card,
-.spark-letter,
-.ideal-card,
-.sp-item,
-.cta-option { will-change: transform; }
-
-.offer-card:hover,
-.spark-letter:hover,
-.ideal-card:hover { will-change: auto; }
-
-/* ============================================================
-   prefers-reduced-motion
-   ============================================================ */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-
-  .fade-up,
-  .fade-in {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-
-  .hero-signal-line,
-  .hero-headline,
-  .hero-sub,
-  .hero-quote,
-  .hero-stats,
-  .hero-cta-group {
-    opacity: 1 !important;
-  }
-
-  .hero-orb { animation: none !important; }
-  .scroll-line { animation: none !important; }
-  #progress-bar { transition: none !important; }
-  #page-veil { transition: none !important; }
-}
+.fade-in.visible { opacity: 1; }
 
 /* ============================================================
    TYPOGRAPHY UTILITIES
@@ -481,27 +345,27 @@ body.page-loaded .hero-cta-group {
   animation: orbFloat 12s ease-in-out infinite;
 }
 .hero-orb-1 {
-  width: 700px;
-  height: 700px;
-  background: radial-gradient(circle, rgba(45,106,79,0.45) 0%, transparent 65%);
-  top: -200px;
-  left: -200px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(45,106,79,0.35) 0%, transparent 70%);
+  top: -100px;
+  left: -150px;
   animation-delay: 0s;
 }
 .hero-orb-2 {
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(116,198,157,0.28) 0%, transparent 65%);
-  bottom: -150px;
-  right: -150px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(116,198,157,0.2) 0%, transparent 70%);
+  bottom: -80px;
+  right: -100px;
   animation-delay: -4s;
 }
 .hero-orb-3 {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(64,145,108,0.3) 0%, transparent 65%);
-  top: 30%;
-  left: 55%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(64,145,108,0.25) 0%, transparent 70%);
+  top: 40%;
+  left: 60%;
   animation-delay: -8s;
 }
 @keyframes orbFloat {
@@ -527,23 +391,8 @@ body.page-loaded .hero-cta-group {
   background-image: url('https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=1600&q=80');
   /* REPLACE: Bob on the golf course, early morning light */
   background-size: cover;
-  background-position: center 20%;
-  opacity: 0.14;
-  filter: saturate(0.6) contrast(1.15) brightness(0.65);
-}
-
-/* Hero overlay — complements raised bg opacity */
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg,
-      rgba(13,40,24,0.92) 0%,
-      rgba(13,40,24,0.50) 40%,
-      rgba(13,40,24,0.88) 100%),
-    radial-gradient(ellipse 80% 60% at 20% 75%, rgba(45,106,79,0.15) 0%, transparent 55%);
-  pointer-events: none;
-  z-index: 1;
+  background-position: center 30%;
+  opacity: 0.07;
 }
 
 .hero-content {
@@ -599,6 +448,7 @@ body.page-loaded .hero-cta-group {
   font-size: clamp(1.3rem, 2.5vw, 1.85rem);
   font-weight: 700;
   font-style: italic;
+  color: var(--sage);
   line-height: 1.4;
   margin-bottom: 52px;
   position: relative;
@@ -721,56 +571,31 @@ body.page-loaded .hero-cta-group {
    PHILOSOPHY STRIP
    ============================================================ */
 .philosophy-strip {
-  background: var(--deeper);
-  padding: 80px 48px;
+  background: var(--green);
+  padding: 28px 48px;
   text-align: center;
   overflow: hidden;
   position: relative;
-  border-top: 1px solid rgba(116, 198, 157, 0.1);
-  border-bottom: 1px solid rgba(116, 198, 157, 0.1);
 }
-
-/* Decorative large quotation mark behind */
 .philosophy-strip::before {
-  content: '\201C';
-  font-family: var(--serif);
-  font-size: 20rem;
-  color: rgba(116, 198, 157, 0.03);
+  content: '';
   position: absolute;
-  top: -60px;
-  left: 50%;
-  transform: translateX(-50%);
-  line-height: 1;
-  pointer-events: none;
-  font-weight: 700;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 50%);
 }
-
 .philosophy-text {
   font-family: var(--serif);
-  font-size: clamp(1.5rem, 3.5vw, 2.6rem);
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
   font-weight: 600;
   font-style: italic;
-  color: rgba(183, 228, 199, 0.75);
-  line-height: 1.35;
-  max-width: 820px;
-  margin: 0 auto;
+  color: var(--mint);
+  line-height: 1.4;
   position: relative;
 }
-
 .philosophy-text .em {
   font-style: normal;
   font-weight: 700;
   color: var(--white);
-}
-
-.philosophy-attr {
-  font-family: var(--sans);
-  font-size: 0.6rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(116, 198, 157, 0.45);
-  margin-top: 20px;
-  font-style: normal;
 }
 
 /* ============================================================
@@ -870,12 +695,12 @@ body.page-loaded .hero-cta-group {
 .problem-point:last-child { border-bottom: none; }
 .pp-num {
   font-family: var(--serif);
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 700;
-  color: rgba(45, 106, 79, 0.18);
-  line-height: 0.9;
+  color: rgba(45, 106, 79, 0.2);
+  line-height: 1;
   flex-shrink: 0;
-  width: 52px;
+  width: 44px;
   padding-top: 4px;
 }
 .pp-title {
@@ -1004,17 +829,6 @@ body.page-loaded .hero-cta-group {
   border-radius: 10px;
   padding: 28px 22px;
   transition: background 0.25s, border-color 0.25s, box-shadow 0.25s, transform 0.25s;
-  position: relative;
-}
-.spark-letter::after {
-  content: attr(data-step);
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  color: rgba(116, 198, 157, 0.25);
-  letter-spacing: 0.1em;
 }
 .spark-letter:hover {
   background: rgba(116, 198, 157, 0.1);
@@ -1123,27 +937,14 @@ body.page-loaded .hero-cta-group {
 .offer-card.flagship {
   background: var(--deep);
   border-color: rgba(116, 198, 157, 0.2);
-  margin-top: 0;
-  border: 2px solid rgba(116, 198, 157, 0.35);
-  box-shadow: 0 32px 80px rgba(13, 40, 24, 0.35),
-              0 0 0 1px rgba(116, 198, 157, 0.1);
+  margin-top: -12px;
+  box-shadow: 0 24px 64px rgba(13, 40, 24, 0.3);
 }
 .offer-card.flagship:hover {
   box-shadow: 0 32px 80px rgba(13, 40, 24, 0.4), 0 0 40px rgba(116, 198, 157, 0.08);
 }
 .offer-card.flagship::before {
   background: linear-gradient(90deg, var(--sage), rgba(116, 198, 157, 0.3));
-}
-
-/* On desktop only, use scale to lift flagship */
-@media (min-width: 769px) {
-  .offer-card.flagship {
-    transform: scale(1.025);
-    transform-origin: center;
-  }
-  .offer-card.flagship:hover {
-    transform: scale(1.025) translateY(-5px);
-  }
 }
 
 .offer-badge {
@@ -1239,10 +1040,9 @@ body.page-loaded .hero-cta-group {
 .offer-card.flagship .offer-includes li { color: var(--white-dim); }
 .offer-includes li .check {
   color: var(--green);
+  font-weight: 700;
   flex-shrink: 0;
-  margin-top: 3px;
-  display: flex;
-  align-items: center;
+  margin-top: 1px;
 }
 .offer-card.flagship .offer-includes li .check { color: var(--sage); }
 
@@ -1520,19 +1320,7 @@ body.page-loaded .hero-cta-group {
   transform: translateY(-3px);
   box-shadow: 0 12px 32px rgba(0,0,0,0.2);
 }
-.ic-num {
-  font-family: var(--serif);
-  font-size: 2.2rem;
-  font-weight: 700;
-  color: rgba(116, 198, 157, 0.25);
-  line-height: 1;
-  margin-bottom: 12px;
-  letter-spacing: -0.02em;
-}
-.ideal-card:hover .ic-num {
-  color: var(--sage);
-  transition: color 0.3s;
-}
+.ideal-card .ic-icon { font-size: 1.2rem; margin-bottom: 10px; }
 .ideal-card .ic-title {
   font-family: var(--serif);
   font-size: 1.25rem;
@@ -1549,9 +1337,9 @@ body.page-loaded .hero-cta-group {
 .ideal-card .ic-body strong { color: var(--white); }
 
 .not-for-block {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 10px;
+  background: rgba(224, 92, 92, 0.04);
+  border: 1px solid rgba(224, 92, 92, 0.18);
+  border-radius: 12px;
   padding: 32px 36px;
   max-width: 720px;
   margin: 0 auto 44px;
@@ -1561,12 +1349,12 @@ body.page-loaded .hero-cta-group {
   letter-spacing: 0.2em;
   text-transform: uppercase;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(224, 92, 92, 0.8);
   margin-bottom: 14px;
 }
 .nfb-text {
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.45);
+  color: var(--white-muted);
   line-height: 1.85;
 }
 .nfb-text strong { color: var(--white-dim); }
@@ -1706,7 +1494,7 @@ body.page-loaded .hero-cta-group {
    CONVICTION
    ============================================================ */
 .conviction-section {
-  padding: 120px 0;
+  padding: 96px 0;
   background: linear-gradient(135deg, var(--green) 0%, var(--deep) 100%);
   text-align: center;
   position: relative;
@@ -1746,10 +1534,10 @@ body.page-loaded .hero-cta-group {
 }
 .conviction-quote {
   font-family: var(--serif);
-  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
   font-weight: 700;
   color: var(--white);
-  line-height: 1.2;
+  line-height: 1.25;
   margin-bottom: 24px;
   letter-spacing: -0.01em;
 }
@@ -1869,7 +1657,7 @@ body.page-loaded .hero-cta-group {
   margin-top: 4px;
 }
 .co-cta::after {
-  content: '\2192';
+  content: '→';
   transition: transform 0.2s;
 }
 .cta-option:hover .co-cta::after { transform: translateX(4px); }
@@ -2007,20 +1795,20 @@ footer {
 }
 .footer-social { display: flex; gap: 12px; }
 .footer-social a {
-  width: 38px;
-  height: 38px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   border: 1px solid rgba(116, 198, 157, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(116, 198, 157, 0.6);
-  transition: all 0.25s;
+  font-size: 0.7rem;
+  color: var(--sage);
+  transition: all 0.2s;
 }
 .footer-social a:hover {
-  background: rgba(116, 198, 157, 0.12);
+  background: rgba(116, 198, 157, 0.1);
   border-color: rgba(116, 198, 157, 0.5);
-  color: var(--sage);
 }
 .footer-col h4 {
   font-size: 0.64rem;
@@ -2085,7 +1873,7 @@ footer {
   .hero { padding: 100px 24px 72px; }
   .hero-stat { padding: 0 20px; }
   .hero-stat .stat-num { font-size: 1.8rem; }
-  .philosophy-strip { padding: 60px 24px; }
+  .philosophy-strip { padding: 20px 24px; }
   .offers-grid { grid-template-columns: 1fr; }
   .spark-row { grid-template-columns: 1fr 1fr; }
   .ideal-grid { grid-template-columns: 1fr; }
@@ -2098,23 +1886,13 @@ footer {
 }
 
 @media (max-width: 480px) {
-  .hero-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: rgba(116, 198, 157, 0.12);
-    border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 40px;
-  }
+  .hero-stats { flex-direction: column; gap: 20px; }
   .hero-stat {
-    background: rgba(13, 40, 24, 0.8);
-    border: none;
     border-right: none;
-    padding: 20px 16px;
-    text-align: center;
+    border-bottom: 1px solid rgba(116,198,157,0.15);
+    padding: 16px 0;
   }
-  .hero-stat:last-child { border: none; }
+  .hero-stat:last-child { border-bottom: none; }
   .spark-row { grid-template-columns: 1fr; }
   .signal-phrases { grid-template-columns: 1fr; }
   .footer-inner { grid-template-columns: 1fr; }
@@ -2124,12 +1902,6 @@ footer {
 </head>
 
 <body>
-
-<!-- Page veil — the moment before everything -->
-<div id="page-veil"></div>
-
-<!-- Skip link -->
-<a href="#main-content" class="skip-link">Skip to main content</a>
 
 <!-- Scroll progress bar -->
 <div id="progress-bar"></div>
@@ -2149,8 +1921,7 @@ footer {
     <a class="nav-link" href="#origin">Story</a>
     <a class="nav-link" href="#newsletter">Newsletter</a>
   </div>
-  <!-- REMOVE for production deployment: -->
-  <!-- <a class="nav-link" href="index.html" style="color:var(--green);font-weight:600;">← Signal Overview</a> -->
+  <a class="nav-link" href="index.html" style="color:var(--green);font-weight:600;">← Signal Overview</a>
   <a class="nav-cta" href="#cta">Book a SPARK Session</a>
   <button class="nav-hamburger" id="bob-hamburger" aria-label="Open menu" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -2158,63 +1929,59 @@ footer {
 </nav>
 
 <div class="mobile-menu" id="bob-mobile-menu">
-  <a href="#methodology">The Work</a>
-  <a href="#offers">Work With Me</a>
-  <a href="#proof">Proof</a>
-  <a href="#origin">Story</a>
-  <a href="#newsletter">Newsletter</a>
-  <a href="#cta" style="color:var(--green);font-weight:700;">Book a SPARK Session</a>
+  <a href="#methodology" onclick="closeBobMenu()">The Work</a>
+  <a href="#offers" onclick="closeBobMenu()">Work With Me</a>
+  <a href="#proof" onclick="closeBobMenu()">Proof</a>
+  <a href="#origin" onclick="closeBobMenu()">Story</a>
+  <a href="#newsletter" onclick="closeBobMenu()">Newsletter</a>
+  <a href="#cta" onclick="closeBobMenu()" style="color:var(--green);font-weight:700;">Book a SPARK Session</a>
 </div>
 
-<main id="main-content">
 
 <!-- ============================================================
      HERO
      ============================================================ -->
 <section class="hero" id="top">
   <div class="hero-bg" aria-hidden="true"></div>
-  <div class="hero-overlay" aria-hidden="true"></div>
   <div class="hero-orb hero-orb-1" aria-hidden="true"></div>
   <div class="hero-orb hero-orb-2" aria-hidden="true"></div>
   <div class="hero-orb hero-orb-3" aria-hidden="true"></div>
 
   <div class="hero-content">
-    <div class="hero-signal-line">Coach Reg &nbsp;&middot;&nbsp; Pattern Recognition Coach &nbsp;&middot;&nbsp; Since 1984</div>
+    <div class="hero-signal-line fade-in">Coach Reg &nbsp;·&nbsp; Pattern Recognition Coach &nbsp;·&nbsp; Since 1984</div>
 
-    <h1 class="hero-headline">
+    <h1 class="hero-headline fade-up">
       I help founders who've <span class="green-it">outgrown</span> the answers they already have.
     </h1>
 
-    <p class="hero-sub">
+    <p class="hero-sub fade-up">
       Forty years. Over 1,500 athletes. One question that changes everything:
     </p>
 
-    <p class="hero-quote">
-      <span class="gradient-text">"What's the pattern running through everything you do?"</span>
+    <p class="hero-quote fade-up">
+      "What's the pattern running through everything you do?"
     </p>
 
-    <!-- Hero stats — start at 0, animate to target -->
-    <div class="hero-stats">
+    <div class="hero-stats fade-up">
       <div class="hero-stat">
-        <span class="stat-num" data-target="40">0</span>
+        <span class="stat-num" data-target="40">40</span>
         <span class="stat-label">Years Coaching</span>
       </div>
       <div class="hero-stat">
-        <span class="stat-num" data-target="1500" data-suffix="+">0</span>
+        <span class="stat-num" data-target="1500" data-suffix="+">1,500+</span>
         <span class="stat-label">Athletes Coached</span>
       </div>
       <div class="hero-stat">
-        <span class="stat-num" data-target="1">0</span>
+        <span class="stat-num" data-target="1">1</span>
         <span class="stat-label">Hour to the Pattern</span>
       </div>
       <div class="hero-stat">
-        <!-- No data-target — text, not a number -->
         <span class="stat-num">EMCC</span>
         <span class="stat-label">Accredited</span>
       </div>
     </div>
 
-    <div class="hero-cta-group">
+    <div class="hero-cta-group fade-up">
       <a class="btn-primary" href="#cta">Book a SPARK Session — $1,500</a>
       <a class="btn-secondary" href="#methodology">See How It Works</a>
     </div>
@@ -2234,7 +2001,6 @@ footer {
   <div class="philosophy-text">
     "How you do <span class="em">one thing</span> is how you do <span class="em">everything</span> — on the course, I can see it in your swing before you can hide it."
   </div>
-  <div class="philosophy-attr">— Coach Reg · 40 years on the course</div>
 </div>
 
 
@@ -2350,27 +2116,27 @@ footer {
     </div>
 
     <div class="spark-row">
-      <div class="spark-letter fade-up" data-step="01">
+      <div class="spark-letter fade-up">
         <div class="sl-letter">S</div>
         <div class="sl-word">Surface</div>
         <div class="sl-desc">What you think the issue is. The stated problem. The thing you brought to the session.</div>
       </div>
-      <div class="spark-letter fade-up" data-step="02">
+      <div class="spark-letter fade-up">
         <div class="sl-letter">P</div>
         <div class="sl-word">Pattern</div>
         <div class="sl-desc">The recurring behaviour underneath. How it shows up across every domain — work, relationships, performance.</div>
       </div>
-      <div class="spark-letter fade-up" data-step="03">
+      <div class="spark-letter fade-up">
         <div class="sl-letter">A</div>
         <div class="sl-word">Awareness</div>
         <div class="sl-desc">The moment you see it clearly for the first time. The mirror held still long enough to look at it.</div>
       </div>
-      <div class="spark-letter fade-up" data-step="04">
+      <div class="spark-letter fade-up">
         <div class="sl-letter">R</div>
         <div class="sl-word">Reframe</div>
         <div class="sl-desc">The specific shift that changes what's possible. Not a prescription — a new angle on the same reality.</div>
       </div>
-      <div class="spark-letter fade-up" data-step="05">
+      <div class="spark-letter fade-up">
         <div class="sl-letter">K</div>
         <div class="sl-word">Kinetic Action</div>
         <div class="sl-desc">The one move that follows from the awareness. Concrete. Specific. Momentum-creating. Not a list — the next step.</div>
@@ -2404,79 +2170,79 @@ footer {
       <!-- SPARK Session -->
       <div class="offer-card fade-up">
         <div class="offer-badge entry">Entry Point</div>
-        <div class="offer-name">SPARK Session<span class="sage">&#8482;</span></div>
+        <div class="offer-name">SPARK Session<span class="sage">™</span></div>
         <div class="offer-tagline">One hour. One insight. One action. The diagnostic that strips away noise and maps the next move.</div>
         <div class="offer-price-row">
           <div class="offer-price">$1,500</div>
           <div class="offer-price-note">60 minutes<br>Remote or in-person</div>
         </div>
         <ul class="offer-includes">
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> A specific decision or threshold on the table — not a general exploration</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Pattern identification in the first 20 minutes</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> The one question that changes the angle</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> A single concrete next action before we hang up</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Written summary of the pattern and the move — within 48 hours</li>
+          <li><span class="check">✓</span> A specific decision or threshold on the table — not a general exploration</li>
+          <li><span class="check">✓</span> Pattern identification in the first 20 minutes</li>
+          <li><span class="check">✓</span> The one question that changes the angle</li>
+          <li><span class="check">✓</span> A single concrete next action before we hang up</li>
+          <li><span class="check">✓</span> Written summary of the pattern and the move — within 48 hours</li>
         </ul>
-        <a class="offer-cta dark" href="#cta">Book a SPARK Session &rarr;</a>
+        <a class="offer-cta dark" href="#cta">Book a SPARK Session →</a>
       </div>
 
       <!-- Tee Time — Flagship -->
       <div class="offer-card flagship fade-up">
         <div class="offer-badge flagship-badge">Flagship Experience</div>
-        <div class="offer-name">SPARK Tee Time<span class="sage">&#8482;</span></div>
+        <div class="offer-name">SPARK Tee Time<span class="sage">™</span></div>
         <div class="offer-tagline">A private, all-inclusive day designed to reset the pattern — on the course and off it.</div>
         <div class="offer-price-row">
           <div class="offer-price">$5,500</div>
           <div class="offer-price-note">All-inclusive · One day<br>Follow-up session included</div>
         </div>
         <ul class="offer-includes">
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Pre-round clarity call (60 min) — we identify the exact pattern to watch for</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Breakfast together before we tee off — the conversation starts here</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> 18 holes of coaching in motion — your game becomes your diagnostic</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Early dinner debrief — integrating what the course revealed</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Black-car service, two nights, two meals — everything handled</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Follow-up SPARK Session one week later — pattern check, next move</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Optional plus-one — bring a business partner or a peer who needs this</li>
+          <li><span class="check">✓</span> Pre-round clarity call (60 min) — we identify the exact pattern to watch for</li>
+          <li><span class="check">✓</span> Breakfast together before we tee off — the conversation starts here</li>
+          <li><span class="check">✓</span> 18 holes of coaching in motion — your game becomes your diagnostic</li>
+          <li><span class="check">✓</span> Early dinner debrief — integrating what the course revealed</li>
+          <li><span class="check">✓</span> Black-car service, two nights, two meals — everything handled</li>
+          <li><span class="check">✓</span> Follow-up SPARK Session one week later — pattern check, next move</li>
+          <li><span class="check">✓</span> Optional plus-one — bring a business partner or a peer who needs this</li>
         </ul>
-        <a class="offer-cta sage-btn" href="#cta">Enquire About Tee Time &rarr;</a>
+        <a class="offer-cta sage-btn" href="#cta">Enquire About Tee Time →</a>
       </div>
 
       <!-- SPARK Vision Experience -->
       <div class="offer-card fade-up">
         <div class="offer-badge retainer">Immersive Experience</div>
-        <div class="offer-name">SPARK Vision Experience<span class="sage">&#8482;</span></div>
+        <div class="offer-name">SPARK Vision Experience<span class="sage">™</span></div>
         <div class="offer-tagline">One day. One vision. Full conviction. A full-day immersive coaching experience for leaders at an inflection point.</div>
         <div class="offer-price-row">
-          <div class="offer-price">$15K&ndash;$25K</div>
+          <div class="offer-price">$15K–$25K</div>
           <div class="offer-price-note">1.5 days · In-person<br>Enquire for availability</div>
         </div>
         <ul class="offer-includes">
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Initial clarity and vision assessment — authentic strengths, values, and direction</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Pattern recognition deep-dive — identifying the decision points and barriers you can't see</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Mid-day personal reflection — space to process what's surfacing</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Barrier removal and execution roadmap — specific next steps, not theory</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Entire session recorded for future reference — revisit the breakthroughs anytime</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Specific commitments and accountability framework — you leave with conviction, not just clarity</li>
+          <li><span class="check">✓</span> Initial clarity and vision assessment — authentic strengths, values, and direction</li>
+          <li><span class="check">✓</span> Pattern recognition deep-dive — identifying the decision points and barriers you can't see</li>
+          <li><span class="check">✓</span> Mid-day personal reflection — space to process what's surfacing</li>
+          <li><span class="check">✓</span> Barrier removal and execution roadmap — specific next steps, not theory</li>
+          <li><span class="check">✓</span> Entire session recorded for future reference — revisit the breakthroughs anytime</li>
+          <li><span class="check">✓</span> Specific commitments and accountability framework — you leave with conviction, not just clarity</li>
         </ul>
-        <a class="offer-cta dark" href="#cta">Enquire About Vision Experience &rarr;</a>
+        <a class="offer-cta dark" href="#cta">Enquire About Vision Experience →</a>
       </div>
 
       <!-- Keynote -->
       <div class="offer-card fade-up">
         <div class="offer-badge speaking">Speaking</div>
-        <div class="offer-name">SPARK Keynote<span style="color:var(--brown)">&#8482;</span></div>
+        <div class="offer-name">SPARK Keynote<span style="color:var(--brown)">™</span></div>
         <div class="offer-tagline">"How you do one thing is how you do everything" — for executive audiences, founder summits, and high-performance organisations.</div>
         <div class="offer-price-row">
-          <div class="offer-price" style="color:var(--brown)">$5K&ndash;$20K</div>
-          <div class="offer-price-note">45&ndash;60 minutes<br>Enquire for availability</div>
+          <div class="offer-price" style="color:var(--brown)">$5K–$20K</div>
+          <div class="offer-price-note">45–60 minutes<br>Enquire for availability</div>
         </div>
         <ul class="offer-includes">
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Tailored to your audience — founders, executives, athletes, or mixed leaders</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Pattern recognition framework applied to a room of people at once</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Every talk generates downstream SPARK Session bookings from attendees</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Q&amp;A and post-talk availability included</li>
+          <li><span class="check">✓</span> Tailored to your audience — founders, executives, athletes, or mixed leaders</li>
+          <li><span class="check">✓</span> Pattern recognition framework applied to a room of people at once</li>
+          <li><span class="check">✓</span> Every talk generates downstream SPARK Session bookings from attendees</li>
+          <li><span class="check">✓</span> Q&amp;A and post-talk availability included</li>
         </ul>
-        <a class="offer-cta outline" href="#cta">Enquire About Speaking &rarr;</a>
+        <a class="offer-cta outline" href="#cta">Enquire About Speaking →</a>
       </div>
 
     </div>
@@ -2499,11 +2265,11 @@ footer {
 
     <div class="proof-stats fade-up">
       <div class="proof-stat">
-        <span class="ps-num" data-target="40">0</span>
+        <span class="ps-num" data-target="40">40</span>
         <span class="ps-label">Years Coaching at the Highest Level</span>
       </div>
       <div class="proof-stat">
-        <span class="ps-num" data-target="1500" data-suffix="+">0</span>
+        <span class="ps-num" data-target="1500" data-suffix="+">1,500+</span>
         <span class="ps-label">Athletes and Leaders Coached</span>
       </div>
       <div class="proof-stat">
@@ -2516,8 +2282,8 @@ footer {
       </div>
     </div>
 
-    <div class="testimonials-grid" id="testimonialCarousel" role="region" aria-label="Client testimonials">
-      <div class="carousel-track" id="carouselTrack" aria-live="polite">
+    <div class="testimonials-grid" id="testimonialCarousel">
+      <div class="carousel-track" id="carouselTrack">
 
         <div class="testimonial-card testimonial-featured">
           <div class="testimonial-text">
@@ -2561,22 +2327,14 @@ footer {
 
       </div>
       <div class="carousel-controls">
-        <button class="carousel-btn" id="carousel-prev" aria-label="Previous testimonial">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
+        <button class="carousel-btn" onclick="moveCarousel(-1)" aria-label="Previous">←</button>
         <div class="carousel-dots">
-          <div class="carousel-dot active" data-slide="0"></div>
-          <div class="carousel-dot" data-slide="1"></div>
-          <div class="carousel-dot" data-slide="2"></div>
-          <div class="carousel-dot" data-slide="3"></div>
+          <div class="carousel-dot active" onclick="goToSlide(0)"></div>
+          <div class="carousel-dot" onclick="goToSlide(1)"></div>
+          <div class="carousel-dot" onclick="goToSlide(2)"></div>
+          <div class="carousel-dot" onclick="goToSlide(3)"></div>
         </div>
-        <button class="carousel-btn" id="carousel-next" aria-label="Next testimonial">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
+        <button class="carousel-btn" onclick="moveCarousel(1)" aria-label="Next">→</button>
       </div>
     </div>
 
@@ -2595,7 +2353,7 @@ footer {
       </div>
       <div class="cred-item">
         <div class="ci-label">Newsletter</div>
-        <div class="ci-value">SPARK Insights&#8482;</div>
+        <div class="ci-value">SPARK Insights™</div>
       </div>
       <div class="cred-item">
         <div class="ci-label">Speaking</div>
@@ -2627,39 +2385,32 @@ footer {
 
     <div class="ideal-grid">
       <div class="ideal-card fade-up">
-        <div class="ic-num">01</div>
+        <div class="ic-icon">⧖</div>
         <div class="ic-title">You've built something real</div>
         <div class="ic-body">
           Founder or CEO. Ten to thirty years in. Revenue between $2M and $50M. Respected externally. <strong>Internally questioning everything.</strong> The external markers of success are in place — but they no longer feel like the destination.
         </div>
       </div>
       <div class="ideal-card fade-up">
-        <div class="ic-num">02</div>
+        <div class="ic-icon">◈</div>
         <div class="ic-title">You've outgrown the answers you have</div>
         <div class="ic-body">
           You've tried therapy. Masterminds. Executive retreats. Other coaches. They were useful — but you're not looking for information. <strong>You're looking for someone who can see what you can't.</strong> The blind spot nobody has named yet.
         </div>
       </div>
       <div class="ideal-card fade-up">
-        <div class="ic-num">03</div>
+        <div class="ic-icon">◎</div>
         <div class="ic-title">You have a specific decision in front of you</div>
         <div class="ic-body">
           A real threshold — a transition, a partnership decision, a chapter that needs to end, a direction you can't commit to yet. <strong>Something with real stakes attached.</strong> The SPARK Session requires a specific decision. Not general motivation.
         </div>
       </div>
       <div class="ideal-card fade-up">
-        <div class="ic-num">04</div>
+        <div class="ic-icon">∫</div>
         <div class="ic-title">You're ready to act on what you discover</div>
         <div class="ic-body">
           This work moves fast. In one hour, you'll see something you haven't seen before. The question is whether you'll do something with it. <strong>My best clients act within a week of our first session.</strong> If you're looking for permission to keep circling — I'm not your guy.
         </div>
-      </div>
-    </div>
-
-    <div class="not-for-block fade-up">
-      <div class="nfb-label">Not the Right Fit</div>
-      <div class="nfb-text">
-        If you're looking for a <strong>12-week program</strong>, a <strong>group coaching pod</strong>, or <strong>someone to hold your hand through incremental motivation</strong> — I'm not your coach. This work is for people who are ready to see clearly and move decisively. If you want permission to stay comfortable, we're not a match.
       </div>
     </div>
 
@@ -2743,7 +2494,7 @@ footer {
           <div class="cl-item"><div class="cl-dot"></div>Head Golf Coach (Current)</div>
           <div class="cl-item"><div class="cl-dot"></div>40 Years Coaching Athletes and Leaders</div>
           <div class="cl-item"><div class="cl-dot"></div>1,500+ Athletes Through the Work</div>
-          <div class="cl-item"><div class="cl-dot"></div>SPARK Insights&#8482; Newsletter Author</div>
+          <div class="cl-item"><div class="cl-dot"></div>SPARK Insights™ Newsletter Author</div>
           <div class="cl-item"><div class="cl-dot"></div>Keynote Speaker — Executive Audiences</div>
           <div class="cl-item"><div class="cl-dot"></div>Co-building The Athletics Island with Brandon Fong</div>
         </div>
@@ -2777,7 +2528,7 @@ footer {
   <div class="section-wrap">
     <div class="newsletter-inner">
       <div class="nl-left fade-up">
-        <div class="nl-label">SPARK Insights&#8482;</div>
+        <div class="nl-label">SPARK Insights™</div>
         <h3>Pattern recognition,<br>delivered <span class="sage-it">weekly.</span></h3>
         <p>
           Every edition opens with a specific scene — on the course, in a session, from 40 years of coaching — and closes with one question designed to make you sit with something. Not a newsletter. A mirror.
@@ -2787,7 +2538,7 @@ footer {
         <form class="nl-form" name="spark-newsletter" method="POST" data-netlify="true" action="/thank-you">
           <input type="hidden" name="form-name" value="spark-newsletter">
           <input type="email" name="email" placeholder="Your email address" required aria-label="Email address">
-          <button type="submit">Join SPARK Insights&#8482; — Free</button>
+          <button type="submit">Join SPARK Insights™ — Free</button>
         </form>
         <p class="nl-privacy">No noise. One email, some weeks. Unsubscribe anytime.</p>
       </div>
@@ -2815,7 +2566,7 @@ footer {
         <a class="cta-option" href="https://calendly.com" target="_blank" rel="noopener">
           <!-- REPLACE: real Calendly link -->
           <div class="co-label">Entry Point</div>
-          <div class="co-name">SPARK Session&#8482;</div>
+          <div class="co-name">SPARK Session™</div>
           <div class="co-desc">One hour. One insight. One action. A specific decision on the table — and the pattern underneath it, named.</div>
           <div class="co-price">$1,500 · 60 minutes</div>
           <span class="co-cta">Book Now</span>
@@ -2823,7 +2574,7 @@ footer {
         <a class="cta-option" href="mailto:bob@coachregnerus.com" target="_blank" rel="noopener">
           <!-- REPLACE: real contact email / inquiry form -->
           <div class="co-label">Flagship Experience</div>
-          <div class="co-name">SPARK Tee Time&#8482;</div>
+          <div class="co-name">SPARK Tee Time™</div>
           <div class="co-desc">A private all-day experience on the course. Pre-round clarity call, 18 holes of coaching in motion, dinner debrief, follow-up session.</div>
           <div class="co-price">$5,500 · Full day · All-inclusive</div>
           <span class="co-cta">Enquire</span>
@@ -2837,7 +2588,6 @@ footer {
   </div>
 </section>
 
-</main>
 
 <!-- ============================================================
      FOOTER
@@ -2851,24 +2601,17 @@ footer {
           Pattern recognition for founders and leaders at threshold moments. 40 years. 1,500 athletes. One question: what's the pattern running through everything you do?
         </p>
         <div class="footer-social">
-          <a href="#" aria-label="Bob Regnerus on LinkedIn" target="_blank" rel="noopener">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-            </svg>
-          </a>
-          <a href="#" aria-label="Coach Reg on Instagram" target="_blank" rel="noopener">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
-            </svg>
-          </a>
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="Instagram">&#9679;</a>
+          <a href="#" aria-label="Twitter">&#x2715;</a>
         </div>
       </div>
       <div class="footer-col">
         <h4>Work</h4>
         <ul>
-          <li><a href="#offers">SPARK Session&#8482;</a></li>
-          <li><a href="#offers">SPARK Tee Time&#8482;</a></li>
-          <li><a href="#offers">SPARK Vision Experience&#8482;</a></li>
+          <li><a href="#offers">SPARK Session™</a></li>
+          <li><a href="#offers">SPARK Tee Time™</a></li>
+          <li><a href="#offers">SPARK Vision Experience™</a></li>
           <li><a href="#offers">Keynote Speaking</a></li>
         </ul>
       </div>
@@ -2884,7 +2627,7 @@ footer {
       <div class="footer-col">
         <h4>Connect</h4>
         <ul>
-          <li><a href="#newsletter">SPARK Insights&#8482;</a></li>
+          <li><a href="#newsletter">SPARK Insights™</a></li>
           <li><a href="#cta">Book a Session</a></li>
           <li><a href="mailto:bob@coachregnerus.com">Get in Touch</a></li>
           <li><a href="#">LinkedIn</a></li>
@@ -2907,86 +2650,30 @@ footer {
      JAVASCRIPT
      ============================================================ -->
 <script>
-// PAGE LOAD CEREMONY
-(function() {
-  var veil = document.getElementById('page-veil');
-  if (!veil) return;
-
-  function reveal() {
-    // 300ms of intentional darkness, then lift
-    setTimeout(function() {
-      veil.style.opacity = '0';
-      document.body.classList.add('page-loaded');
-      setTimeout(function() { veil.remove(); }, 1300);
-    }, 300);
-  }
-
-  if (document.readyState === 'complete') {
-    reveal();
-  } else {
-    window.addEventListener('load', reveal, { once: true });
-  }
-})();
-
 /* ---- Scroll progress bar ---- */
-var progressBar = document.getElementById('progress-bar');
-window.addEventListener('scroll', function() {
-  var scrollTop = window.scrollY;
-  var docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  var pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+const progressBar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
   progressBar.style.width = pct + '%';
 }, { passive: true });
 
-/* ---- IntersectionObserver scroll animations (basic, for .fade-in) ---- */
-var observer = new IntersectionObserver(function(entries) {
-  entries.forEach(function(entry) {
+/* ---- IntersectionObserver scroll animations ---- */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
-      setTimeout(function() {
-        entry.target.style.willChange = 'auto';
-      }, 900);
       observer.unobserve(entry.target);
     }
   });
 }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
-// Only observe .fade-in elements with basic observer (not .fade-up — those use stagger)
-document.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
-
-/* ---- CORRECT STAGGER — replaces the CSS nth-child approach ---- */
-var staggerObserver = new IntersectionObserver(function(entries) {
-  // Group elements by their parent container
-  var groups = new Map();
-  entries.forEach(function(entry) {
-    if (!entry.isIntersecting) return;
-    var parent = entry.target.parentElement;
-    if (!groups.has(parent)) groups.set(parent, []);
-    groups.get(parent).push(entry.target);
-  });
-
-  groups.forEach(function(els) {
-    els.forEach(function(el, i) {
-      setTimeout(function() {
-        el.classList.add('visible');
-        setTimeout(function() {
-          el.style.willChange = 'auto';
-        }, 900);
-      }, i * 100); // 100ms between siblings
-    });
-  });
-
-  // Unobserve after firing
-  entries.forEach(function(entry) {
-    if (entry.isIntersecting) staggerObserver.unobserve(entry.target);
-  });
-
-}, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
-
-document.querySelectorAll('.fade-up').forEach(function(el) { staggerObserver.observe(el); });
+document.querySelectorAll('.fade-up, .fade-in').forEach(el => observer.observe(el));
 
 /* ---- Glassmorphism nav on scroll ---- */
-var nav = document.getElementById('nav');
-window.addEventListener('scroll', function() {
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
   if (window.scrollY > 60) {
     nav.classList.add('scrolled');
   } else {
@@ -2995,16 +2682,16 @@ window.addEventListener('scroll', function() {
 }, { passive: true });
 
 /* ---- Mobile nav ---- */
-var bobHamburger = document.getElementById('bob-hamburger');
-var bobMobileMenu = document.getElementById('bob-mobile-menu');
+const bobHamburger = document.getElementById('bob-hamburger');
+const bobMobileMenu = document.getElementById('bob-mobile-menu');
 
 if (bobHamburger && bobMobileMenu) {
-  bobHamburger.addEventListener('click', function() {
-    var isOpen = bobMobileMenu.classList.contains('open');
+  bobHamburger.addEventListener('click', () => {
+    const isOpen = bobMobileMenu.classList.contains('open');
     bobMobileMenu.classList.toggle('open');
     bobHamburger.setAttribute('aria-expanded', String(!isOpen));
   });
-  document.addEventListener('click', function(e) {
+  document.addEventListener('click', (e) => {
     if (bobMobileMenu.classList.contains('open') && !bobMobileMenu.contains(e.target) && !bobHamburger.contains(e.target)) {
       bobMobileMenu.classList.remove('open');
       bobHamburger.setAttribute('aria-expanded', 'false');
@@ -3013,130 +2700,73 @@ if (bobHamburger && bobMobileMenu) {
 }
 
 function closeBobMenu() {
-  var menu = document.getElementById('bob-mobile-menu');
-  var btn = document.getElementById('bob-hamburger');
+  const menu = document.getElementById('bob-mobile-menu');
+  const btn = document.getElementById('bob-hamburger');
   if (menu) menu.classList.remove('open');
   if (btn) btn.setAttribute('aria-expanded', 'false');
 }
 
-// Mobile menu event delegation — remove inline onclick
-document.querySelectorAll('.mobile-menu a').forEach(function(a) {
-  a.addEventListener('click', function() {
-    closeBobMenu();
-  });
-});
-
 /* ---- Animated counters ---- */
 function animateCounter(el, target, suffix, duration) {
-  var start = null;
+  let start = null;
   function step(ts) {
     if (!start) start = ts;
-    var progress = Math.min((ts - start) / duration, 1);
-    var ease = 1 - Math.pow(1 - progress, 3);
-    var val = Math.round(ease * target);
+    const progress = Math.min((ts - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    const val = Math.round(ease * target);
     el.textContent = val.toLocaleString() + (suffix || '');
     if (progress < 1) requestAnimationFrame(step);
   }
   requestAnimationFrame(step);
 }
 
-var counterObserver = new IntersectionObserver(function(entries) {
-  entries.forEach(function(entry) {
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
     if (entry.isIntersecting) {
-      var el = entry.target;
-      var target = parseFloat(el.dataset.target);
-      var suffix = el.dataset.suffix || '';
+      const el = entry.target;
+      const target = parseFloat(el.dataset.target);
+      const suffix = el.dataset.suffix || '';
       if (!isNaN(target)) animateCounter(el, target, suffix, 2200);
       counterObserver.unobserve(el);
     }
   });
 }, { threshold: 0.5 });
 
-document.querySelectorAll('[data-target]').forEach(function(el) { counterObserver.observe(el); });
+document.querySelectorAll('[data-target]').forEach(el => counterObserver.observe(el));
 
 /* ---- Smooth anchor scroll ---- */
-document.querySelectorAll('a[href^="#"]').forEach(function(a) {
-  a.addEventListener('click', function(e) {
-    var href = a.getAttribute('href');
-    var target = document.querySelector(href);
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
     if (target) {
       e.preventDefault();
-      var offset = target.getBoundingClientRect().top + window.scrollY - 72;
-      window.scrollTo({ top: offset, behavior: 'smooth' });
-      // Update URL without jumping
-      history.pushState(null, '', href);
+      const top = target.getBoundingClientRect().top + window.scrollY - 72;
+      window.scrollTo({ top, behavior: 'smooth' });
     }
   });
 });
 
 /* ---- Testimonial carousel ---- */
-var currentSlide = 0;
-var track = document.getElementById('carouselTrack');
-var dots = document.querySelectorAll('.carousel-dot');
-var totalSlides = dots.length;
+let currentSlide = 0;
+const track = document.getElementById('carouselTrack');
+const dots = document.querySelectorAll('.carousel-dot');
+const totalSlides = dots.length;
 
 function goToSlide(n) {
   currentSlide = n;
-  track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
-  dots.forEach(function(d, i) { d.classList.toggle('active', i === currentSlide); });
+  track.style.transform = `translateX(-${currentSlide * 100}%)`;
+  dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
 }
 
 function moveCarousel(dir) {
-  var next = currentSlide + dir;
+  let next = currentSlide + dir;
   if (next < 0) next = totalSlides - 1;
   if (next >= totalSlides) next = 0;
   goToSlide(next);
 }
 
-// Carousel button event listeners (no inline onclick)
-document.getElementById('carousel-prev').addEventListener('click', function() { moveCarousel(-1); });
-document.getElementById('carousel-next').addEventListener('click', function() { moveCarousel(1); });
-
-// Carousel dot event listeners
-dots.forEach(function(dot) {
-  dot.addEventListener('click', function() {
-    goToSlide(parseInt(dot.dataset.slide));
-  });
-});
-
-// CAROUSEL TOUCH SUPPORT
-(function() {
-  var carousel = document.getElementById('testimonialCarousel');
-  if (!carousel) return;
-
-  var touchStartX = 0;
-  var touchEndX = 0;
-  var SWIPE_THRESHOLD = 50; // px
-
-  carousel.addEventListener('touchstart', function(e) {
-    touchStartX = e.changedTouches[0].clientX;
-  }, { passive: true });
-
-  carousel.addEventListener('touchend', function(e) {
-    touchEndX = e.changedTouches[0].clientX;
-    var delta = touchStartX - touchEndX;
-
-    if (Math.abs(delta) > SWIPE_THRESHOLD) {
-      moveCarousel(delta > 0 ? 1 : -1);
-    }
-  }, { passive: true });
-
-  // Pause auto-advance on hover/focus
-  var autoAdvance;
-  var startAuto = function() {
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      autoAdvance = setInterval(function() { moveCarousel(1); }, 6000);
-    }
-  };
-  var stopAuto = function() { clearInterval(autoAdvance); };
-
-  carousel.addEventListener('mouseenter', stopAuto);
-  carousel.addEventListener('mouseleave', startAuto);
-  carousel.addEventListener('focusin', stopAuto);
-  carousel.addEventListener('focusout', startAuto);
-
-  startAuto();
-})();
+// Auto-advance every 6 seconds
+setInterval(() => moveCarousel(1), 6000);
 </script>
 
 </body>

@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bob Regnerus — Coach Reg · Pattern Recognition for Founders at Threshold</title>
 <meta name="description" content="40 years. 1,500 athletes. One question: what's the pattern running through everything you do? Bob Regnerus helps founders and leaders who've outgrown the answers they already have.">
+
+<!-- Open Graph -->
 <meta property="og:title" content="Bob Regnerus — Coach Reg · Pattern Recognition for Founders">
 <meta property="og:description" content="I help founders and leaders who've outgrown the answers they already have. 40 years. 1,500 athletes. SPARK Sessions, Tee Time, Keynote.">
 <meta property="og:image" content="https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=1200&q=80">
@@ -12,33 +14,40 @@
 <meta property="og:url" content="https://coachregnerus.com">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%232d6a4f'/><text y='.9em' x='50%' text-anchor='middle' font-size='52' fill='%23b7e4c7'>R</text></svg>">
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%232c1f0e'/><text y='.9em' x='50%' text-anchor='middle' font-size='52' fill='%23c17f3a'>R</text></svg>">
 
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <!--
   REFERENCE SITES STUDIED:
-  - linear.app — clean motion, earned authority, functional beauty
   - brene-brown.com — photography-forward, editorial warmth, authentic story
   - estherperel.com — dynamic, conversational, intelligent spacing
   - pentagram.com — editorial, typography-driven, asymmetric sections
-  - vercel.com — modern, dark, motion-rich
+  - ideo.com — purpose-driven, creative layouts, strong content density
+  - linear.app — clean motion, earned authority, functional beauty
 
-  V2 DESIGN DECISIONS:
-  - Green-forward palette: forest (#2d6a4f), deep (#1b4332), sage (#74c69d), mint (#b7e4c7)
-  - Warm brown (#8b6914) used sparingly for CTAs and badge warmth
-  - Animated gradient orbs in hero (CSS-only)
-  - Glassmorphism nav with backdrop-filter
-  - Scroll progress bar at top
-  - Green glow hover on SPARK cards
-  - Gradient text on key headings
-  - Grain texture on dark sections
+  DESIGN DECISIONS:
+  - Playfair Display (headers): literary weight, earned authority, warmth
+  - Inter (body): clean, professional, readable at all sizes
+  - Palette: Parchment #f7f4ee (luxury warmth), Amber #c17f3a (earned gold),
+    Deep Forest #2c1f0e (gravitas), Secondary dark #1a1308
+  - Hero: centered, full-bleed typography — Signal Code hits immediately
+  - Layout: varied sections — centered hero, asymmetric story, full-bleed proof,
+    split methodology, card grid offers, diagonal dividers
+  - Motion: IntersectionObserver fade-ups, animated counters, hover states,
+    smooth scroll parallax on hero
+  - Brand voice: direct, warm, laconic. Story-first. Never hype.
 
-  PLACEHOLDER IMAGES TO REPLACE:
-  - Hero bg: Bob on golf course, early morning light
-  - Origin story: Bob coaching moment or headshot
+  PLACEHOLDER IMAGES TO REPLACE WITH REAL CLIENT PHOTOS:
+  - Hero portrait: Bob headshot (professional, warm, confident — golf course or office)
+  - Origin story: Bob on the golf course, mid-coaching moment
+  - Methodology section: Course or session action photo
+  - Proof section: Speaking photo or with client
+  - Tee Time: Golf course morning / immersive day photo
 -->
 
 <style>
@@ -46,42 +55,29 @@
    CSS CUSTOM PROPERTIES
    ============================================================ */
 :root {
-  /* Green Palette */
-  --green:        #2d6a4f;
-  --green-light:  #40916c;
-  --sage:         #74c69d;
-  --mint:         #b7e4c7;
-  --deep:         #1b4332;
-  --deeper:       #0d2818;
-  --cream:        #f8f9f4;
-  --cream-2:      #f0f4ec;
-  --cream-3:      #e4ede3;
-
-  /* Accent warm tones */
-  --brown:        #8b6914;
-  --brown-light:  #a07c1e;
-  --brown-faint:  rgba(139, 105, 20, 0.08);
-  --brown-border: rgba(139, 105, 20, 0.22);
-
-  /* Green tints */
-  --green-faint:  rgba(45, 106, 79, 0.08);
-  --green-border: rgba(45, 106, 79, 0.22);
-  --green-glow:   rgba(116, 198, 157, 0.15);
-  --sage-faint:   rgba(116, 198, 157, 0.1);
-
-  /* Text */
-  --text:         #3d2c0a;
-  --text-mid:     #4a5c3a;
-  --text-muted:   #6b7d5e;
+  /* Brand Palette */
+  --parchment:    #f7f4ee;
+  --parchment-2:  #f0ece3;
+  --parchment-3:  #e8e2d6;
+  --amber:        #c17f3a;
+  --amber-light:  #d4944e;
+  --amber-faint:  rgba(193, 127, 58, 0.08);
+  --amber-border: rgba(193, 127, 58, 0.22);
+  --amber-strong: rgba(193, 127, 58, 0.45);
+  --forest:       #3e2e1a;
+  --forest-mid:   #4f3c26;
+  --forest-card:  #5c4730;
+  --forest-dark:  #2c1f0e;
+  --text:         #2d2419;
+  --text-mid:     #5a4d3d;
+  --text-muted:   #8a7b68;
   --white:        #ffffff;
   --white-dim:    rgba(255, 255, 255, 0.88);
   --white-muted:  rgba(255, 255, 255, 0.55);
-  --white-faint:  rgba(255, 255, 255, 0.08);
 
   /* Typography */
   --serif: 'Playfair Display', Georgia, serif;
-  --sans:  'Syne', system-ui, sans-serif;
-  --mono:  'DM Mono', monospace;
+  --sans:  'Inter', -apple-system, sans-serif;
 
   /* Sizing */
   --max: 1200px;
@@ -101,7 +97,7 @@ html {
 
 body {
   font-family: var(--sans);
-  background: var(--cream);
+  background: var(--parchment);
   color: var(--text);
   line-height: 1.75;
   overflow-x: hidden;
@@ -109,74 +105,6 @@ body {
 
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
-
-/* ---- Accessibility: focus styles ---- */
-:focus { outline: none; }
-
-:focus-visible {
-  outline: 2px solid var(--sage);
-  outline-offset: 3px;
-  border-radius: 3px;
-}
-
-/* Button-specific */
-.btn-primary:focus-visible,
-.btn-secondary:focus-visible,
-.nav-cta:focus-visible,
-.offer-cta:focus-visible {
-  outline: 2px solid var(--sage);
-  outline-offset: 4px;
-}
-
-/* Input focus — already has a custom style, extend it */
-.nl-form input[type="email"]:focus-visible {
-  outline: none; /* custom style already handles this */
-}
-
-/* ---- Skip link ---- */
-.skip-link {
-  position: absolute;
-  top: -120%;
-  left: 24px;
-  background: var(--green);
-  color: var(--white);
-  font-family: var(--sans);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 12px 20px;
-  border-radius: 0 0 4px 4px;
-  z-index: 99999;
-  transition: top 0.2s;
-}
-.skip-link:focus { top: 0; }
-
-/* ============================================================
-   PAGE VEIL
-   ============================================================ */
-#page-veil {
-  position: fixed;
-  inset: 0;
-  background: var(--deeper);
-  z-index: 10000;
-  pointer-events: none;
-  transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-/* ============================================================
-   SCROLL PROGRESS BAR
-   ============================================================ */
-#progress-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 2px;
-  width: 0%;
-  background: linear-gradient(90deg, var(--green), var(--sage));
-  z-index: 10000;
-  transition: width 0.1s linear;
-}
 
 /* ============================================================
    SCROLL ANIMATIONS
@@ -186,101 +114,19 @@ a { color: inherit; text-decoration: none; }
   transform: translateY(36px);
   transition: opacity 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94),
               transform 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  will-change: opacity, transform;
 }
-.fade-up.visible { opacity: 1; transform: translateY(0); will-change: auto; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+.fade-up:nth-child(2) { transition-delay: 0.1s; }
+.fade-up:nth-child(3) { transition-delay: 0.2s; }
+.fade-up:nth-child(4) { transition-delay: 0.3s; }
+.fade-up:nth-child(5) { transition-delay: 0.4s; }
+.fade-up:nth-child(6) { transition-delay: 0.5s; }
 
 .fade-in {
   opacity: 0;
   transition: opacity 1s ease;
-  will-change: opacity, transform;
 }
-.fade-in.visible { opacity: 1; will-change: auto; }
-
-/* ============================================================
-   HERO LOAD SEQUENCE — gated behind body.page-loaded
-   ============================================================ */
-.hero-signal-line,
-.hero-headline,
-.hero-sub,
-.hero-quote,
-.hero-stats,
-.hero-cta-group {
-  opacity: 0;
-}
-
-body.page-loaded .hero-signal-line {
-  animation: fadeInUp 0.8s 0.3s forwards;
-}
-body.page-loaded .hero-headline {
-  animation: fadeInUp 0.9s 0.5s forwards;
-}
-body.page-loaded .hero-sub {
-  animation: fadeInUp 0.8s 0.75s forwards;
-}
-body.page-loaded .hero-quote {
-  animation: fadeInUp 0.8s 0.9s forwards;
-}
-body.page-loaded .hero-stats {
-  animation: fadeInUp 0.8s 1.1s forwards;
-}
-body.page-loaded .hero-cta-group {
-  animation: fadeInUp 0.8s 1.3s forwards;
-}
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ============================================================
-   will-change DECLARATIONS
-   ============================================================ */
-.hero-orb { will-change: transform; }
-
-.offer-card,
-.spark-letter,
-.ideal-card,
-.sp-item,
-.cta-option { will-change: transform; }
-
-.offer-card:hover,
-.spark-letter:hover,
-.ideal-card:hover { will-change: auto; }
-
-/* ============================================================
-   prefers-reduced-motion
-   ============================================================ */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-
-  .fade-up,
-  .fade-in {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-
-  .hero-signal-line,
-  .hero-headline,
-  .hero-sub,
-  .hero-quote,
-  .hero-stats,
-  .hero-cta-group {
-    opacity: 1 !important;
-  }
-
-  .hero-orb { animation: none !important; }
-  .scroll-line { animation: none !important; }
-  #progress-bar { transition: none !important; }
-  #page-veil { transition: none !important; }
-}
+.fade-in.visible { opacity: 1; }
 
 /* ============================================================
    TYPOGRAPHY UTILITIES
@@ -293,14 +139,14 @@ body.page-loaded .hero-cta-group {
   letter-spacing: 0.28em;
   text-transform: uppercase;
   font-weight: 700;
-  color: var(--green);
+  color: var(--amber);
   margin-bottom: 20px;
 }
 .eyebrow::before, .eyebrow::after {
   content: '';
   width: 28px;
   height: 1px;
-  background: rgba(45, 106, 79, 0.4);
+  background: var(--amber-strong);
 }
 
 .section-label {
@@ -308,7 +154,7 @@ body.page-loaded .hero-cta-group {
   letter-spacing: 0.26em;
   text-transform: uppercase;
   font-weight: 700;
-  color: var(--green);
+  color: var(--amber);
   margin-bottom: 16px;
   display: flex;
   align-items: center;
@@ -318,18 +164,11 @@ body.page-loaded .hero-cta-group {
   content: '';
   flex: 1;
   height: 1px;
-  background: var(--green-border);
-}
-
-.gradient-text {
-  background: linear-gradient(135deg, var(--green) 0%, var(--sage) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  background: var(--amber-border);
 }
 
 /* ============================================================
-   NAVIGATION — GLASSMORPHISM
+   NAVIGATION
    ============================================================ */
 .nav {
   position: fixed;
@@ -342,35 +181,33 @@ body.page-loaded .hero-cta-group {
   align-items: center;
   padding: 0 48px;
   gap: 32px;
-  background: rgba(248, 249, 244, 0.85);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border-bottom: 1px solid rgba(45, 106, 79, 0.12);
-  transition: background 0.3s, box-shadow 0.3s;
-}
-.nav.scrolled {
-  box-shadow: 0 2px 32px rgba(27, 67, 50, 0.12);
-  background: rgba(248, 249, 244, 0.95);
+  background: rgba(247, 244, 238, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--amber-border);
+  transition: background 0.3s;
 }
 
 .nav-brand {
   font-family: var(--serif);
   font-size: 1.1rem;
   font-weight: 700;
-  color: var(--deep);
+  color: var(--forest);
   display: flex;
   align-items: center;
   gap: 10px;
   flex-shrink: 0;
   letter-spacing: 0.01em;
 }
-.nav-brand .brand-reg { color: var(--green); font-style: italic; }
+.nav-brand .brand-reg {
+  color: var(--amber);
+  font-style: italic;
+}
 .nav-dot {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--sage);
-  box-shadow: 0 0 6px rgba(116, 198, 157, 0.6);
+  background: var(--amber);
 }
 
 .nav-links {
@@ -390,8 +227,8 @@ body.page-loaded .hero-cta-group {
   letter-spacing: 0.02em;
 }
 .nav-link:hover {
-  color: var(--deep);
-  background: var(--green-faint);
+  color: var(--forest);
+  background: var(--amber-faint);
 }
 
 .nav-cta {
@@ -399,17 +236,14 @@ body.page-loaded .hero-cta-group {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--white);
-  background: var(--green);
+  color: var(--parchment);
+  background: var(--forest);
   padding: 10px 22px;
   border-radius: 4px;
-  transition: background 0.2s, box-shadow 0.2s;
+  transition: background 0.2s;
   margin-left: 8px;
 }
-.nav-cta:hover {
-  background: var(--green-light);
-  box-shadow: 0 4px 16px rgba(45, 106, 79, 0.3);
-}
+.nav-cta:hover { background: var(--forest-mid); }
 
 .nav-hamburger {
   display: none;
@@ -421,11 +255,12 @@ body.page-loaded .hero-cta-group {
   border: none;
   margin-left: auto;
 }
+
 .nav-hamburger span {
   display: block;
   width: 24px;
   height: 1.5px;
-  background: var(--deep);
+  background: var(--forest);
   transition: all 0.3s;
 }
 
@@ -435,29 +270,32 @@ body.page-loaded .hero-cta-group {
   top: 68px;
   left: 0;
   right: 0;
-  background: rgba(248, 249, 244, 0.99);
+  background: rgba(247, 244, 238, 0.99);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(45, 106, 79, 0.15);
+  border-bottom: 1px solid var(--amber-border);
   padding: 20px 24px 28px;
   z-index: 998;
   flex-direction: column;
   gap: 4px;
 }
+
 .mobile-menu.open { display: flex; }
+
 .mobile-menu a {
   font-size: 0.9rem;
   font-weight: 500;
   color: var(--text-mid);
   padding: 12px 0;
-  border-bottom: 1px solid var(--green-border);
+  border-bottom: 1px solid var(--amber-border);
   transition: color 0.2s;
 }
+
 .mobile-menu a:last-child { border-bottom: none; }
-.mobile-menu a:hover { color: var(--deep); }
+.mobile-menu a:hover { color: var(--forest); }
 
 /* ============================================================
-   HERO — FULL VIEWPORT, DARK GREEN
+   HERO — FULL VIEWPORT, CENTERED
    ============================================================ */
 .hero {
   min-height: 100vh;
@@ -469,87 +307,45 @@ body.page-loaded .hero-cta-group {
   padding: 120px 40px 80px;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(160deg, var(--deep) 0%, var(--deeper) 100%);
+  background: var(--forest-dark);
 }
 
-/* Animated gradient orbs */
-.hero-orb {
+/* Textured background overlay */
+.hero::before {
+  content: '';
   position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 45%, rgba(193, 127, 58, 0.12) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(193, 127, 58, 0.06) 0%, transparent 50%);
   pointer-events: none;
-  animation: orbFloat 12s ease-in-out infinite;
-}
-.hero-orb-1 {
-  width: 700px;
-  height: 700px;
-  background: radial-gradient(circle, rgba(45,106,79,0.45) 0%, transparent 65%);
-  top: -200px;
-  left: -200px;
-  animation-delay: 0s;
-}
-.hero-orb-2 {
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(116,198,157,0.28) 0%, transparent 65%);
-  bottom: -150px;
-  right: -150px;
-  animation-delay: -4s;
-}
-.hero-orb-3 {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(64,145,108,0.3) 0%, transparent 65%);
-  top: 30%;
-  left: 55%;
-  animation-delay: -8s;
-}
-@keyframes orbFloat {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(30px, -20px) scale(1.05); }
-  66% { transform: translate(-20px, 15px) scale(0.98); }
 }
 
-/* Grain texture */
+/* Subtle grain texture */
 .hero::after {
   content: '';
   position: absolute;
   inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
   pointer-events: none;
-  opacity: 0.5;
+  opacity: 0.4;
 }
 
-/* Hero bg image */
+/* Hero background image */
 .hero-bg {
   position: absolute;
   inset: 0;
   background-image: url('https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=1600&q=80');
-  /* REPLACE: Bob on the golf course, early morning light */
+  /* REPLACE: Bob on the golf course, early morning light, coaching moment */
   background-size: cover;
-  background-position: center 20%;
-  opacity: 0.14;
-  filter: saturate(0.6) contrast(1.15) brightness(0.65);
-}
-
-/* Hero overlay — complements raised bg opacity */
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg,
-      rgba(13,40,24,0.92) 0%,
-      rgba(13,40,24,0.50) 40%,
-      rgba(13,40,24,0.88) 100%),
-    radial-gradient(ellipse 80% 60% at 20% 75%, rgba(45,106,79,0.15) 0%, transparent 55%);
-  pointer-events: none;
-  z-index: 1;
+  background-position: center 30%;
+  opacity: 0.12;
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 820px;
+  max-width: 780px;
   margin: 0 auto;
 }
 
@@ -561,14 +357,14 @@ body.page-loaded .hero-cta-group {
   letter-spacing: 0.28em;
   text-transform: uppercase;
   font-weight: 700;
-  color: var(--sage);
+  color: var(--amber);
   margin-bottom: 32px;
 }
 .hero-signal-line::before, .hero-signal-line::after {
   content: '';
   width: 32px;
   height: 1px;
-  background: rgba(116, 198, 157, 0.4);
+  background: rgba(193, 127, 58, 0.5);
 }
 
 .hero-headline {
@@ -580,28 +376,20 @@ body.page-loaded .hero-cta-group {
   margin-bottom: 28px;
   letter-spacing: -0.01em;
 }
-.hero-headline .green-it {
-  color: var(--sage);
-  font-style: italic;
-}
+.hero-headline .amber { color: var(--amber); }
+.hero-headline .it { font-style: italic; }
 
 .hero-sub {
   font-size: clamp(1rem, 1.8vw, 1.18rem);
   color: var(--white-dim);
   line-height: 1.85;
   max-width: 600px;
-  margin: 0 auto 28px;
+  margin: 0 auto 44px;
   font-weight: 300;
 }
-
-.hero-quote {
-  font-family: var(--serif);
-  font-size: clamp(1.3rem, 2.5vw, 1.85rem);
-  font-weight: 700;
-  font-style: italic;
-  line-height: 1.4;
-  margin-bottom: 52px;
-  position: relative;
+.hero-sub strong {
+  color: var(--white);
+  font-weight: 500;
 }
 
 .hero-stats {
@@ -615,7 +403,7 @@ body.page-loaded .hero-cta-group {
 .hero-stat {
   padding: 0 36px;
   text-align: center;
-  border-right: 1px solid rgba(116, 198, 157, 0.2);
+  border-right: 1px solid rgba(193, 127, 58, 0.25);
   flex: 1;
 }
 .hero-stat:last-child { border-right: none; }
@@ -623,7 +411,7 @@ body.page-loaded .hero-cta-group {
   font-family: var(--serif);
   font-size: 2.4rem;
   font-weight: 700;
-  color: var(--sage);
+  color: var(--amber);
   line-height: 1;
   display: block;
   margin-bottom: 6px;
@@ -648,8 +436,8 @@ body.page-loaded .hero-cta-group {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: var(--green);
-  color: var(--white);
+  background: var(--amber);
+  color: var(--forest-dark);
   font-family: var(--sans);
   font-size: 0.78rem;
   font-weight: 700;
@@ -657,14 +445,13 @@ body.page-loaded .hero-cta-group {
   text-transform: uppercase;
   padding: 16px 34px;
   border-radius: 4px;
-  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  transition: background 0.2s, transform 0.2s;
   border: none;
   cursor: pointer;
 }
 .btn-primary:hover {
-  background: var(--green-light);
+  background: var(--amber-light);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(45, 106, 79, 0.4);
 }
 
 .btn-secondary {
@@ -679,16 +466,17 @@ body.page-loaded .hero-cta-group {
   letter-spacing: 0.06em;
   padding: 16px 28px;
   border-radius: 4px;
-  border: 1px solid rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.2);
   transition: all 0.2s;
   cursor: pointer;
 }
 .btn-secondary:hover {
   color: var(--white);
-  border-color: rgba(116, 198, 157, 0.5);
-  background: rgba(116, 198, 157, 0.08);
+  border-color: rgba(193, 127, 58, 0.4);
+  background: rgba(193, 127, 58, 0.08);
 }
 
+/* Hero scroll indicator */
 .hero-scroll {
   position: absolute;
   bottom: 32px;
@@ -704,12 +492,12 @@ body.page-loaded .hero-cta-group {
   font-size: 0.6rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.28);
+  color: rgba(255,255,255,0.3);
 }
 .scroll-line {
   width: 1px;
   height: 48px;
-  background: linear-gradient(to bottom, rgba(116, 198, 157, 0.5), transparent);
+  background: linear-gradient(to bottom, rgba(193, 127, 58, 0.6), transparent);
   animation: scrollpulse 2s ease-in-out infinite;
 }
 @keyframes scrollpulse {
@@ -721,56 +509,30 @@ body.page-loaded .hero-cta-group {
    PHILOSOPHY STRIP
    ============================================================ */
 .philosophy-strip {
-  background: var(--deeper);
-  padding: 80px 48px;
+  background: var(--amber);
+  padding: 24px 48px;
   text-align: center;
   overflow: hidden;
   position: relative;
-  border-top: 1px solid rgba(116, 198, 157, 0.1);
-  border-bottom: 1px solid rgba(116, 198, 157, 0.1);
 }
-
-/* Decorative large quotation mark behind */
 .philosophy-strip::before {
-  content: '\201C';
-  font-family: var(--serif);
-  font-size: 20rem;
-  color: rgba(116, 198, 157, 0.03);
+  content: '';
   position: absolute;
-  top: -60px;
-  left: 50%;
-  transform: translateX(-50%);
-  line-height: 1;
-  pointer-events: none;
-  font-weight: 700;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 50%);
 }
-
 .philosophy-text {
   font-family: var(--serif);
-  font-size: clamp(1.5rem, 3.5vw, 2.6rem);
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
   font-weight: 600;
   font-style: italic;
-  color: rgba(183, 228, 199, 0.75);
-  line-height: 1.35;
-  max-width: 820px;
-  margin: 0 auto;
+  color: var(--forest-dark);
+  line-height: 1.4;
   position: relative;
 }
-
 .philosophy-text .em {
   font-style: normal;
   font-weight: 700;
-  color: var(--white);
-}
-
-.philosophy-attr {
-  font-family: var(--sans);
-  font-size: 0.6rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(116, 198, 157, 0.45);
-  margin-top: 20px;
-  font-style: normal;
 }
 
 /* ============================================================
@@ -784,11 +546,11 @@ body.page-loaded .hero-cta-group {
 @media (max-width: 768px) { .section-wrap { padding: 0 24px; } }
 
 /* ============================================================
-   THE PROBLEM
+   THE PROBLEM — ASYMMETRIC LAYOUT
    ============================================================ */
 .problem-section {
   padding: var(--section-v) 0;
-  background: var(--cream);
+  background: var(--parchment);
   position: relative;
 }
 
@@ -804,16 +566,21 @@ body.page-loaded .hero-cta-group {
   top: 96px;
 }
 
+.problem-right {
+  padding-top: 8px;
+}
+
 .big-pull-quote {
   font-family: var(--serif);
   font-size: clamp(1.8rem, 3.2vw, 2.6rem);
   font-weight: 700;
   line-height: 1.18;
-  color: var(--deep);
+  color: var(--forest);
   margin-bottom: 28px;
   letter-spacing: -0.01em;
 }
-.big-pull-quote .sage { color: var(--green); font-style: italic; }
+.big-pull-quote .amber { color: var(--amber); }
+.big-pull-quote .it { font-style: italic; }
 
 .problem-left p {
   font-size: 0.95rem;
@@ -823,28 +590,17 @@ body.page-loaded .hero-cta-group {
 }
 
 .cost-callout {
-  background: var(--deep);
+  background: var(--forest);
   border-radius: 10px;
   padding: 28px 32px;
   margin-top: 32px;
-  position: relative;
-  overflow: hidden;
-}
-.cost-callout::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--sage), var(--green));
 }
 .cost-callout .cc-label {
   font-size: 0.6rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   font-weight: 700;
-  color: var(--sage);
+  color: var(--amber);
   margin-bottom: 12px;
 }
 .cost-callout .cc-text {
@@ -856,8 +612,9 @@ body.page-loaded .hero-cta-group {
 }
 .cost-callout .cc-attr {
   font-size: 0.72rem;
-  color: rgba(255,255,255,0.32);
+  color: rgba(255,255,255,0.35);
   margin-top: 12px;
+  font-style: normal;
 }
 
 .problem-point {
@@ -865,24 +622,25 @@ body.page-loaded .hero-cta-group {
   gap: 20px;
   align-items: flex-start;
   padding: 24px 0;
-  border-bottom: 1px solid var(--cream-3);
+  border-bottom: 1px solid var(--parchment-3);
 }
 .problem-point:last-child { border-bottom: none; }
 .pp-num {
   font-family: var(--serif);
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 700;
-  color: rgba(45, 106, 79, 0.18);
-  line-height: 0.9;
+  color: var(--amber-border);
+  line-height: 1;
   flex-shrink: 0;
-  width: 52px;
+  width: 44px;
   padding-top: 4px;
 }
+.pp-content {}
 .pp-title {
   font-family: var(--serif);
   font-size: 1.1rem;
   font-weight: 700;
-  color: var(--deep);
+  color: var(--forest);
   margin-bottom: 8px;
   line-height: 1.3;
 }
@@ -891,36 +649,39 @@ body.page-loaded .hero-cta-group {
   color: var(--text-mid);
   line-height: 1.8;
 }
-.pp-body strong { color: var(--deep); }
+.pp-body strong { color: var(--forest); }
 
 /* ============================================================
-   METHODOLOGY — DARK GREEN
+   METHODOLOGY — FULL BLEED DARK
    ============================================================ */
 .methodology-section {
-  background: var(--deep);
+  background: var(--forest);
   padding: var(--section-v) 0;
   position: relative;
   overflow: hidden;
 }
+
 .methodology-section::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 50% 60% at 70% 50%, rgba(116, 198, 157, 0.06) 0%, transparent 65%);
+  background: radial-gradient(ellipse 50% 60% at 70% 50%, rgba(193, 127, 58, 0.08) 0%, transparent 65%);
   pointer-events: none;
 }
 
+/* Full-width header block for methodology */
 .methodology-header {
   text-align: center;
   max-width: 780px;
   margin: 0 auto 72px;
 }
+
 .method-eyebrow {
   font-size: 0.6rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   font-weight: 700;
-  color: var(--sage);
+  color: var(--amber);
   margin-bottom: 20px;
   display: flex;
   align-items: center;
@@ -931,8 +692,9 @@ body.page-loaded .hero-cta-group {
   content: '';
   width: 28px;
   height: 1px;
-  background: rgba(116, 198, 157, 0.4);
+  background: rgba(193, 127, 58, 0.5);
 }
+
 .method-title {
   font-family: var(--serif);
   font-size: clamp(1.8rem, 3vw, 2.8rem);
@@ -942,40 +704,45 @@ body.page-loaded .hero-cta-group {
   margin-bottom: 20px;
   letter-spacing: -0.01em;
 }
-.method-title .sage-it { color: var(--sage); font-style: italic; }
+.method-title .amber { color: var(--amber); font-style: italic; }
+
 .method-intro {
   font-size: 1.02rem;
   color: var(--white-dim);
   line-height: 1.85;
+  margin-bottom: 0;
   font-weight: 300;
   max-width: 680px;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 .method-intro strong { color: var(--white); font-weight: 500; }
 
+/* Pattern Recognition definition — full width, two-column */
 .pattern-definition {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2px;
-  background: rgba(116, 198, 157, 0.1);
+  background: rgba(193, 127, 58, 0.12);
   border-radius: 12px;
   overflow: hidden;
   margin-bottom: 64px;
 }
+
 .pattern-def-block {
   background: rgba(255, 255, 255, 0.03);
   padding: 44px 48px;
-  transition: background 0.3s;
 }
-.pattern-def-block:hover { background: rgba(116, 198, 157, 0.05); }
+
 .pdb-eyebrow {
   font-size: 0.58rem;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   font-weight: 700;
-  color: var(--sage);
+  color: var(--amber);
   margin-bottom: 16px;
 }
+
 .pdb-title {
   font-family: var(--serif);
   font-size: 1.5rem;
@@ -984,49 +751,38 @@ body.page-loaded .hero-cta-group {
   margin-bottom: 14px;
   line-height: 1.2;
 }
+
 .pdb-body {
   font-size: 0.92rem;
-  color: rgba(255, 255, 255, 0.68);
+  color: rgba(255, 255, 255, 0.72);
   line-height: 1.85;
 }
 .pdb-body strong { color: var(--white-dim); }
 
-/* SPARK row */
+/* SPARK row — 5 equal cards in a single row */
 .spark-row {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 12px;
   margin-bottom: 48px;
 }
+
 .spark-letter {
-  background: rgba(116, 198, 157, 0.05);
-  border: 1px solid rgba(116, 198, 157, 0.15);
+  background: rgba(193, 127, 58, 0.06);
+  border: 1px solid var(--amber-border);
   border-radius: 10px;
   padding: 28px 22px;
-  transition: background 0.25s, border-color 0.25s, box-shadow 0.25s, transform 0.25s;
-  position: relative;
-}
-.spark-letter::after {
-  content: attr(data-step);
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  color: rgba(116, 198, 157, 0.25);
-  letter-spacing: 0.1em;
+  transition: background 0.2s, border-color 0.2s;
 }
 .spark-letter:hover {
-  background: rgba(116, 198, 157, 0.1);
-  border-color: rgba(116, 198, 157, 0.4);
-  box-shadow: 0 0 24px rgba(116, 198, 157, 0.12), 0 4px 16px rgba(0,0,0,0.2);
-  transform: translateY(-3px);
+  background: rgba(193, 127, 58, 0.12);
+  border-color: var(--amber-strong);
 }
 .sl-letter {
   font-family: var(--serif);
   font-size: 2.4rem;
   font-weight: 700;
-  color: var(--sage);
+  color: var(--amber);
   line-height: 1;
   margin-bottom: 10px;
 }
@@ -1040,14 +796,14 @@ body.page-loaded .hero-cta-group {
 }
 .sl-desc {
   font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.68);
   line-height: 1.6;
 }
 
 .method-insight {
-  border-left: 3px solid var(--sage);
+  border-left: 3px solid var(--amber);
   padding: 20px 28px;
-  background: rgba(116, 198, 157, 0.05);
+  background: rgba(193, 127, 58, 0.06);
   border-radius: 0 8px 8px 0;
   max-width: 780px;
   margin: 0 auto;
@@ -1060,14 +816,14 @@ body.page-loaded .hero-cta-group {
   line-height: 1.65;
   margin: 0;
 }
-.method-insight strong { color: var(--sage); font-style: normal; }
+.method-insight strong { color: var(--amber); font-style: normal; }
 
 /* ============================================================
-   OFFERS
+   HOW WE WORK — OFFERS
    ============================================================ */
 .offers-section {
   padding: var(--section-v) 0;
-  background: var(--cream);
+  background: var(--parchment);
   position: relative;
 }
 
@@ -1080,15 +836,103 @@ body.page-loaded .hero-cta-group {
   font-family: var(--serif);
   font-size: clamp(1.8rem, 3.2vw, 2.8rem);
   font-weight: 700;
-  color: var(--deep);
+  color: var(--forest);
   line-height: 1.15;
   margin-bottom: 16px;
 }
-.offers-intro h2 .sage-it { color: var(--green); font-style: italic; }
+.offers-intro h2 .amber { color: var(--amber); font-style: italic; }
 .offers-intro p {
   font-size: 0.98rem;
   color: var(--text-mid);
   line-height: 1.85;
+}
+
+/* Client journey timeline */
+.journey-timeline {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 64px;
+  position: relative;
+  padding: 0 24px;
+}
+
+.journey-timeline::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--amber-border), var(--amber-strong), var(--amber-border), transparent);
+}
+
+.jt-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  max-width: 200px;
+  position: relative;
+  z-index: 1;
+}
+
+.jt-dot {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--parchment);
+  border: 2px solid var(--parchment-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  transition: border-color 0.2s, background 0.2s;
+  flex-shrink: 0;
+}
+
+.jt-dot-inner {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  transition: background 0.2s;
+}
+
+.jt-step.active .jt-dot {
+  border-color: var(--amber);
+  background: var(--amber-faint);
+}
+.jt-step.active .jt-dot-inner {
+  background: var(--amber);
+  box-shadow: 0 0 0 4px rgba(193, 127, 58, 0.15);
+}
+
+.jt-num {
+  font-size: 0.55rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.jt-step.active .jt-num { color: var(--amber); }
+
+.jt-name {
+  font-family: var(--serif);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--forest);
+  text-align: center;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+
+.jt-price {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-align: center;
 }
 
 .offers-grid {
@@ -1100,7 +944,7 @@ body.page-loaded .hero-cta-group {
 
 .offer-card {
   background: var(--white);
-  border: 1px solid var(--cream-3);
+  border: 1px solid var(--parchment-3);
   border-radius: 14px;
   padding: 36px 38px;
   position: relative;
@@ -1108,8 +952,8 @@ body.page-loaded .hero-cta-group {
   transition: transform 0.25s, box-shadow 0.25s;
 }
 .offer-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 24px 64px rgba(27, 67, 50, 0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(44, 31, 14, 0.12);
 }
 .offer-card::before {
   content: '';
@@ -1118,32 +962,16 @@ body.page-loaded .hero-cta-group {
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--green), var(--sage));
+  background: var(--amber);
 }
 .offer-card.flagship {
-  background: var(--deep);
-  border-color: rgba(116, 198, 157, 0.2);
-  margin-top: 0;
-  border: 2px solid rgba(116, 198, 157, 0.35);
-  box-shadow: 0 32px 80px rgba(13, 40, 24, 0.35),
-              0 0 0 1px rgba(116, 198, 157, 0.1);
-}
-.offer-card.flagship:hover {
-  box-shadow: 0 32px 80px rgba(13, 40, 24, 0.4), 0 0 40px rgba(116, 198, 157, 0.08);
+  background: var(--forest);
+  border-color: rgba(193, 127, 58, 0.3);
+  margin-top: -12px;
+  box-shadow: 0 24px 64px rgba(44, 31, 14, 0.22);
 }
 .offer-card.flagship::before {
-  background: linear-gradient(90deg, var(--sage), rgba(116, 198, 157, 0.3));
-}
-
-/* On desktop only, use scale to lift flagship */
-@media (min-width: 769px) {
-  .offer-card.flagship {
-    transform: scale(1.025);
-    transform-origin: center;
-  }
-  .offer-card.flagship:hover {
-    transform: scale(1.025) translateY(-5px);
-  }
+  background: linear-gradient(90deg, var(--amber), rgba(193, 127, 58, 0.4));
 }
 
 .offer-badge {
@@ -1157,36 +985,36 @@ body.page-loaded .hero-cta-group {
   margin-bottom: 16px;
 }
 .offer-badge.entry {
-  color: var(--green);
-  background: var(--green-faint);
-  border: 1px solid var(--green-border);
+  color: var(--amber);
+  background: var(--amber-faint);
+  border: 1px solid var(--amber-border);
 }
 .offer-badge.flagship-badge {
-  color: var(--deep);
-  background: var(--sage);
-  border: 1px solid var(--sage);
+  color: var(--forest-dark);
+  background: var(--amber);
+  border: 1px solid var(--amber);
 }
 .offer-badge.retainer {
-  color: var(--green);
-  background: rgba(45, 106, 79, 0.08);
-  border: 1px solid rgba(45, 106, 79, 0.2);
+  color: var(--amber);
+  background: rgba(193, 127, 58, 0.1);
+  border: 1px solid rgba(193, 127, 58, 0.25);
 }
 .offer-badge.speaking {
-  color: var(--brown);
-  background: var(--brown-faint);
-  border: 1px solid var(--brown-border);
+  color: var(--text-mid);
+  background: var(--parchment-2);
+  border: 1px solid var(--parchment-3);
 }
 
 .offer-name {
   font-family: var(--serif);
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--deep);
+  color: var(--forest);
   margin-bottom: 8px;
   line-height: 1.2;
 }
 .offer-card.flagship .offer-name { color: var(--white); }
-.offer-name .sage { color: var(--sage); }
+.offer-name .amber { color: var(--amber); }
 
 .offer-tagline {
   font-size: 0.88rem;
@@ -1203,17 +1031,16 @@ body.page-loaded .hero-cta-group {
   gap: 14px;
   margin-bottom: 24px;
   padding-bottom: 24px;
-  border-bottom: 1px solid var(--cream-3);
+  border-bottom: 1px solid var(--parchment-3);
 }
-.offer-card.flagship .offer-price-row { border-color: rgba(116, 198, 157, 0.15); }
+.offer-card.flagship .offer-price-row { border-color: rgba(193, 127, 58, 0.2); }
 .offer-price {
   font-family: var(--serif);
   font-size: 1.8rem;
   font-weight: 700;
-  color: var(--green);
+  color: var(--amber);
   line-height: 1;
 }
-.offer-card.flagship .offer-price { color: var(--sage); }
 .offer-price-note {
   font-size: 0.72rem;
   color: var(--text-muted);
@@ -1238,13 +1065,11 @@ body.page-loaded .hero-cta-group {
 }
 .offer-card.flagship .offer-includes li { color: var(--white-dim); }
 .offer-includes li .check {
-  color: var(--green);
+  color: var(--amber);
+  font-weight: 700;
   flex-shrink: 0;
-  margin-top: 3px;
-  display: flex;
-  align-items: center;
+  margin-top: 1px;
 }
-.offer-card.flagship .offer-includes li .check { color: var(--sage); }
 
 .offer-cta {
   display: inline-flex;
@@ -1261,39 +1086,43 @@ body.page-loaded .hero-cta-group {
   border: none;
 }
 .offer-cta.dark {
-  background: var(--green);
+  background: var(--forest);
   color: var(--white);
 }
 .offer-cta.dark:hover {
-  background: var(--green-light);
+  background: var(--forest-mid);
   transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(45, 106, 79, 0.3);
 }
-.offer-cta.sage-btn {
-  background: var(--sage);
-  color: var(--deep);
+.offer-cta.amber-btn {
+  background: var(--amber);
+  color: var(--forest-dark);
 }
-.offer-cta.sage-btn:hover {
-  background: var(--mint);
+.offer-cta.amber-btn:hover {
+  background: var(--amber-light);
   transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(116, 198, 157, 0.3);
 }
 .offer-cta.outline {
   background: transparent;
-  color: var(--green);
-  border: 1px solid var(--green-border);
+  color: var(--amber);
+  border: 1px solid var(--amber-border);
 }
 .offer-cta.outline:hover {
-  background: var(--green-faint);
-  border-color: rgba(45, 106, 79, 0.5);
+  background: var(--amber-faint);
+  border-color: var(--amber-strong);
 }
 
+/* Tee Time — single-column card layout, image removed per spec */
+.tee-time-inner {
+  display: block;
+}
+/* tee-time-image hidden via HTML removal */
+
 /* ============================================================
-   PROOF
+   PROOF SECTION — FULL BLEED
    ============================================================ */
 .proof-section {
   padding: var(--section-v) 0;
-  background: var(--cream-2);
+  background: var(--parchment);
   position: relative;
 }
 
@@ -1305,11 +1134,11 @@ body.page-loaded .hero-cta-group {
   font-family: var(--serif);
   font-size: clamp(1.8rem, 3.2vw, 2.8rem);
   font-weight: 700;
-  color: var(--deep);
+  color: var(--forest);
   line-height: 1.15;
   margin-bottom: 14px;
 }
-.proof-header h2 .sage-it { color: var(--green); font-style: italic; }
+.proof-header h2 .amber { color: var(--amber); font-style: italic; }
 .proof-header p {
   font-size: 0.98rem;
   color: var(--text-mid);
@@ -1318,11 +1147,12 @@ body.page-loaded .hero-cta-group {
   line-height: 1.8;
 }
 
+/* Stats row */
 .proof-stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1px;
-  background: var(--cream-3);
+  background: var(--parchment-3);
   border-radius: 12px;
   overflow: hidden;
   margin-bottom: 64px;
@@ -1336,7 +1166,7 @@ body.page-loaded .hero-cta-group {
   font-family: var(--serif);
   font-size: 2.6rem;
   font-weight: 700;
-  color: var(--green);
+  color: var(--amber);
   line-height: 1;
   display: block;
   margin-bottom: 8px;
@@ -1350,21 +1180,25 @@ body.page-loaded .hero-cta-group {
   line-height: 1.4;
 }
 
+/* Testimonials — vertical stack, centered, max 760px */
+/* Testimonial carousel */
 .testimonials-grid {
   position: relative;
-  max-width: 740px;
+  max-width: 700px;
   margin: 0 auto 52px;
   overflow: hidden;
 }
+
 .carousel-track {
   display: flex;
-  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.5s ease;
 }
+
 .testimonial-card {
   min-width: 100%;
   background: var(--white);
-  border: 1px solid var(--cream-3);
-  border-left: 4px solid var(--green);
+  border: 1px solid var(--parchment-3);
+  border-left: 4px solid var(--amber);
   border-radius: 12px;
   padding: 48px 52px;
   position: relative;
@@ -1377,7 +1211,7 @@ body.page-loaded .hero-cta-group {
   right: 32px;
   font-family: var(--serif);
   font-size: 5rem;
-  color: rgba(45, 106, 79, 0.06);
+  color: rgba(193, 127, 58, 0.08);
   line-height: 1;
   font-weight: 700;
 }
@@ -1385,15 +1219,29 @@ body.page-loaded .hero-cta-group {
   font-family: var(--serif);
   font-size: 1.1rem;
   font-style: italic;
-  color: var(--deep);
+  color: var(--forest);
   line-height: 1.8;
   margin-bottom: 24px;
   position: relative;
 }
-.testimonial-attribution { display: flex; flex-direction: column; gap: 2px; }
-.ta-name { font-size: 0.85rem; font-weight: 700; color: var(--deep); }
-.ta-title { font-size: 0.75rem; color: var(--text-muted); }
+.testimonial-attribution {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.ta-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--forest);
+}
+.ta-title {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+.testimonial-featured { }
+.testimonial-featured .testimonial-text { font-size: 1.15rem; }
 
+/* Carousel controls */
 .carousel-controls {
   display: flex;
   align-items: center;
@@ -1405,9 +1253,9 @@ body.page-loaded .hero-cta-group {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  border: 1px solid var(--cream-3);
+  border: 1px solid var(--parchment-3);
   background: var(--white);
-  color: var(--deep);
+  color: var(--forest);
   font-size: 1.1rem;
   cursor: pointer;
   display: flex;
@@ -1416,35 +1264,39 @@ body.page-loaded .hero-cta-group {
   transition: all 0.2s;
 }
 .carousel-btn:hover {
-  background: var(--green);
+  background: var(--amber);
   color: white;
-  border-color: var(--green);
-  box-shadow: 0 4px 12px rgba(45, 106, 79, 0.3);
+  border-color: var(--amber);
 }
-.carousel-dots { display: flex; gap: 8px; }
+.carousel-dots {
+  display: flex;
+  gap: 8px;
+}
 .carousel-dot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: var(--cream-3);
+  background: var(--parchment-3);
   cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
+  transition: background 0.2s;
 }
 .carousel-dot.active {
-  background: var(--green);
-  transform: scale(1.2);
+  background: var(--amber);
 }
 
+/* Credibility markers */
 .credibility-bar {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 48px;
   padding: 40px 0 0;
-  border-top: 1px solid var(--cream-3);
+  border-top: 1px solid var(--parchment-3);
   flex-wrap: wrap;
 }
-.cred-item { text-align: center; }
+.cred-item {
+  text-align: center;
+}
 .cred-item .ci-label {
   font-size: 0.6rem;
   letter-spacing: 0.18em;
@@ -1457,23 +1309,24 @@ body.page-loaded .hero-cta-group {
   font-family: var(--serif);
   font-size: 0.95rem;
   font-weight: 600;
-  color: var(--deep);
+  color: var(--forest);
 }
 
 /* ============================================================
-   IDEAL CLIENT
+   IDEAL CLIENT — WHO THIS IS FOR
    ============================================================ */
 .ideal-section {
-  background: var(--deeper);
+  background: var(--forest-dark);
   padding: var(--section-v) 0;
   position: relative;
   overflow: hidden;
 }
+
 .ideal-section::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 60% 50% at 30% 60%, rgba(45, 106, 79, 0.15) 0%, transparent 60%);
+  background: radial-gradient(ellipse 60% 50% at 30% 60%, rgba(193, 127, 58, 0.06) 0%, transparent 60%);
   pointer-events: none;
 }
 
@@ -1490,7 +1343,7 @@ body.page-loaded .hero-cta-group {
   line-height: 1.15;
   margin-bottom: 14px;
 }
-.ideal-header h2 .sage-it { color: var(--sage); font-style: italic; }
+.ideal-header h2 .amber { color: var(--amber); font-style: italic; }
 .ideal-header p {
   font-size: 0.98rem;
   color: var(--white-muted);
@@ -1508,50 +1361,41 @@ body.page-loaded .hero-cta-group {
 }
 
 .ideal-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(116, 198, 157, 0.12);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(193, 127, 58, 0.18);
   border-radius: 12px;
-  padding: 28px 30px;
+  padding: 24px 28px;
   transition: all 0.3s;
 }
 .ideal-card:hover {
-  background: rgba(116, 198, 157, 0.06);
-  border-color: rgba(116, 198, 157, 0.3);
+  background: rgba(193, 127, 58, 0.06);
+  border-color: rgba(193, 127, 58, 0.35);
   transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(0,0,0,0.2);
 }
-.ic-num {
-  font-family: var(--serif);
-  font-size: 2.2rem;
-  font-weight: 700;
-  color: rgba(116, 198, 157, 0.25);
-  line-height: 1;
-  margin-bottom: 12px;
-  letter-spacing: -0.02em;
-}
-.ideal-card:hover .ic-num {
-  color: var(--sage);
-  transition: color 0.3s;
+.ideal-card .ic-icon {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
 }
 .ideal-card .ic-title {
   font-family: var(--serif);
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--sage);
+  color: var(--amber);
   margin-bottom: 10px;
   line-height: 1.3;
 }
 .ideal-card .ic-body {
   font-size: 0.86rem;
-  color: rgba(255,255,255,0.72);
+  color: rgba(255,255,255,0.78);
   line-height: 1.75;
 }
 .ideal-card .ic-body strong { color: var(--white); }
 
+/* You are not right for section */
 .not-for-block {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 10px;
+  background: rgba(224, 92, 92, 0.05);
+  border: 1px solid rgba(224, 92, 92, 0.2);
+  border-radius: 12px;
   padding: 32px 36px;
   max-width: 720px;
   margin: 0 auto 44px;
@@ -1561,16 +1405,17 @@ body.page-loaded .hero-cta-group {
   letter-spacing: 0.2em;
   text-transform: uppercase;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(224, 92, 92, 0.8);
   margin-bottom: 14px;
 }
 .nfb-text {
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.45);
+  color: var(--white-muted);
   line-height: 1.85;
 }
 .nfb-text strong { color: var(--white-dim); }
 
+/* The signal phrases */
 .signal-phrases {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1579,29 +1424,29 @@ body.page-loaded .hero-cta-group {
   margin: 0 auto;
 }
 .sp-item {
-  background: var(--green);
+  background: var(--amber);
+  border: none;
   border-radius: 8px;
   padding: 20px 22px;
   font-family: var(--serif);
   font-size: 0.95rem;
   font-style: italic;
-  color: var(--mint);
+  color: var(--forest-dark);
   line-height: 1.55;
   text-align: center;
   transition: all 0.3s;
 }
 .sp-item:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(45, 106, 79, 0.4);
-  background: var(--green-light);
+  box-shadow: 0 8px 24px rgba(193,127,58,0.3);
 }
 
 /* ============================================================
-   ORIGIN STORY
+   ORIGIN STORY — ASYMMETRIC
    ============================================================ */
 .origin-section {
   padding: var(--section-v) 0;
-  background: var(--cream);
+  background: var(--parchment);
   position: relative;
 }
 
@@ -1612,16 +1457,18 @@ body.page-loaded .hero-cta-group {
   align-items: start;
 }
 
+.origin-content {}
+
 .origin-h2 {
   font-family: var(--serif);
   font-size: clamp(1.8rem, 3.2vw, 2.6rem);
   font-weight: 700;
-  color: var(--deep);
+  color: var(--forest);
   line-height: 1.15;
   margin-bottom: 28px;
   letter-spacing: -0.01em;
 }
-.origin-h2 .sage-it { color: var(--green); font-style: italic; }
+.origin-h2 .amber { color: var(--amber); font-style: italic; }
 
 .origin-content p {
   font-size: 0.95rem;
@@ -1629,20 +1476,22 @@ body.page-loaded .hero-cta-group {
   line-height: 1.9;
   margin-bottom: 20px;
 }
-.origin-content p strong { color: var(--deep); }
+.origin-content p strong { color: var(--forest); }
 
 .origin-pull {
   font-family: var(--serif);
   font-size: 1.2rem;
   font-style: italic;
-  color: var(--deep);
-  border-left: 4px solid var(--green);
+  color: var(--forest);
+  border-left: 4px solid var(--amber);
   padding: 16px 20px;
-  background: rgba(45, 106, 79, 0.05);
+  background: rgba(193, 127, 58, 0.05);
   border-radius: 0 8px 8px 0;
   margin: 28px 0;
   line-height: 1.55;
 }
+
+.origin-sidebar {}
 
 .origin-image {
   border-radius: 12px;
@@ -1654,7 +1503,8 @@ body.page-loaded .hero-cta-group {
   width: 100%;
   height: 400px;
   object-fit: cover;
-  filter: brightness(0.9) saturate(0.9);
+  /* REPLACE: Bob headshot or coaching moment — professional, warm, golf or office */
+  filter: brightness(0.9) saturate(0.85);
 }
 .origin-image-overlay {
   position: absolute;
@@ -1662,15 +1512,15 @@ body.page-loaded .hero-cta-group {
   left: 0;
   right: 0;
   padding: 20px;
-  background: linear-gradient(to top, rgba(13, 40, 24, 0.85), transparent);
+  background: linear-gradient(to top, rgba(26,19,8,0.8), transparent);
   font-family: var(--serif);
   font-size: 0.85rem;
   font-style: italic;
-  color: rgba(183, 228, 199, 0.85);
+  color: rgba(247,244,238,0.8);
 }
 
 .credentials-list {
-  background: var(--deep);
+  background: var(--forest);
   border-radius: 12px;
   padding: 28px 30px;
 }
@@ -1679,7 +1529,7 @@ body.page-loaded .hero-cta-group {
   letter-spacing: 0.22em;
   text-transform: uppercase;
   font-weight: 700;
-  color: var(--sage);
+  color: var(--amber);
   margin-bottom: 18px;
 }
 .cl-item {
@@ -1690,24 +1540,24 @@ body.page-loaded .hero-cta-group {
   color: var(--white-dim);
   line-height: 1.6;
   padding: 10px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 .cl-item:last-child { border-bottom: none; }
-.cl-dot {
+.cl-item .cl-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--sage);
+  background: var(--amber);
   flex-shrink: 0;
   margin-top: 7px;
 }
 
 /* ============================================================
-   CONVICTION
+   CONVICTION SECTION — BRAND STATEMENT
    ============================================================ */
 .conviction-section {
-  padding: 120px 0;
-  background: linear-gradient(135deg, var(--green) 0%, var(--deep) 100%);
+  padding: 96px 0;
+  background: var(--amber);
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -1716,7 +1566,7 @@ body.page-loaded .hero-cta-group {
   content: '';
   position: absolute;
   inset: 0;
-  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23b7e4c7' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232c1f0e' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   pointer-events: none;
 }
 .conviction-content {
@@ -1731,7 +1581,7 @@ body.page-loaded .hero-cta-group {
   letter-spacing: 0.28em;
   text-transform: uppercase;
   font-weight: 700;
-  color: rgba(183, 228, 199, 0.6);
+  color: rgba(44,31,14,0.6);
   margin-bottom: 20px;
   display: flex;
   align-items: center;
@@ -1742,31 +1592,31 @@ body.page-loaded .hero-cta-group {
   content: '';
   width: 28px;
   height: 1px;
-  background: rgba(183, 228, 199, 0.3);
+  background: rgba(44,31,14,0.3);
 }
 .conviction-quote {
   font-family: var(--serif);
-  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
   font-weight: 700;
-  color: var(--white);
-  line-height: 1.2;
+  color: var(--forest-dark);
+  line-height: 1.25;
   margin-bottom: 24px;
   letter-spacing: -0.01em;
 }
 .conviction-sub {
   font-size: 1rem;
-  color: rgba(183, 228, 199, 0.85);
+  color: rgba(44,31,14,0.85);
   line-height: 1.8;
   margin-bottom: 36px;
 }
-.conviction-sub strong { color: var(--white); }
+.conviction-sub strong { color: var(--forest-dark); }
 
 /* ============================================================
    CTA SECTION
    ============================================================ */
 .cta-section {
   padding: var(--section-v) 0;
-  background: var(--deep);
+  background: var(--forest);
   position: relative;
   overflow: hidden;
 }
@@ -1774,7 +1624,7 @@ body.page-loaded .hero-cta-group {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(116, 198, 157, 0.07) 0%, transparent 65%);
+  background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(193, 127, 58, 0.1) 0%, transparent 65%);
   pointer-events: none;
 }
 
@@ -1785,10 +1635,7 @@ body.page-loaded .hero-cta-group {
   position: relative;
   z-index: 1;
 }
-.cta-inner .eyebrow { justify-content: center; color: var(--sage); }
-.cta-inner .eyebrow::before, .cta-inner .eyebrow::after {
-  background: rgba(116, 198, 157, 0.35);
-}
+.cta-inner .eyebrow { justify-content: center; }
 .cta-h2 {
   font-family: var(--serif);
   font-size: clamp(2rem, 3.8vw, 3.2rem);
@@ -1798,7 +1645,7 @@ body.page-loaded .hero-cta-group {
   margin-bottom: 20px;
   letter-spacing: -0.01em;
 }
-.cta-h2 .sage-it { color: var(--sage); font-style: italic; }
+.cta-h2 .amber { color: var(--amber); font-style: italic; }
 .cta-sub {
   font-size: 1rem;
   color: var(--white-muted);
@@ -1816,8 +1663,8 @@ body.page-loaded .hero-cta-group {
   text-align: left;
 }
 .cta-option {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(116, 198, 157, 0.15);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(193, 127, 58, 0.2);
   border-radius: 12px;
   padding: 28px 30px;
   transition: background 0.2s, border-color 0.2s, transform 0.2s;
@@ -1826,8 +1673,8 @@ body.page-loaded .hero-cta-group {
   gap: 12px;
 }
 .cta-option:hover {
-  background: rgba(116, 198, 157, 0.07);
-  border-color: rgba(116, 198, 157, 0.4);
+  background: rgba(193, 127, 58, 0.08);
+  border-color: rgba(193, 127, 58, 0.45);
   transform: translateY(-2px);
 }
 .co-label {
@@ -1835,7 +1682,7 @@ body.page-loaded .hero-cta-group {
   letter-spacing: 0.2em;
   text-transform: uppercase;
   font-weight: 700;
-  color: var(--sage);
+  color: var(--amber);
 }
 .co-name {
   font-family: var(--serif);
@@ -1852,10 +1699,10 @@ body.page-loaded .hero-cta-group {
 .co-price {
   font-size: 0.9rem;
   font-weight: 700;
-  color: var(--sage);
+  color: var(--amber);
   margin-top: auto;
   padding-top: 8px;
-  border-top: 1px solid rgba(116, 198, 157, 0.15);
+  border-top: 1px solid rgba(193, 127, 58, 0.2);
 }
 .co-cta {
   display: inline-flex;
@@ -1865,22 +1712,22 @@ body.page-loaded .hero-cta-group {
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--sage);
+  color: var(--amber);
   margin-top: 4px;
 }
 .co-cta::after {
-  content: '\2192';
+  content: '→';
   transition: transform 0.2s;
 }
 .cta-option:hover .co-cta::after { transform: translateX(4px); }
 
 .cta-guarantee {
   font-size: 0.8rem;
-  color: rgba(255,255,255,0.28);
+  color: rgba(255,255,255,0.3);
   line-height: 1.7;
 }
 .cta-guarantee a {
-  color: var(--sage);
+  color: var(--amber);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -1889,10 +1736,10 @@ body.page-loaded .hero-cta-group {
    NEWSLETTER STRIP
    ============================================================ */
 .newsletter-strip {
-  background: var(--cream-2);
+  background: var(--parchment-2);
   padding: 72px 0;
-  border-top: 1px solid var(--cream-3);
-  border-bottom: 1px solid var(--cream-3);
+  border-top: 1px solid var(--parchment-3);
+  border-bottom: 1px solid var(--parchment-3);
 }
 .newsletter-inner {
   display: grid;
@@ -1900,12 +1747,13 @@ body.page-loaded .hero-cta-group {
   gap: 64px;
   align-items: center;
 }
+.nl-left {}
 .nl-label {
   font-size: 0.6rem;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   font-weight: 700;
-  color: var(--green);
+  color: var(--amber);
   margin-bottom: 14px;
   display: flex;
   align-items: center;
@@ -1915,17 +1763,17 @@ body.page-loaded .hero-cta-group {
   content: '';
   width: 28px;
   height: 1px;
-  background: var(--green-border);
+  background: var(--amber-border);
 }
 .nl-left h3 {
   font-family: var(--serif);
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-size: 1.7rem;
   font-weight: 700;
-  color: var(--deep);
+  color: var(--forest);
   line-height: 1.2;
   margin-bottom: 12px;
 }
-.nl-left h3 .sage-it { color: var(--green); font-style: italic; }
+.nl-left h3 .amber { color: var(--amber); font-style: italic; }
 .nl-left p {
   font-size: 0.9rem;
   color: var(--text-mid);
@@ -1940,23 +1788,22 @@ body.page-loaded .hero-cta-group {
   width: 100%;
   padding: 14px 18px;
   background: var(--white);
-  border: 1px solid var(--cream-3);
+  border: 1px solid var(--parchment-3);
   border-radius: 6px;
   font-family: var(--sans);
   font-size: 0.9rem;
   color: var(--text);
   outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color 0.2s;
 }
 .nl-form input[type="email"]:focus {
-  border-color: var(--green);
-  box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.1);
+  border-color: var(--amber);
 }
 .nl-form input[type="email"]::placeholder { color: var(--text-muted); }
 .nl-form button {
   width: 100%;
   padding: 14px 24px;
-  background: var(--green);
+  background: var(--forest);
   color: var(--white);
   font-family: var(--sans);
   font-size: 0.76rem;
@@ -1966,12 +1813,9 @@ body.page-loaded .hero-cta-group {
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  transition: background 0.2s, box-shadow 0.2s;
+  transition: background 0.2s;
 }
-.nl-form button:hover {
-  background: var(--green-light);
-  box-shadow: 0 4px 16px rgba(45, 106, 79, 0.3);
-}
+.nl-form button:hover { background: var(--forest-mid); }
 .nl-privacy {
   font-size: 0.72rem;
   color: var(--text-muted);
@@ -1982,7 +1826,7 @@ body.page-loaded .hero-cta-group {
    FOOTER
    ============================================================ */
 footer {
-  background: var(--deeper);
+  background: var(--forest-dark);
   padding: 64px 0 40px;
 }
 .footer-inner {
@@ -1991,6 +1835,7 @@ footer {
   gap: 48px;
   margin-bottom: 52px;
 }
+.footer-brand {}
 .footer-brand .brand-mark {
   font-family: var(--serif);
   font-size: 1.2rem;
@@ -1998,43 +1843,48 @@ footer {
   color: var(--white);
   margin-bottom: 12px;
 }
-.footer-brand .brand-mark span { color: var(--sage); font-style: italic; }
+.footer-brand .brand-mark span { color: var(--amber); font-style: italic; }
 .footer-brand p {
   font-size: 0.84rem;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.55);
   line-height: 1.75;
   margin-bottom: 20px;
 }
-.footer-social { display: flex; gap: 12px; }
+.footer-social {
+  display: flex;
+  gap: 12px;
+}
 .footer-social a {
-  width: 38px;
-  height: 38px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  border: 1px solid rgba(116, 198, 157, 0.2);
+  border: 1px solid rgba(193, 127, 58, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(116, 198, 157, 0.6);
-  transition: all 0.25s;
+  font-size: 0.7rem;
+  color: var(--amber);
+  transition: all 0.2s;
 }
 .footer-social a:hover {
-  background: rgba(116, 198, 157, 0.12);
-  border-color: rgba(116, 198, 157, 0.5);
-  color: var(--sage);
+  background: rgba(193, 127, 58, 0.12);
+  border-color: var(--amber-strong);
 }
+
+.footer-col {}
 .footer-col h4 {
   font-size: 0.64rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   font-weight: 700;
-  color: var(--sage);
+  color: var(--amber);
   margin-bottom: 18px;
 }
 .footer-col ul { list-style: none; }
 .footer-col ul li { margin-bottom: 10px; }
 .footer-col ul li a {
   font-size: 0.84rem;
-  color: rgba(255,255,255,0.55);
+  color: rgba(255,255,255,0.6);
   transition: color 0.2s;
 }
 .footer-col ul li a:hover { color: var(--white-dim); }
@@ -2044,18 +1894,18 @@ footer {
   align-items: center;
   justify-content: space-between;
   padding-top: 28px;
-  border-top: 1px solid rgba(255,255,255,0.05);
+  border-top: 1px solid rgba(255,255,255,0.06);
   flex-wrap: wrap;
   gap: 12px;
 }
 .footer-bottom p {
   font-size: 0.74rem;
-  color: rgba(255,255,255,0.22);
+  color: rgba(255,255,255,0.25);
 }
-.footer-bottom p span { color: var(--sage); }
+.footer-bottom p span { color: var(--amber); }
 .footer-accred {
   font-size: 0.72rem;
-  color: rgba(255,255,255,0.22);
+  color: rgba(255,255,255,0.25);
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
@@ -2066,73 +1916,68 @@ footer {
    ============================================================ */
 @media (max-width: 1024px) {
   :root { --section-v: 88px; }
+
   .problem-grid { grid-template-columns: 1fr; gap: 48px; }
   .problem-left { position: static; }
-  .spark-row { grid-template-columns: repeat(3, 1fr); }
+  .spark-row { grid-template-columns: repeat(3, 1fr); gap: 10px; }
   .pattern-definition { grid-template-columns: 1fr; }
   .offers-grid { grid-template-columns: repeat(2, 1fr); }
   .origin-grid { grid-template-columns: 1fr; gap: 48px; }
   .proof-stats { grid-template-columns: repeat(2, 1fr); }
   .footer-inner { grid-template-columns: 1fr 1fr; }
+  .journey-timeline { flex-wrap: wrap; gap: 32px; }
+  .journey-timeline::before { display: none; }
+  .jt-step { max-width: 160px; }
 }
 
 @media (max-width: 768px) {
   :root { --section-v: 72px; }
+
   .nav { padding: 0 24px; }
   .nav-links { display: none; }
   .nav-cta { display: none; }
   .nav-hamburger { display: flex; }
+
   .hero { padding: 100px 24px 72px; }
+  .hero-stats { gap: 0; }
   .hero-stat { padding: 0 20px; }
   .hero-stat .stat-num { font-size: 1.8rem; }
-  .philosophy-strip { padding: 60px 24px; }
+
+  .philosophy-strip { padding: 20px 24px; }
+
   .offers-grid { grid-template-columns: 1fr; }
   .spark-row { grid-template-columns: 1fr 1fr; }
+  .testimonials-grid { max-width: 100%; }
+  .proof-stats { grid-template-columns: repeat(2, 1fr); }
+
   .ideal-grid { grid-template-columns: 1fr; }
   .signal-phrases { grid-template-columns: 1fr 1fr; }
+
   .cta-options { grid-template-columns: 1fr; }
+
   .newsletter-inner { grid-template-columns: 1fr; gap: 36px; }
+
   .footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
+
   .conviction-content { padding: 0 24px; }
-  .testimonial-card { padding: 32px 28px; }
+
+  .spark-row { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 480px) {
-  .hero-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: rgba(116, 198, 157, 0.12);
-    border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 40px;
-  }
-  .hero-stat {
-    background: rgba(13, 40, 24, 0.8);
-    border: none;
-    border-right: none;
-    padding: 20px 16px;
-    text-align: center;
-  }
-  .hero-stat:last-child { border: none; }
-  .spark-row { grid-template-columns: 1fr; }
+  .hero-stats { flex-direction: column; gap: 20px; }
+  .hero-stat { border-right: none; border-bottom: 1px solid rgba(193,127,58,0.2); padding: 16px 0; }
+  .hero-stat:last-child { border-bottom: none; }
+
   .signal-phrases { grid-template-columns: 1fr; }
   .footer-inner { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; }
 }
+
 </style>
 </head>
 
 <body>
-
-<!-- Page veil — the moment before everything -->
-<div id="page-veil"></div>
-
-<!-- Skip link -->
-<a href="#main-content" class="skip-link">Skip to main content</a>
-
-<!-- Scroll progress bar -->
-<div id="progress-bar"></div>
 
 <!-- ============================================================
      NAVIGATION
@@ -2149,8 +1994,7 @@ footer {
     <a class="nav-link" href="#origin">Story</a>
     <a class="nav-link" href="#newsletter">Newsletter</a>
   </div>
-  <!-- REMOVE for production deployment: -->
-  <!-- <a class="nav-link" href="index.html" style="color:var(--green);font-weight:600;">← Signal Overview</a> -->
+  <a class="nav-link" href="index.html" style="color:var(--amber);font-weight:600;">← Signal Overview</a>
   <a class="nav-cta" href="#cta">Book a SPARK Session</a>
   <button class="nav-hamburger" id="bob-hamburger" aria-label="Open menu" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -2158,63 +2002,56 @@ footer {
 </nav>
 
 <div class="mobile-menu" id="bob-mobile-menu">
-  <a href="#methodology">The Work</a>
-  <a href="#offers">Work With Me</a>
-  <a href="#proof">Proof</a>
-  <a href="#origin">Story</a>
-  <a href="#newsletter">Newsletter</a>
-  <a href="#cta" style="color:var(--green);font-weight:700;">Book a SPARK Session</a>
+  <a href="#methodology" onclick="closeBobMenu()">The Work</a>
+  <a href="#offers" onclick="closeBobMenu()">Work With Me</a>
+  <a href="#proof" onclick="closeBobMenu()">Proof</a>
+  <a href="#origin" onclick="closeBobMenu()">Story</a>
+  <a href="#newsletter" onclick="closeBobMenu()">Newsletter</a>
+  <a href="#cta" onclick="closeBobMenu()" style="color:var(--amber);font-weight:700;">Book a SPARK Session</a>
 </div>
 
-<main id="main-content">
 
 <!-- ============================================================
-     HERO
+     HERO — CENTERED, SIGNAL CODE FRONT AND CENTER
      ============================================================ -->
 <section class="hero" id="top">
   <div class="hero-bg" aria-hidden="true"></div>
-  <div class="hero-overlay" aria-hidden="true"></div>
-  <div class="hero-orb hero-orb-1" aria-hidden="true"></div>
-  <div class="hero-orb hero-orb-2" aria-hidden="true"></div>
-  <div class="hero-orb hero-orb-3" aria-hidden="true"></div>
 
   <div class="hero-content">
-    <div class="hero-signal-line">Coach Reg &nbsp;&middot;&nbsp; Pattern Recognition Coach &nbsp;&middot;&nbsp; Since 1984</div>
+    <div class="hero-signal-line fade-in">Coach Reg &nbsp;·&nbsp; Pattern Recognition Coach &nbsp;·&nbsp; Since 1984</div>
 
-    <h1 class="hero-headline">
-      I help founders who've <span class="green-it">outgrown</span> the answers they already have.
+    <h1 class="hero-headline fade-up">
+      I help founders who've <span class="amber it">outgrown</span> the answers they already have.
     </h1>
 
-    <p class="hero-sub">
+    <p class="hero-sub fade-up" style="margin-bottom:28px;">
       Forty years. Over 1,500 athletes. One question that changes everything:
     </p>
 
-    <p class="hero-quote">
-      <span class="gradient-text">"What's the pattern running through everything you do?"</span>
+    <p class="fade-up" style="font-family:var(--serif);font-size:clamp(1.3rem,2.5vw,1.8rem);font-weight:700;font-style:italic;color:var(--amber);line-height:1.4;margin-bottom:52px;">
+      "What's the pattern running through everything you do?"
     </p>
 
-    <!-- Hero stats — start at 0, animate to target -->
-    <div class="hero-stats">
+    <div class="hero-stats fade-up">
       <div class="hero-stat">
-        <span class="stat-num" data-target="40">0</span>
+        <span class="stat-num" data-target="40">40</span>
         <span class="stat-label">Years Coaching</span>
       </div>
       <div class="hero-stat">
-        <span class="stat-num" data-target="1500" data-suffix="+">0</span>
+        <span class="stat-num" data-target="1500" data-suffix="+">1,500+</span>
         <span class="stat-label">Athletes Coached</span>
       </div>
       <div class="hero-stat">
-        <span class="stat-num" data-target="1">0</span>
+        <span class="stat-num" data-target="1">1</span>
         <span class="stat-label">Hour to the Pattern</span>
       </div>
       <div class="hero-stat">
-        <!-- No data-target — text, not a number -->
         <span class="stat-num">EMCC</span>
         <span class="stat-label">Accredited</span>
       </div>
     </div>
 
-    <div class="hero-cta-group">
+    <div class="hero-cta-group fade-up">
       <a class="btn-primary" href="#cta">Book a SPARK Session — $1,500</a>
       <a class="btn-secondary" href="#methodology">See How It Works</a>
     </div>
@@ -2234,7 +2071,6 @@ footer {
   <div class="philosophy-text">
     "How you do <span class="em">one thing</span> is how you do <span class="em">everything</span> — on the course, I can see it in your swing before you can hide it."
   </div>
-  <div class="philosophy-attr">— Coach Reg · 40 years on the course</div>
 </div>
 
 
@@ -2250,7 +2086,7 @@ footer {
         <h2 class="big-pull-quote">
           You've done the work.<br>
           You've hired the coaches.<br>
-          The pattern is <span class="sage">still there.</span>
+          The pattern is <span class="amber it">still there.</span>
         </h2>
 
         <p>
@@ -2317,21 +2153,23 @@ footer {
 
 
 <!-- ============================================================
-     METHODOLOGY
+     METHODOLOGY — DARK FULL BLEED
      ============================================================ -->
 <section class="methodology-section" id="methodology">
   <div class="section-wrap">
 
+    <!-- Full-width header -->
     <div class="methodology-header fade-up">
       <div class="method-eyebrow">The SPARK Methodology</div>
       <h2 class="method-title">
-        Pattern recognition<br>for people at a <span class="sage-it">threshold.</span>
+        Pattern recognition<br>for people at a <span class="amber">threshold.</span>
       </h2>
       <p class="method-intro">
         SPARK isn't a coaching framework. It's a diagnostic lens developed over 40 years on the court, in the locker room, and on the fairway. <strong>It finds the pattern running underneath your decisions</strong> — the one that shows up in how you grip a golf club, how you open a difficult conversation, and how you've structured your business.
       </p>
     </div>
 
+    <!-- Pattern Recognition definition — two equal columns -->
     <div class="pattern-definition fade-up">
       <div class="pattern-def-block">
         <div class="pdb-eyebrow">The Diagnostic</div>
@@ -2349,28 +2187,29 @@ footer {
       </div>
     </div>
 
+    <!-- SPARK acronym — 5 cards in a row -->
     <div class="spark-row">
-      <div class="spark-letter fade-up" data-step="01">
+      <div class="spark-letter fade-up">
         <div class="sl-letter">S</div>
         <div class="sl-word">Surface</div>
         <div class="sl-desc">What you think the issue is. The stated problem. The thing you brought to the session.</div>
       </div>
-      <div class="spark-letter fade-up" data-step="02">
+      <div class="spark-letter fade-up">
         <div class="sl-letter">P</div>
         <div class="sl-word">Pattern</div>
         <div class="sl-desc">The recurring behaviour underneath. How it shows up across every domain — work, relationships, performance.</div>
       </div>
-      <div class="spark-letter fade-up" data-step="03">
+      <div class="spark-letter fade-up">
         <div class="sl-letter">A</div>
         <div class="sl-word">Awareness</div>
         <div class="sl-desc">The moment you see it clearly for the first time. The mirror held still long enough to look at it.</div>
       </div>
-      <div class="spark-letter fade-up" data-step="04">
+      <div class="spark-letter fade-up">
         <div class="sl-letter">R</div>
         <div class="sl-word">Reframe</div>
         <div class="sl-desc">The specific shift that changes what's possible. Not a prescription — a new angle on the same reality.</div>
       </div>
-      <div class="spark-letter fade-up" data-step="05">
+      <div class="spark-letter fade-up">
         <div class="sl-letter">K</div>
         <div class="sl-word">Kinetic Action</div>
         <div class="sl-desc">The one move that follows from the awareness. Concrete. Specific. Momentum-creating. Not a list — the next step.</div>
@@ -2386,124 +2225,126 @@ footer {
 
 
 <!-- ============================================================
-     OFFERS
+     HOW WE WORK — OFFERS
      ============================================================ -->
 <section class="offers-section" id="offers">
   <div class="section-wrap">
 
     <div class="offers-intro fade-up">
       <div class="section-label" style="justify-content:center">How We Work Together</div>
-      <h2>From first conversation<br>to <span class="sage-it">long-term engagement.</span></h2>
+      <h2>From first conversation<br>to <span class="amber">long-term engagement.</span></h2>
       <p>
         Every client relationship begins with a single diagnostic hour. Most go further. The journey below is designed so each step creates a natural invitation to go deeper — never a transaction, always a progression.
       </p>
     </div>
 
+    <!-- Offers grid -->
     <div class="offers-grid">
 
-      <!-- SPARK Session -->
+      <!-- SPARK Session — top left -->
       <div class="offer-card fade-up">
         <div class="offer-badge entry">Entry Point</div>
-        <div class="offer-name">SPARK Session<span class="sage">&#8482;</span></div>
+        <div class="offer-name">SPARK Session<span style="color:var(--amber)">™</span></div>
         <div class="offer-tagline">One hour. One insight. One action. The diagnostic that strips away noise and maps the next move.</div>
         <div class="offer-price-row">
           <div class="offer-price">$1,500</div>
           <div class="offer-price-note">60 minutes<br>Remote or in-person</div>
         </div>
         <ul class="offer-includes">
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> A specific decision or threshold on the table — not a general exploration</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Pattern identification in the first 20 minutes</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> The one question that changes the angle</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> A single concrete next action before we hang up</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Written summary of the pattern and the move — within 48 hours</li>
+          <li><span class="check">✓</span> A specific decision or threshold on the table — not a general exploration</li>
+          <li><span class="check">✓</span> Pattern identification in the first 20 minutes</li>
+          <li><span class="check">✓</span> The one question that changes the angle</li>
+          <li><span class="check">✓</span> A single concrete next action before we hang up</li>
+          <li><span class="check">✓</span> Written summary of the pattern and the move — within 48 hours</li>
         </ul>
-        <a class="offer-cta dark" href="#cta">Book a SPARK Session &rarr;</a>
+        <a class="offer-cta dark" href="#cta">Book a SPARK Session →</a>
       </div>
 
-      <!-- Tee Time — Flagship -->
+      <!-- FLAGSHIP: Tee Time — top right -->
       <div class="offer-card flagship fade-up">
         <div class="offer-badge flagship-badge">Flagship Experience</div>
-        <div class="offer-name">SPARK Tee Time<span class="sage">&#8482;</span></div>
+        <div class="offer-name">SPARK Tee Time<span class="amber">™</span></div>
         <div class="offer-tagline">A private, all-inclusive day designed to reset the pattern — on the course and off it.</div>
         <div class="offer-price-row">
           <div class="offer-price">$5,500</div>
           <div class="offer-price-note">All-inclusive · One day<br>Follow-up session included</div>
         </div>
         <ul class="offer-includes">
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Pre-round clarity call (60 min) — we identify the exact pattern to watch for</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Breakfast together before we tee off — the conversation starts here</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> 18 holes of coaching in motion — your game becomes your diagnostic</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Early dinner debrief — integrating what the course revealed</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Black-car service, two nights, two meals — everything handled</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Follow-up SPARK Session one week later — pattern check, next move</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Optional plus-one — bring a business partner or a peer who needs this</li>
+          <li><span class="check">✓</span> Pre-round clarity call (60 min) — we identify the exact pattern to watch for</li>
+          <li><span class="check">✓</span> Breakfast together before we tee off — the conversation starts here</li>
+          <li><span class="check">✓</span> 18 holes of coaching in motion — your game becomes your diagnostic</li>
+          <li><span class="check">✓</span> Early dinner debrief — integrating what the course revealed</li>
+          <li><span class="check">✓</span> Black-car service, two nights, two meals — everything handled</li>
+          <li><span class="check">✓</span> Follow-up SPARK Session one week later — pattern check, next move</li>
+          <li><span class="check">✓</span> Optional plus-one — bring a business partner or a peer who needs this</li>
         </ul>
-        <a class="offer-cta sage-btn" href="#cta">Enquire About Tee Time &rarr;</a>
+        <a class="offer-cta amber-btn" href="#cta">Enquire About Tee Time →</a>
       </div>
 
-      <!-- SPARK Vision Experience -->
+      <!-- Retainer -->
       <div class="offer-card fade-up">
-        <div class="offer-badge retainer">Immersive Experience</div>
-        <div class="offer-name">SPARK Vision Experience<span class="sage">&#8482;</span></div>
-        <div class="offer-tagline">One day. One vision. Full conviction. A full-day immersive coaching experience for leaders at an inflection point.</div>
+        <div class="offer-badge retainer">Ongoing Engagement</div>
+        <div class="offer-name">SPARK Retainer<span style="color:var(--amber)">™</span></div>
+        <div class="offer-tagline">The pattern doesn't resolve in a day. For the ones who want to keep the mirror active.</div>
         <div class="offer-price-row">
-          <div class="offer-price">$15K&ndash;$25K</div>
-          <div class="offer-price-note">1.5 days · In-person<br>Enquire for availability</div>
+          <div class="offer-price">$3,000<span style="font-size:1rem;font-weight:400">/mo</span></div>
+          <div class="offer-price-note">Min. 3 months<br>2 sessions/month + async</div>
         </div>
         <ul class="offer-includes">
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Initial clarity and vision assessment — authentic strengths, values, and direction</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Pattern recognition deep-dive — identifying the decision points and barriers you can't see</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Mid-day personal reflection — space to process what's surfacing</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Barrier removal and execution roadmap — specific next steps, not theory</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Entire session recorded for future reference — revisit the breakthroughs anytime</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Specific commitments and accountability framework — you leave with conviction, not just clarity</li>
+          <li><span class="check">✓</span> Two 60-minute sessions per month — pattern tracking, next moves</li>
+          <li><span class="check">✓</span> Async access between sessions — voice note or message, always replied to</li>
+          <li><span class="check">✓</span> Pattern journal — a running record of what we've named and what's shifting</li>
+          <li><span class="check">✓</span> Priority access to SPARK Sessions and Tee Time dates</li>
+          <li><span class="check">✓</span> 3-month minimum ensures the pattern has time to actually change</li>
         </ul>
-        <a class="offer-cta dark" href="#cta">Enquire About Vision Experience &rarr;</a>
+        <a class="offer-cta dark" href="#cta">Learn About Retainer →</a>
       </div>
 
-      <!-- Keynote -->
+      <!-- SPARK Keynote -->
       <div class="offer-card fade-up">
         <div class="offer-badge speaking">Speaking</div>
-        <div class="offer-name">SPARK Keynote<span style="color:var(--brown)">&#8482;</span></div>
+        <div class="offer-name">SPARK Keynote<span style="color:var(--amber)">™</span></div>
         <div class="offer-tagline">"How you do one thing is how you do everything" — for executive audiences, founder summits, and high-performance organisations.</div>
         <div class="offer-price-row">
-          <div class="offer-price" style="color:var(--brown)">$5K&ndash;$20K</div>
-          <div class="offer-price-note">45&ndash;60 minutes<br>Enquire for availability</div>
+          <div class="offer-price">$5K–$20K</div>
+          <div class="offer-price-note">45–60 minutes<br>Enquire for availability</div>
         </div>
         <ul class="offer-includes">
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Tailored to your audience — founders, executives, athletes, or mixed leaders</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Pattern recognition framework applied to a room of people at once</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Every talk generates downstream SPARK Session bookings from attendees</li>
-          <li><span class="check" aria-hidden="true"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5L4.5 8.5L11 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Q&amp;A and post-talk availability included</li>
+          <li><span class="check">✓</span> Tailored to your audience — founders, executives, athletes, or mixed leaders</li>
+          <li><span class="check">✓</span> Pattern recognition framework applied to a room of people at once</li>
+          <li><span class="check">✓</span> Every talk generates downstream SPARK Session bookings from attendees</li>
+          <li><span class="check">✓</span> Q&amp;A and post-talk availability included</li>
         </ul>
-        <a class="offer-cta outline" href="#cta">Enquire About Speaking &rarr;</a>
+        <a class="offer-cta dark" href="#cta">Enquire About Speaking →</a>
       </div>
 
     </div>
+
   </div>
 </section>
 
 
 <!-- ============================================================
-     PROOF
+     PROOF — RESULTS, TESTIMONIALS, CREDIBILITY
      ============================================================ -->
 <section class="proof-section" id="proof">
   <div class="section-wrap">
     <div class="proof-header fade-up">
       <div class="eyebrow" style="justify-content:center;">Client Outcomes</div>
-      <h2>The work speaks for <span class="sage-it">itself.</span></h2>
+      <h2>The work speaks for <span class="amber">itself.</span></h2>
       <p>
         After 40 years, the proof isn't in the testimonials. It's in the patterns that shifted, the decisions that got made, and the people who send referrals years after their first session.
       </p>
     </div>
 
+    <!-- Stats -->
     <div class="proof-stats fade-up">
       <div class="proof-stat">
-        <span class="ps-num" data-target="40">0</span>
+        <span class="ps-num" data-target="40">40</span>
         <span class="ps-label">Years Coaching at the Highest Level</span>
       </div>
       <div class="proof-stat">
-        <span class="ps-num" data-target="1500" data-suffix="+">0</span>
+        <span class="ps-num" data-target="1500" data-suffix="+">1,500+</span>
         <span class="ps-label">Athletes and Leaders Coached</span>
       </div>
       <div class="proof-stat">
@@ -2516,8 +2357,9 @@ footer {
       </div>
     </div>
 
-    <div class="testimonials-grid" id="testimonialCarousel" role="region" aria-label="Client testimonials">
-      <div class="carousel-track" id="carouselTrack" aria-live="polite">
+    <!-- Testimonial Carousel -->
+    <div class="testimonials-grid" id="testimonialCarousel">
+      <div class="carousel-track" id="carouselTrack">
 
         <div class="testimonial-card testimonial-featured">
           <div class="testimonial-text">
@@ -2551,7 +2393,7 @@ footer {
 
         <div class="testimonial-card">
           <div class="testimonial-text">
-            "The pattern Bob identified in the first twenty minutes turned out to be the hinge that everything else was swinging on. That call turned into the most productive two hours I'd had in a decade."
+            "Jim Spaulding built something real in Philadelphia. When I saw his client list include Bob Regnerus, I called. That call turned into the most productive two hours I'd had in a decade. The pattern Bob identified in the first twenty minutes turned out to be the hinge that everything else was swinging on."
           </div>
           <div class="testimonial-attribution">
             <div class="ta-name">Jim Spaulding</div>
@@ -2561,25 +2403,18 @@ footer {
 
       </div>
       <div class="carousel-controls">
-        <button class="carousel-btn" id="carousel-prev" aria-label="Previous testimonial">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
+        <button class="carousel-btn" onclick="moveCarousel(-1)">←</button>
         <div class="carousel-dots">
-          <div class="carousel-dot active" data-slide="0"></div>
-          <div class="carousel-dot" data-slide="1"></div>
-          <div class="carousel-dot" data-slide="2"></div>
-          <div class="carousel-dot" data-slide="3"></div>
+          <div class="carousel-dot active" onclick="goToSlide(0)"></div>
+          <div class="carousel-dot" onclick="goToSlide(1)"></div>
+          <div class="carousel-dot" onclick="goToSlide(2)"></div>
+          <div class="carousel-dot" onclick="goToSlide(3)"></div>
         </div>
-        <button class="carousel-btn" id="carousel-next" aria-label="Next testimonial">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
+        <button class="carousel-btn" onclick="moveCarousel(1)">→</button>
       </div>
     </div>
 
+    <!-- Credibility bar -->
     <div class="credibility-bar fade-up">
       <div class="cred-item">
         <div class="ci-label">Certification</div>
@@ -2595,7 +2430,7 @@ footer {
       </div>
       <div class="cred-item">
         <div class="ci-label">Newsletter</div>
-        <div class="ci-value">SPARK Insights&#8482;</div>
+        <div class="ci-value">SPARK Insights™</div>
       </div>
       <div class="cred-item">
         <div class="ci-label">Speaking</div>
@@ -2618,8 +2453,8 @@ footer {
   <div class="section-wrap">
 
     <div class="ideal-header fade-up">
-      <div class="eyebrow" style="color:var(--sage);justify-content:center;">Who This Is For</div>
-      <h2>Founders at a <span class="sage-it">threshold.</span></h2>
+      <div class="eyebrow" style="color:var(--amber);justify-content:center;">Who This Is For</div>
+      <h2>Founders at a <span class="amber">threshold.</span></h2>
       <p>
         The clearest signal that this work is right for you? You've already done the work — and the pattern is still there. Precise positioning attracts precise people. Here's who I do my best work with.
       </p>
@@ -2627,28 +2462,28 @@ footer {
 
     <div class="ideal-grid">
       <div class="ideal-card fade-up">
-        <div class="ic-num">01</div>
+        <div class="ic-icon">⧖</div>
         <div class="ic-title">You've built something real</div>
         <div class="ic-body">
           Founder or CEO. Ten to thirty years in. Revenue between $2M and $50M. Respected externally. <strong>Internally questioning everything.</strong> The external markers of success are in place — but they no longer feel like the destination.
         </div>
       </div>
       <div class="ideal-card fade-up">
-        <div class="ic-num">02</div>
+        <div class="ic-icon">◈</div>
         <div class="ic-title">You've outgrown the answers you have</div>
         <div class="ic-body">
           You've tried therapy. Masterminds. Executive retreats. Other coaches. They were useful — but you're not looking for information. <strong>You're looking for someone who can see what you can't.</strong> The blind spot nobody has named yet.
         </div>
       </div>
       <div class="ideal-card fade-up">
-        <div class="ic-num">03</div>
+        <div class="ic-icon">◎</div>
         <div class="ic-title">You have a specific decision in front of you</div>
         <div class="ic-body">
           A real threshold — a transition, a partnership decision, a chapter that needs to end, a direction you can't commit to yet. <strong>Something with real stakes attached.</strong> The SPARK Session requires a specific decision. Not general motivation.
         </div>
       </div>
       <div class="ideal-card fade-up">
-        <div class="ic-num">04</div>
+        <div class="ic-icon">∫</div>
         <div class="ic-title">You're ready to act on what you discover</div>
         <div class="ic-body">
           This work moves fast. In one hour, you'll see something you haven't seen before. The question is whether you'll do something with it. <strong>My best clients act within a week of our first session.</strong> If you're looking for permission to keep circling — I'm not your guy.
@@ -2656,15 +2491,9 @@ footer {
       </div>
     </div>
 
-    <div class="not-for-block fade-up">
-      <div class="nfb-label">Not the Right Fit</div>
-      <div class="nfb-text">
-        If you're looking for a <strong>12-week program</strong>, a <strong>group coaching pod</strong>, or <strong>someone to hold your hand through incremental motivation</strong> — I'm not your coach. This work is for people who are ready to see clearly and move decisively. If you want permission to stay comfortable, we're not a match.
-      </div>
-    </div>
-
+    <!-- Signal phrases -->
     <div class="ideal-header fade-up" style="margin-bottom:28px;">
-      <p style="font-size:0.82rem;color:rgba(255,255,255,0.38);letter-spacing:0.06em;">If you've said any of these recently, we should talk.</p>
+      <p style="font-size:0.82rem;color:rgba(255,255,255,0.4);letter-spacing:0.06em;">If you've said any of these recently, we should talk.</p>
     </div>
     <div class="signal-phrases fade-up">
       <div class="sp-item">"I feel stuck but I don't know why"</div>
@@ -2674,6 +2503,7 @@ footer {
       <div class="sp-item">"I know the answer — I just can't see it"</div>
       <div class="sp-item">"I'm exhausted by achievement that no longer satisfies"</div>
     </div>
+
 
   </div>
 </section>
@@ -2689,7 +2519,7 @@ footer {
     <div class="origin-grid">
       <div class="origin-content">
         <h2 class="origin-h2 fade-up">
-          Forty years in locker rooms<br>taught me something <span class="sage-it">therapy school never does.</span>
+          Forty years in locker rooms<br>taught me something <span class="amber it">therapy school never does.</span>
         </h2>
 
         <p class="fade-up">
@@ -2729,29 +2559,52 @@ footer {
         <div class="origin-image">
           <img
             src="https://images.unsplash.com/photo-1593111774240-d529f12cf4bb?w=700&q=80"
-            alt="Coach Reg — Bob Regnerus on the golf course"
+            alt="Coach Reg — Bob Regnerus"
             loading="lazy"
           >
           <!-- REPLACE: Professional photo of Bob — ideally on the course or in a coaching setting -->
-          <div class="origin-image-overlay">Coach Reg · 40 years on the course</div>
+          <div class="origin-image-overlay">Coach Reg · 40 years</div>
         </div>
 
         <div class="credentials-list">
           <div class="cl-title">Credentials & Background</div>
-          <div class="cl-item"><div class="cl-dot"></div>EMCC Accredited Executive Coach</div>
-          <div class="cl-item"><div class="cl-dot"></div>Purpose Factor® Certified Facilitator</div>
-          <div class="cl-item"><div class="cl-dot"></div>Head Golf Coach (Current)</div>
-          <div class="cl-item"><div class="cl-dot"></div>40 Years Coaching Athletes and Leaders</div>
-          <div class="cl-item"><div class="cl-dot"></div>1,500+ Athletes Through the Work</div>
-          <div class="cl-item"><div class="cl-dot"></div>SPARK Insights&#8482; Newsletter Author</div>
-          <div class="cl-item"><div class="cl-dot"></div>Keynote Speaker — Executive Audiences</div>
-          <div class="cl-item"><div class="cl-dot"></div>Co-building The Athletics Island with Brandon Fong</div>
+          <div class="cl-item">
+            <div class="cl-dot"></div>
+            EMCC Accredited Executive Coach
+          </div>
+          <div class="cl-item">
+            <div class="cl-dot"></div>
+            Purpose Factor® Certified Facilitator
+          </div>
+          <div class="cl-item">
+            <div class="cl-dot"></div>
+            Head Golf Coach (Current)
+          </div>
+          <div class="cl-item">
+            <div class="cl-dot"></div>
+            40 Years Coaching Athletes and Leaders
+          </div>
+          <div class="cl-item">
+            <div class="cl-dot"></div>
+            1,500+ Athletes Through the Work
+          </div>
+          <div class="cl-item">
+            <div class="cl-dot"></div>
+            SPARK Insights™ Newsletter Author
+          </div>
+          <div class="cl-item">
+            <div class="cl-dot"></div>
+            Keynote Speaker — Executive Audiences
+          </div>
+          <div class="cl-item">
+            <div class="cl-dot"></div>
+            Co-building The Athletics Island with Brandon Fong
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-
 
 <!-- ============================================================
      CONVICTION STATEMENT
@@ -2765,20 +2618,18 @@ footer {
     <p class="conviction-sub">
       It's the thing I've been giving away for 40 years — in locker rooms, on fairways, and in boardrooms. <strong>Now it's time to broadcast it.</strong>
     </p>
-    <a class="btn-primary" href="#cta" style="margin:0 auto;display:inline-flex;">Begin the Work</a>
   </div>
 </section>
 
-
 <!-- ============================================================
-     NEWSLETTER
+     NEWSLETTER STRIP
      ============================================================ -->
 <section class="newsletter-strip" id="newsletter">
   <div class="section-wrap">
     <div class="newsletter-inner">
       <div class="nl-left fade-up">
-        <div class="nl-label">SPARK Insights&#8482;</div>
-        <h3>Pattern recognition,<br>delivered <span class="sage-it">weekly.</span></h3>
+        <div class="nl-label">SPARK Insights™</div>
+        <h3 style="font-size:clamp(1.6rem,3vw,2.4rem);">Pattern recognition,<br>delivered <span class="amber">weekly.</span></h3>
         <p>
           Every edition opens with a specific scene — on the course, in a session, from 40 years of coaching — and closes with one question designed to make you sit with something. Not a newsletter. A mirror.
         </p>
@@ -2787,7 +2638,7 @@ footer {
         <form class="nl-form" name="spark-newsletter" method="POST" data-netlify="true" action="/thank-you">
           <input type="hidden" name="form-name" value="spark-newsletter">
           <input type="email" name="email" placeholder="Your email address" required aria-label="Email address">
-          <button type="submit">Join SPARK Insights&#8482; — Free</button>
+          <button type="submit">Join SPARK Insights™ — Free</button>
         </form>
         <p class="nl-privacy">No noise. One email, some weeks. Unsubscribe anytime.</p>
       </div>
@@ -2795,16 +2646,15 @@ footer {
   </div>
 </section>
 
-
 <!-- ============================================================
-     CTA
+     CTA SECTION
      ============================================================ -->
 <section class="cta-section" id="cta">
   <div class="section-wrap">
     <div class="cta-inner">
       <div class="eyebrow" style="justify-content:center;">Begin the Work</div>
       <h2 class="cta-h2">
-        Bring me your <span class="sage-it">$50,000</span> problem.<br>
+        Bring me your <span class="amber">$50,000</span> problem.<br>
         In one hour, we'll find<br>the pattern underneath it.
       </h2>
       <p class="cta-sub">
@@ -2813,17 +2663,17 @@ footer {
 
       <div class="cta-options">
         <a class="cta-option" href="https://calendly.com" target="_blank" rel="noopener">
-          <!-- REPLACE: real Calendly link -->
+          <!-- REPLACE: real Calendly link for SPARK Session booking -->
           <div class="co-label">Entry Point</div>
-          <div class="co-name">SPARK Session&#8482;</div>
+          <div class="co-name">SPARK Session™</div>
           <div class="co-desc">One hour. One insight. One action. A specific decision on the table — and the pattern underneath it, named.</div>
           <div class="co-price">$1,500 · 60 minutes</div>
           <span class="co-cta">Book Now</span>
         </a>
         <a class="cta-option" href="mailto:bob@coachregnerus.com" target="_blank" rel="noopener">
-          <!-- REPLACE: real contact email / inquiry form -->
+          <!-- REPLACE: real contact email / inquiry form link -->
           <div class="co-label">Flagship Experience</div>
-          <div class="co-name">SPARK Tee Time&#8482;</div>
+          <div class="co-name">SPARK Tee Time™</div>
           <div class="co-desc">A private all-day experience on the course. Pre-round clarity call, 18 holes of coaching in motion, dinner debrief, follow-up session.</div>
           <div class="co-price">$5,500 · Full day · All-inclusive</div>
           <span class="co-cta">Enquire</span>
@@ -2837,7 +2687,6 @@ footer {
   </div>
 </section>
 
-</main>
 
 <!-- ============================================================
      FOOTER
@@ -2851,24 +2700,17 @@ footer {
           Pattern recognition for founders and leaders at threshold moments. 40 years. 1,500 athletes. One question: what's the pattern running through everything you do?
         </p>
         <div class="footer-social">
-          <a href="#" aria-label="Bob Regnerus on LinkedIn" target="_blank" rel="noopener">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-            </svg>
-          </a>
-          <a href="#" aria-label="Coach Reg on Instagram" target="_blank" rel="noopener">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
-            </svg>
-          </a>
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="Instagram">&#9679;</a>
+          <a href="#" aria-label="Twitter">&#x2715;</a>
         </div>
       </div>
       <div class="footer-col">
         <h4>Work</h4>
         <ul>
-          <li><a href="#offers">SPARK Session&#8482;</a></li>
-          <li><a href="#offers">SPARK Tee Time&#8482;</a></li>
-          <li><a href="#offers">SPARK Vision Experience&#8482;</a></li>
+          <li><a href="#offers">SPARK Session™</a></li>
+          <li><a href="#offers">SPARK Tee Time™</a></li>
+          <li><a href="#offers">SPARK Retainer™</a></li>
           <li><a href="#offers">Keynote Speaking</a></li>
         </ul>
       </div>
@@ -2884,7 +2726,7 @@ footer {
       <div class="footer-col">
         <h4>Connect</h4>
         <ul>
-          <li><a href="#newsletter">SPARK Insights&#8482;</a></li>
+          <li><a href="#newsletter">SPARK Insights™</a></li>
           <li><a href="#cta">Book a Session</a></li>
           <li><a href="mailto:bob@coachregnerus.com">Get in Touch</a></li>
           <li><a href="#">LinkedIn</a></li>
@@ -2904,107 +2746,33 @@ footer {
 
 
 <!-- ============================================================
-     JAVASCRIPT
+     JAVASCRIPT — SCROLL ANIMATIONS + COUNTERS
      ============================================================ -->
 <script>
-// PAGE LOAD CEREMONY
-(function() {
-  var veil = document.getElementById('page-veil');
-  if (!veil) return;
-
-  function reveal() {
-    // 300ms of intentional darkness, then lift
-    setTimeout(function() {
-      veil.style.opacity = '0';
-      document.body.classList.add('page-loaded');
-      setTimeout(function() { veil.remove(); }, 1300);
-    }, 300);
-  }
-
-  if (document.readyState === 'complete') {
-    reveal();
-  } else {
-    window.addEventListener('load', reveal, { once: true });
-  }
-})();
-
-/* ---- Scroll progress bar ---- */
-var progressBar = document.getElementById('progress-bar');
-window.addEventListener('scroll', function() {
-  var scrollTop = window.scrollY;
-  var docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  var pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-  progressBar.style.width = pct + '%';
-}, { passive: true });
-
-/* ---- IntersectionObserver scroll animations (basic, for .fade-in) ---- */
-var observer = new IntersectionObserver(function(entries) {
-  entries.forEach(function(entry) {
+/* ---- IntersectionObserver scroll animations ---- */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
-      setTimeout(function() {
-        entry.target.style.willChange = 'auto';
-      }, 900);
       observer.unobserve(entry.target);
     }
   });
 }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
-// Only observe .fade-in elements with basic observer (not .fade-up — those use stagger)
-document.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
-
-/* ---- CORRECT STAGGER — replaces the CSS nth-child approach ---- */
-var staggerObserver = new IntersectionObserver(function(entries) {
-  // Group elements by their parent container
-  var groups = new Map();
-  entries.forEach(function(entry) {
-    if (!entry.isIntersecting) return;
-    var parent = entry.target.parentElement;
-    if (!groups.has(parent)) groups.set(parent, []);
-    groups.get(parent).push(entry.target);
-  });
-
-  groups.forEach(function(els) {
-    els.forEach(function(el, i) {
-      setTimeout(function() {
-        el.classList.add('visible');
-        setTimeout(function() {
-          el.style.willChange = 'auto';
-        }, 900);
-      }, i * 100); // 100ms between siblings
-    });
-  });
-
-  // Unobserve after firing
-  entries.forEach(function(entry) {
-    if (entry.isIntersecting) staggerObserver.unobserve(entry.target);
-  });
-
-}, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
-
-document.querySelectorAll('.fade-up').forEach(function(el) { staggerObserver.observe(el); });
-
-/* ---- Glassmorphism nav on scroll ---- */
-var nav = document.getElementById('nav');
-window.addEventListener('scroll', function() {
-  if (window.scrollY > 60) {
-    nav.classList.add('scrolled');
-  } else {
-    nav.classList.remove('scrolled');
-  }
-}, { passive: true });
+document.querySelectorAll('.fade-up, .fade-in').forEach(el => observer.observe(el));
 
 /* ---- Mobile nav ---- */
-var bobHamburger = document.getElementById('bob-hamburger');
-var bobMobileMenu = document.getElementById('bob-mobile-menu');
+const bobHamburger = document.getElementById('bob-hamburger');
+const bobMobileMenu = document.getElementById('bob-mobile-menu');
 
 if (bobHamburger && bobMobileMenu) {
-  bobHamburger.addEventListener('click', function() {
-    var isOpen = bobMobileMenu.classList.contains('open');
+  bobHamburger.addEventListener('click', () => {
+    const isOpen = bobMobileMenu.classList.contains('open');
     bobMobileMenu.classList.toggle('open');
     bobHamburger.setAttribute('aria-expanded', String(!isOpen));
   });
-  document.addEventListener('click', function(e) {
+
+  document.addEventListener('click', (e) => {
     if (bobMobileMenu.classList.contains('open') && !bobMobileMenu.contains(e.target) && !bobHamburger.contains(e.target)) {
       bobMobileMenu.classList.remove('open');
       bobHamburger.setAttribute('aria-expanded', 'false');
@@ -3013,130 +2781,87 @@ if (bobHamburger && bobMobileMenu) {
 }
 
 function closeBobMenu() {
-  var menu = document.getElementById('bob-mobile-menu');
-  var btn = document.getElementById('bob-hamburger');
+  const menu = document.getElementById('bob-mobile-menu');
+  const btn = document.getElementById('bob-hamburger');
   if (menu) menu.classList.remove('open');
   if (btn) btn.setAttribute('aria-expanded', 'false');
 }
 
-// Mobile menu event delegation — remove inline onclick
-document.querySelectorAll('.mobile-menu a').forEach(function(a) {
-  a.addEventListener('click', function() {
-    closeBobMenu();
-  });
-});
-
 /* ---- Animated counters ---- */
 function animateCounter(el, target, suffix, duration) {
-  var start = null;
+  let start = null;
+  const isDecimal = target % 1 !== 0;
   function step(ts) {
     if (!start) start = ts;
-    var progress = Math.min((ts - start) / duration, 1);
-    var ease = 1 - Math.pow(1 - progress, 3);
-    var val = Math.round(ease * target);
+    const progress = Math.min((ts - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    const val = Math.round(ease * target);
     el.textContent = val.toLocaleString() + (suffix || '');
     if (progress < 1) requestAnimationFrame(step);
   }
   requestAnimationFrame(step);
 }
 
-var counterObserver = new IntersectionObserver(function(entries) {
-  entries.forEach(function(entry) {
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
     if (entry.isIntersecting) {
-      var el = entry.target;
-      var target = parseFloat(el.dataset.target);
-      var suffix = el.dataset.suffix || '';
-      if (!isNaN(target)) animateCounter(el, target, suffix, 2200);
+      const el = entry.target;
+      const target = parseFloat(el.dataset.target);
+      const suffix = el.dataset.suffix || '';
+      if (!isNaN(target)) {
+        animateCounter(el, target, suffix, 2200);
+      }
       counterObserver.unobserve(el);
     }
   });
 }, { threshold: 0.5 });
 
-document.querySelectorAll('[data-target]').forEach(function(el) { counterObserver.observe(el); });
+document.querySelectorAll('[data-target]').forEach(el => counterObserver.observe(el));
 
-/* ---- Smooth anchor scroll ---- */
-document.querySelectorAll('a[href^="#"]').forEach(function(a) {
-  a.addEventListener('click', function(e) {
-    var href = a.getAttribute('href');
-    var target = document.querySelector(href);
+/* ---- Navbar background transition ---- */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 60) {
+    nav.style.boxShadow = '0 2px 24px rgba(44,31,14,0.12)';
+  } else {
+    nav.style.boxShadow = 'none';
+  }
+}, { passive: true });
+
+/* ---- Smooth anchor scroll with offset ---- */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
     if (target) {
       e.preventDefault();
-      var offset = target.getBoundingClientRect().top + window.scrollY - 72;
-      window.scrollTo({ top: offset, behavior: 'smooth' });
-      // Update URL without jumping
-      history.pushState(null, '', href);
+      const offset = 72;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
     }
   });
 });
 
-/* ---- Testimonial carousel ---- */
-var currentSlide = 0;
-var track = document.getElementById('carouselTrack');
-var dots = document.querySelectorAll('.carousel-dot');
-var totalSlides = dots.length;
+// Testimonial carousel
+let currentSlide = 0;
+const track = document.getElementById('carouselTrack');
+const dots = document.querySelectorAll('.carousel-dot');
+const totalSlides = dots.length;
 
 function goToSlide(n) {
   currentSlide = n;
-  track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
-  dots.forEach(function(d, i) { d.classList.toggle('active', i === currentSlide); });
+  track.style.transform = `translateX(-${currentSlide * 100}%)`;
+  dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
 }
 
 function moveCarousel(dir) {
-  var next = currentSlide + dir;
+  let next = currentSlide + dir;
   if (next < 0) next = totalSlides - 1;
   if (next >= totalSlides) next = 0;
   goToSlide(next);
 }
 
-// Carousel button event listeners (no inline onclick)
-document.getElementById('carousel-prev').addEventListener('click', function() { moveCarousel(-1); });
-document.getElementById('carousel-next').addEventListener('click', function() { moveCarousel(1); });
-
-// Carousel dot event listeners
-dots.forEach(function(dot) {
-  dot.addEventListener('click', function() {
-    goToSlide(parseInt(dot.dataset.slide));
-  });
-});
-
-// CAROUSEL TOUCH SUPPORT
-(function() {
-  var carousel = document.getElementById('testimonialCarousel');
-  if (!carousel) return;
-
-  var touchStartX = 0;
-  var touchEndX = 0;
-  var SWIPE_THRESHOLD = 50; // px
-
-  carousel.addEventListener('touchstart', function(e) {
-    touchStartX = e.changedTouches[0].clientX;
-  }, { passive: true });
-
-  carousel.addEventListener('touchend', function(e) {
-    touchEndX = e.changedTouches[0].clientX;
-    var delta = touchStartX - touchEndX;
-
-    if (Math.abs(delta) > SWIPE_THRESHOLD) {
-      moveCarousel(delta > 0 ? 1 : -1);
-    }
-  }, { passive: true });
-
-  // Pause auto-advance on hover/focus
-  var autoAdvance;
-  var startAuto = function() {
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      autoAdvance = setInterval(function() { moveCarousel(1); }, 6000);
-    }
-  };
-  var stopAuto = function() { clearInterval(autoAdvance); };
-
-  carousel.addEventListener('mouseenter', stopAuto);
-  carousel.addEventListener('mouseleave', startAuto);
-  carousel.addEventListener('focusin', stopAuto);
-  carousel.addEventListener('focusout', startAuto);
-
-  startAuto();
-})();
+// Auto-advance every 6 seconds
+setInterval(() => moveCarousel(1), 6000);
 </script>
 
 </body>
